@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/03/30 12:49:08 by thlibers         ###   ########.fr       */
+/*   Created: 2025/10/20 15:19:05 by thlibers          #+#    #+#             */
+/*   Updated: 2025/10/21 16:13:20 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <ctype.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*noeud;
 
-#endif
+	noeud = malloc(sizeof(t_list));
+	if (noeud == NULL)
+		return (NULL);
+	noeud->content = content;
+	noeud->next = NULL;
+	return (noeud);
+}
+
+// int main()
+// {
+// 	t_list *test;
+
+// 	test = ft_lstnew("/salut/");
+// 	printf ("new node content = %s", (char *)test->content);
+// 	return (0);
+// }

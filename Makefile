@@ -1,48 +1,83 @@
-NAME		=	so_long
-CFLAGS		=	-Wall -Wextra -Werror -I. -g3 -c -lm
-MLX_FLAG	=	-L$(MLX_DIR) -lm -lXext -lX11
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
+#    Updated: 2026/03/30 12:48:24 by thlibers         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC			=	$(SRC_DIR)/cube3d.c
-OBJS		=	$(SRC:%.c=%.o)
+# Name
+NAME = cube3D
 
-SRC_DIR		=	src
-LIB_DIR		=	lib
-MLX_DIR		=	external/minilibx-linux
+# Flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g3 -I.
+INCLUDES = -I./includes
+
+# Paths
+SRC_DIR = sources
+OBJ_DIR = obj
+LIBFT_DIR = mylibft
+
+LIBFT = $(LIBFT_DIR)/libft.a
+
+# Srcs
+SRCS =	$(SRC_DIR)/parsing/.c\
+
+
+# Obj
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+GREEN = \e[0;32m
+RED = \e[0;31m
+BLUE = \e[0;34m
+RESET = \e[0m
 
 all: $(NAME)
 
-%.c: %.o
-	$(CC) $(CFLAGS) $< -o $@
+# Compilation program
+$(NAME): $(LIBFT) $(OBJS)
+	@echo "$(BLUE)Linking $(NAME)...$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) -lreadline
+	@echo "$(GREEN)✓ $(NAME) compiled successfully!$(RESET)"
 
-PRINTF:
-	make -C external/printf
-	mv external/printf/*.a lib/
+# Compilation files obj
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@echo "$(BLUE)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-LIBFT:
-	make -C external/libft
-	mv external/libft/*.a lib/
+# Compilation mylibft
+$(LIBFT):
+	@echo "$(BLUE)Compiling libft...$(RESET)"
+	@make -C $(LIBFT_DIR)
+	@echo "$(GREEN)✓ libft compiled!$(RESET)"
 
-minilibx:
-	rm -f minilibx-linux.tgz
-	wget https://cdn.intra.42.fr/document/document/46415/minilibx-linux.tgz
-	tar xvfz minilibx-linux.tgz -C library
-	make -C library/minilibx-linux
-	mv library/minilibx-linux/*.a lib/
-
-$(NAME): minilibx PRINTF LIBFT $(OBJS)
-	$(CC) $(GNL) $(OBJS) -o $@ lib/*.a $(MLX_FLAG)
-
+# Clean obj files
 clean:
-	if [ -d external/minilibx-linux ]; then make -C external/minilibx-linux clean; fi
-	make -C external/libft clean
-	rm -f $(OBJS)
-	rm -f minilibx-linux.tgz
+	@echo "$(RED)Cleaning object files...$(RESET)"
+	@rm -rf $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean
+	@echo "$(GREEN)✓ Object files cleaned!$(RESET)"
 
+# Complete clean
 fclean: clean
-	rm -rf external/minilibx-linux
-	rm -f lib/*.a
-	rm -f $(NAME)
+	@echo "$(RED)Cleaning executables...$(RESET)"
+	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@echo "$(GREEN)✓ Full clean completed!$(RESET)"
 
+# Complete recompilation
 re: fclean all
 
-.PHONY: fclean clean re all
+# Leaks
+valgrind: $(NAME)
+	@echo "$(BLUE)Checking for memory leaks with valgrind...$(RESET)"
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+
+# Rule .PHONY
+.PHONY: all clean fclean re test leaks valgrind

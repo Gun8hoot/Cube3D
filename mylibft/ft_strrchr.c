@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/03/30 12:49:08 by thlibers         ###   ########.fr       */
+/*   Created: 2025/10/14 09:21:56 by thlibers          #+#    #+#             */
+/*   Updated: 2025/10/16 18:27:11 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <ctype.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
+	int	j;
 
-#endif
+	j = 0;
+	while (s[j])
+		j++;
+	i = j;
+	while (i >= 0)
+	{
+		if (s[i] == (char)c)
+			return (&((char *)s)[i]);
+		i--;
+	}
+	return (NULL);
+}
+
+// int main (void)
+// {
+// 	printf("%s\n", ft_strrchr("sTalTuTation", 84));
+// 	printf("%s\n", strrchr("sTalTuTation", 84));
+// 	return(0);
+// }

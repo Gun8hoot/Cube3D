@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/03/30 12:49:08 by thlibers         ###   ########.fr       */
+/*   Created: 2025/10/17 16:34:43 by thlibers          #+#    #+#             */
+/*   Updated: 2026/01/16 17:12:34 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <ctype.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
+size_t	ft_putendl_fd(char *s, int fd)
+{
+	int	size;
 
-#endif
+	size = 0;
+	size += ft_putstr_fd(s, fd);
+	size += ft_putchar_fd('\n', fd);
+	return (size);
+}

@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   ft_countword.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/03/30 12:49:08 by thlibers         ###   ########.fr       */
+/*   Created: 2025/11/06 12:58:08 by thlibers          #+#    #+#             */
+/*   Updated: 2025/11/19 17:40:04 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <ctype.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
+size_t	ft_countword(const char *str, char sep)
+{
+	size_t	i;
+	size_t	count;
 
-#endif
+	i = 0;
+	count = 0;
+	while (str[i] && str[i] == sep)
+		i++;
+	while (str[i])
+	{
+		while (str[i] && str[i] != sep)
+			i++;
+		count++;
+		while (str[i] && str[i] == sep)
+			i++;
+	}
+	return (count);
+}

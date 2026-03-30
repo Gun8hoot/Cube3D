@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/03/30 12:49:08 by thlibers         ###   ########.fr       */
+/*   Created: 2025/10/15 09:34:11 by thlibers          #+#    #+#             */
+/*   Updated: 2025/10/20 12:23:46 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include <ctype.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*mem;
+	size_t	i;
 
-#endif
+	i = 0;
+	mem = malloc(nmemb * size);
+	if (mem == NULL)
+		return (NULL);
+	while (i < (nmemb * size))
+	{
+		((char *)mem)[i] = '\0';
+		i++;
+	}
+	return (mem);
+}
+
+// int main()
+// {
+// 	void *mem = ft_calloc(5, 1);
+// 	printf("%s", (char *)mem);
+// 	free (mem);
+// 	return (0);
+// }
