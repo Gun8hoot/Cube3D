@@ -1,3 +1,6 @@
+#include <stdio.h>
 
-
-int main(int argv é)
+int main(int argc, char **argv)
+{
+	printf("abc\n");
+}
