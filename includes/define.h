@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/03/31 19:43:40 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/03/31 15:56:13 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef DEFINE_H
+# define DEFINE_H
 
-# include "library/minilibx-linux/mlx.h"
-# include "library/mylibft/libft.h"
-# include "includes/struct.h"
-# include "includes/prototypes.h"
-# include "includes/error.h"
-# include "includes/define.h"
-# include <ctype.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
+# define WIDTH 1080
+# define HEIGHT 1920
 
 #endif

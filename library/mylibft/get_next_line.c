@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:07:56 by thlibers          #+#    #+#             */
-/*   Updated: 2025/12/04 16:00:14 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/03/31 19:51:38 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ static char	*ft_keep_it(char *stock)
 		return (free(stock), NULL);
 	storage = malloc((ft_strlen_mod(stock) - i) + 1);
 	if (!storage)
+	{
+		errno = EGNL;
 		return (NULL);
+	}
 	i++;
 	while (stock[i])
 		storage[j++] = stock[i++];
@@ -75,7 +78,10 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		errno = -1;
 		return (NULL);
+	}
 	stock = ft_readnstock(stock, fd);
 	if (!stock)
 		return (NULL);

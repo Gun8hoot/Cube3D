@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.h                                           :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/03/31 19:43:40 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/03/31 19:46:08 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef ERROR_H
+# define ERROR_H
 
-# include "library/minilibx-linux/mlx.h"
-# include "library/mylibft/libft.h"
-# include "includes/struct.h"
-# include "includes/prototypes.h"
-# include "includes/error.h"
-# include "includes/define.h"
-# include <ctype.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
+/* --- ERROR MESSAGES --- */
+# define ARG_ERROR "Error:\nNot enough arguments\n"
+# define OPEN_ERROR "Error:\nFailed to open\n"
+# define ALLOC_ERROR "Error:\nFailed to allocated\n"
+# define EXT_ERROR "Error:\nWrong extension type\n"
+
+/* --- ERROR ERRNO --- */
+#  define EGNL 0x55
+
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:08:25 by thlibers          #+#    #+#             */
-/*   Updated: 2025/12/04 16:00:07 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/03/31 19:52:15 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_strdup_mod(char *s)
 		i++;
 	dup = malloc(i + 2);
 	if (!dup)
-		return (NULL);
+		return (errno = EGNL, NULL);
 	i = 0;
 	while (s[i] && s[i] != '\n')
 	{
@@ -87,14 +87,14 @@ char	*ft_strjoin_mod(char *s1, char *s2)
 	{
 		s1 = malloc(1);
 		if (!s1)
-			return (NULL);
+			return (errno = EGNL, NULL);
 		s1[0] = 0;
 	}
 	if (!s2)
 		return (s1);
 	join = malloc(ft_strlen_mod(s1) + ft_strlen_mod(s2) + 1);
 	if (join == NULL)
-		return (NULL);
+		return (errno = EGNL, NULL);
 	j = 0;
 	i = ft_strlen_mod(s1);
 	ft_strcpy_mod(join, s1);

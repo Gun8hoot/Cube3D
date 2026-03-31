@@ -1,33 +1,56 @@
-
-NAME		=	cube3D
-CFLAGS		=	-Wall -Wextra -Werror -I. -g3 -c -lm
-MLX_FLAG	=	-L$(MLX_DIR) -lm -lXext -lX11
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
+#    Updated: 2026/03/31 17:45:14 by nclavel          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 # Name
 NAME = cube3D
 
-SRC_DIR		=	sources
-LIB_DIR		=	library
-MLX_DIR		=	$(LIB_DIR)/minilibx-linux
+# Flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g3 -I.
+INCLUDES = -I./includes
 
 # Paths
 SRC_DIR = sources
-OBJ_DIR = obj
+OBJ_DIR = objects
+LIB_DIR	= library
+
 LIBFT_DIR = $(LIB_DIR)/mylibft
+LIB =	$(LIB_DIR)/libmlx_Linux.a\
+		$(LIB_DIR)/libmlx.a
 
 LIBFT = $(LIBFT_DIR)/libft.a
+MLX	= $(LIB_DIR)/minilibx-linux
 
 # Srcs
-SRCS =	$(SRC_DIR)/parsing/.c\
-OBJS =	$(SRCS:%.c=%.o)
+SRCS =	$(SRC_DIR)/cube3d.c\
+		$(SRC_DIR)/init.c\
+		$(SRC_DIR)/parsing/check.c\
+		$(SRC_DIR)/parsing/map.c\
 
-%.c: %.o
-	$(CC) $(CFLAGS) $< -o $@
+# Obj
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+
+GREEN = \e[0;32m
+RED = \e[0;31m
+BLUE = \e[0;34m
+RESET = \e[0m
 
 all: $(NAME)
 
-$(NAME): minilibx libft $(OBJS)
-	$(CC) $(OBJS) -o $@ library/*.a $(MLX_FLAG)
+# Compilation program
+$(NAME): MLX $(LIBFT) $(OBJS)
+	@echo "$(BLUE)Linking $(NAME)...$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIB) -o $(NAME)
+	@echo "$(GREEN)✓ $(NAME) compiled successfully!$(RESET)"
 
 # Compilation files obj
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -41,33 +64,33 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR)
 	@echo "$(GREEN)✓ libft compiled!$(RESET)"
 
-libft:
-	make -C $(LIBFT_DIR)
-	mv $(LIBFT_DIR)/*.a library/
-
-minilibx:
-	rm -f minilibx-linux.tgz
-	mkdir -p library
-	wget https://cdn.intra.42.fr/document/document/46415/minilibx-linux.tgz
-	tar xvfz minilibx-linux.tgz -C library
-	make -C library/minilibx-linux
-	mv $(MLX_DIR)/*.a $(LIB_DIR)
+MLX:
+	@rm -f minilibx-linux.tgz
+	@mkdir -p $(LIB_DIR)
+	@printf "$(GREEN)Downloading minilibx$(RESET)\n"	
+	@wget https://cdn.intra.42.fr/document/document/46415/minilibx-linux.tgz
+	@tar xvfz minilibx-linux.tgz -C $(LIB_DIR)
+	@printf "$(GREEN)Compiling minilibx$(RESET)\n"
+	@make -C $(LIB_DIR)/minilibx-linux
+	@mv $(MLX)/*.a $(LIB_DIR)
 
 # Clean obj files
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
+	@if [ -d $(LIB_DIR)/minilibx-linux ]; then make -C library/minilibx-linux clean; rm -f $(LIB); fi
 	@rm -rf $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) clean
 	@echo "$(GREEN)✓ Object files cleaned!$(RESET)"
 
 # Complete clean
 fclean: clean
-	rm -rf $(LIB_DIR)/minilibx-linux
-	rm -f library/*.a
-	rm -f $(NAME)
+	@echo "$(RED)Cleaning executables...$(RESET)"
+	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@echo "$(GREEN)✓ Full clean completed!$(RESET)"
 
 # Complete recompilation
 re: fclean all
 
 # Rule .PHONY
-.PHONY: all clean fclean re test leaks valgrind
+.PHONY: all clean fclean re test leaks valgrind MLX

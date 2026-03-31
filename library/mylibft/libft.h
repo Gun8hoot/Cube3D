@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 12:25:39 by thlibers          #+#    #+#             */
-/*   Updated: 2026/03/06 06:05:24 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/03/31 19:44:31 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,13 @@
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <errno.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+#  define EGNL 0x55
+
 
 typedef struct s_list
 {
