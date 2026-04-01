@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:41:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/03/31 19:48:01 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/01 12:01:55 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ bool	check_extension(char *filepath)
 	size_t	len;
 
 	len = ft_strlen(filepath) - 1;
-
 	if (!filepath || filepath[0] == '\0')
 		return (false);
 	if (ft_strncmp(&filepath[len - 3], ".cub", 4) != 0)
@@ -52,9 +51,11 @@ static ssize_t	countline(t_map *map)
 	return (map->line_number);
 }
 
-void	show_map(t_map	*map)
+void	show_map(t_map *map)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (i < map->line_number)
 	{
 		printf("%s", map->grid[i]);
@@ -68,7 +69,7 @@ char	**export_map(t_map *map, char *filepath)
 {
 	int16_t	fd;
 	size_t	i;
-	char *line;
+	char	*line;
 
 	i = 0;
 	line = NULL;
@@ -77,10 +78,10 @@ char	**export_map(t_map *map, char *filepath)
 		return (NULL);
 	fd = open(filepath, O_RDONLY);
 	if (fd < 3)
-		return(NULL);
+		return (NULL);
 	map->grid = ft_calloc(map->line_number, sizeof(char *));
 	if (!map->grid)
-		return(ft_fprintf(STDERR_FILENO, ALLOC_ERROR), close(fd), NULL);
+		return (ft_fprintf(STDERR_FILENO, ALLOC_ERROR), close(fd), NULL);
 	while (i == 0 || line)
 	{
 		line = get_next_line(fd);

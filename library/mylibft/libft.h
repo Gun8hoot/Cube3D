@@ -18,17 +18,16 @@
 # endif
 
 # include <bsd/string.h>
+# include <errno.h>
 # include <fcntl.h>
 # include <stdarg.h>
 # include <stdbool.h>
 # include <stdio.h>
-# include <errno.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
 
-#  define EGNL 0x55
-
+# define EGNL 0x55
 
 typedef struct s_list
 {

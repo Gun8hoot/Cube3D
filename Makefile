@@ -6,7 +6,7 @@
 #    By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/03/31 17:45:14 by nclavel          ###   ########.fr        #
+#    Updated: 2026/04/01 12:30:21 by nclavel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,10 @@ SRCS =	$(SRC_DIR)/cube3d.c\
 		$(SRC_DIR)/init.c\
 		$(SRC_DIR)/parsing/check.c\
 		$(SRC_DIR)/parsing/map.c\
+		$(SRC_DIR)/parsing/texture.c\
+		$(SRC_DIR)/clean.c\
+		$(SRC_DIR)/parsing/check.c\
+		$(SRC_DIR)/parsing/map.c\
 
 # Obj
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -56,7 +60,7 @@ $(NAME): MLX $(LIBFT) $(OBJS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	@echo "$(BLUE)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # Compilation mylibft
 $(LIBFT):

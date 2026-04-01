@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   includes.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/31 15:42:33 by nclavel           #+#    #+#             */
-/*   Updated: 2026/03/31 19:47:11 by nclavel          ###   ########.fr       */
+/*   Created: 2026/04/01 10:24:35 by nclavel           #+#    #+#             */
+/*   Updated: 2026/04/01 10:25:22 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cube3d.h"
+#ifndef INCLUDES_H
+# define INCLUDES_H
 
-void	init_struct(t_game *game)
-{
-	ft_memset(game, '\0', sizeof(t_game));
-	ft_memset(&game->map, '\0', sizeof(t_game));
-}
+# include <ctype.h>
+# include <errno.h>
+# include <fcntl.h>
+# include <signal.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/wait.h>
+# include <unistd.h>
 
-bool	init(t_game *game, char *filepath)
-{
-	init_struct(game);
-	if (export_map(&game->map, filepath))
-		return (false);
-	return (true);
-}
+#endif
