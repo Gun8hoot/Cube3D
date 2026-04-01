@@ -11,3 +11,13 @@
 
 # Raycasting
 - 70 fov
+
+Par où commencer concrètement ?
+
+- Parse ta map 
+- charge ton fichier .cub, stocke la grille dans un tableau 2D d'entiers
+- Affiche la vue 2D avec MLX (joueur + murs) → valide que la map est bien lue
+- Implante le DDA, commence par afficher juste des lignes de couleur dans la vue 3D
+- Gère les mouvements
+- translations et rotations du joueur Texture les murs
+- calcule l'offset X dans la texture selon le point d'impact du rayon

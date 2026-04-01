@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 15:42:27 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 11:49:30 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/01 14:39:33 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,41 @@ typedef struct s_map
 typedef struct s_game
 {
 	t_map			map;
+	t_player		player;
 }					t_game;
+
+typedef struct s_vec
+{
+	int				x;
+	int				y;
+}					t_vec;
+
+typedef struct s_player
+{
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			angle;
+	double			fov;
+}					t_player;
+
+typedef struct s_ray
+{
+	t_vec			direction;
+	t_vec			step;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	int				hit;
+	// int		side; ?
+	double			perp_wall_dist;
+	int				draw_start;
+	int				draw_end;
+	int				line_height;
+}					t_ray;
 
 #endif

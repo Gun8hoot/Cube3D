@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   includes.h                                         :+:      :+:    :+:   */
+/*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/01 10:24:35 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 14:48:01 by thlibers         ###   ########.fr       */
+/*   Created: 2026/04/01 14:33:17 by thlibers          #+#    #+#             */
+/*   Updated: 2026/04/01 14:54:24 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDES_H
-# define INCLUDES_H
+#include "includes/cube3d.h"
 
-# include <ctype.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <signal.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
-#include <math.h>
+void	ft_dda(t_ray *raycasting, )
+{
+	
+}
 
-#endif
+void	ray_init()
+{
+	
+}
+
+void	ft_raycasting(t_ray *raycasting)
+{
+	raycasting->delta_dist_x = fabs(1 / raycasting->ray_dir_x);
+	raycasting->delta_dist_y = fabs(1 / raycasting->ray_dir_y);
+}
