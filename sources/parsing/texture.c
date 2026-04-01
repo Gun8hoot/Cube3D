@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:45:55 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 11:53:28 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/01 17:44:36 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,71 +14,107 @@
 
 t_identifier	check_info_type(char *info)
 {
-	if (ft_strncmp(info, "C ", 2))
+	if (ft_strncmp(info, "C ", 2) == 0)
 		return (C);
-	else if (ft_strncmp(info, "F ", 2))
+	else if (ft_strncmp(info, "F ", 2) == 0)
 		return (F);
-	else if (ft_strncmp(info, "NO", 2))
+	else if (ft_strncmp(info, "NO", 2) == 0)
 		return (NO);
-	else if (ft_strncmp(info, "EA", 2))
+	else if (ft_strncmp(info, "EA", 2) == 0)
 		return (EA);
-	else if (ft_strncmp(info, "SO", 2))
+	else if (ft_strncmp(info, "SO", 2) == 0)
 		return (SO);
-	else if (ft_strncmp(info, "WE", 2))
+	else if (ft_strncmp(info, "WE", 2) == 0)
 		return (WE);
 	else
 		return (NONE);
 }
 
-char	*set_info_texture(t_map *map, char *texture_path, t_identifier id)
+bool	get_color(int *color, char *line)
+{
+	int		shift;
+	size_t	i;
+	size_t	j;
+	char	number[4];
+
+	i = 0;
+	shift = 16;
+	ft_bzero(&number, sizeof(int));
+	while (line[i] && !ft_isdigit(line[i]))
+		i++;
+	while (line[i])
+	{
+		ft_bzero(&number, sizeof(char));
+		j = 0;
+		while (line[i + j] && ft_isdigit(line[i + j]))
+			j++;
+		if (line[i + j] != ',' && line[i + j] != '\0')
+			return (false);
+		if (!ft_strlcpy(number, &line[i], j + 1))
+			return (ft_fprintf(STDERR_FILENO, CPY_ERROR), false);
+		*color += ft_atoi(number) << shift;
+		shift -= 8;
+		i += j + 1;
+	}
+	return (true);
+}
+
+bool	set_texture(char **dest, char *src)
+{
+	if (*dest)
+		return (ft_fprintf(STDERR_FILENO, DUPLICAT_ERROR), false);
+	*dest = ft_strdup(src);
+	if (!dest)
+		return (ft_fprintf(STDERR_FILENO, ALLOC_ERROR), false);
+	return (true);
+}
+
+bool	set_info_texture(t_map *map, char *info_string, t_identifier id)
 {
 	size_t	i;
 
 	i = 0;
-	while (texture_path[i] != ' ')
+	while (info_string[i] && info_string[i] != ' ')
 		i++;
-	while (texture_path[i] == ' ')
+	while (info_string[i] && info_string[i] == ' ')
 		i++;
 	if (id == NO)
-		return (map->NO_texture = strdup(&texture_path[i]), map->NO_texture);
+		return (set_texture(&map->NO_texture, &info_string[i]));
 	else if (id == EA)
-		return (map->EA_texture = strdup(&texture_path[i]), map->EA_texture);
+		return (set_texture(&map->EA_texture, &info_string[i]));
 	else if (id == SO)
-		return (map->SO_texture = strdup(&texture_path[i]), map->SO_texture);
+		return (set_texture(&map->SO_texture, &info_string[i]));
 	else if (id == WE)
-		return (map->WE_texture = strdup(&texture_path[i]), map->WE_texture);
-	return (NULL);
-	// else if (id == C)
-	// 	return ();
-	// else if (id == F)
-	// 	return ();
+		return (set_texture(&map->WE_texture, &info_string[i]));
+	else if (id == C)
+		return (get_color(&map->C_color, info_string));
+	else if (id == F)
+		return (get_color(&map->F_color, info_string));
+	return (false);
 }
 
-bool	extract_texture_path(t_map *map)
+bool	extract_texture_path(t_map *map, char *raw_line)
 {
 	size_t			i;
 	char			*line;
 	t_identifier	id;
 
 	i = 0;
-	line = NULL;
 	id = 0;
-	while (map->grid[i])
+	line = ft_strtrim(raw_line, " \n");
+	if (errno == ENOMEM)
+		return (false);
+	else if ((line && line[0] == '\0') || !line)
+		return (true);
+	if (line[0] != '\0')
 	{
-		line = ft_strtrim(map->grid[i], " ");
-		if (!line)
-			return (NULL);
-		if (line[0] != '\n')
-		{
-			id = check_info_type(line);
-			if (id == 0)
-				return (ft_fprintf(STDERR_FILENO, ID_ERROR), false);
-			if (!set_info_texture(map, line, id))
-				return (ft_fprintf(STDERR_FILENO, ALLOC_ERROR), free(line),
-					false);
-		}
-		free(line);
-		i++;
+		id = check_info_type(line);
+		if (id == 0 && line[0] != '\0')
+			return (ft_fprintf(STDERR_FILENO, ID_ERROR), false);
+		if (!set_info_texture(map, line, id))
+			return (free(line), false);
 	}
+	free(line);
+	i++;
 	return (true);
 }

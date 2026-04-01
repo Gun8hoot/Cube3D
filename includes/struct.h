@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/31 15:42:27 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 14:39:33 by thlibers         ###   ########.fr       */
+/*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
+/*   Updated: 2026/04/01 17:45:54 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
-
-# include "includes/includes.h"
 
 typedef enum e_start_looking
 {
@@ -32,22 +30,23 @@ typedef enum e_identifier
 	EA,
 	SO,
 	WE
-
 }					t_identifier;
 
 typedef struct s_map
 {
+	int16_t	fd;
 	char *filepath; // Map filepath
 	char **grid;    // BASE MAP
 	ssize_t			line_number;
-	char *NO_texture; // Path of texture NO
-	char *EA_texture; // Path of texture EA
-	char *SO_texture; // Path of texture SO
-	char *WE_texture; // Path of texture WE
+	char *NO_texture; // Path of texture NORTH
+	char *EA_texture; // Path of texture EAST
+	char *SO_texture; // Path of texture SOUTH
+	char *WE_texture; // Path of texture WEST
 	int F_color;      // COLOR OF THE FLOOR
 	int C_color;      // COLOR OF THE CELLING
+	size_t			start_pos[2];
 	t_start_looking	looking_at;
-}					t_map;
+} t_map; // MAIN MAP STRUCTURE
 
 typedef struct s_game
 {

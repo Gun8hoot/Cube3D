@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:22:01 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/01 10:57:24 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:25:30 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = ft_strlen(s) - start;
 	ext = malloc(sizeof(char) * len + 1);
 	if (!ext)
-		return (NULL);
+		return (errno = ENOMEM, NULL);
 	i = 0;
 	while (i < len && s[start + i])
 	{

@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 12:25:39 by thlibers          #+#    #+#             */
-/*   Updated: 2026/03/31 19:44:31 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:24:32 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <unistd.h>
 
 # define EGNL 0x55
+# define ETRIM 0x99
 
 typedef struct s_list
 {

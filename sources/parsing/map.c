@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:41:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 12:01:55 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/01 17:43:41 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,37 +59,36 @@ void	show_map(t_map *map)
 	while (i < map->line_number)
 	{
 		printf("%s", map->grid[i]);
-		free(map->grid[i]);
 		i++;
 	}
-	free(map->grid);
 }
 
-char	**export_map(t_map *map, char *filepath)
+t_map	*init_map(t_map *map, char *filepath)
 {
-	int16_t	fd;
+	char	*raw_line;
 	size_t	i;
-	char	*line;
+	bool	is_map;
 
 	i = 0;
-	line = NULL;
-	map->filepath = filepath;
-	if (countline(map) == -1)
+	is_map = false;
+	(void)countline;
+	raw_line = NULL;
+	map->fd = open(filepath, O_RDONLY);
+	if (map->fd < 3)
 		return (NULL);
-	fd = open(filepath, O_RDONLY);
-	if (fd < 3)
-		return (NULL);
-	map->grid = ft_calloc(map->line_number, sizeof(char *));
-	if (!map->grid)
-		return (ft_fprintf(STDERR_FILENO, ALLOC_ERROR), close(fd), NULL);
-	while (i == 0 || line)
+	while (i == 0 || raw_line)
 	{
-		line = get_next_line(fd);
+		raw_line = get_next_line(map->fd);
 		if (errno == EGNL)
 			return (NULL);
-		map->grid[i] = line;
+		if (is_map_top_bottom(raw_line) || is_map)
+		{
+			is_map = true;
+			printf("%s", raw_line);
+		}
+		else if (!is_map && !extract_texture_path(map, raw_line))
+			return (NULL);
 		i++;
 	}
-	show_map(map);
-	return (map->grid);
+	return (map);
 }

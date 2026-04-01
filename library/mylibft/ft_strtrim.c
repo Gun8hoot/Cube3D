@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 12:47:36 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/01 10:57:19 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:24:57 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strtrim(char *s1, char const *set)
 	size_t	start;
 	size_t	end;
 
-	if (s1 == NULL && set == NULL)
+	if ((s1 == NULL && set == NULL) || !s1)
 		return (NULL);
 	start = 0;
 	while (s1[start] && ft_strchr(set, s1[start]))

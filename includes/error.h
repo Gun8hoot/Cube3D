@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 11:34:15 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/01 17:01:15 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 # define ALLOC_ERROR "Error:\nFailed to allocated\n"
 # define EXT_ERROR "Error:\nWrong extension type\n"
 # define ID_ERROR "Error:\nWrong identifier type\n"
+# define CPY_ERROR "Error:\nFailed to copy\n"
+# define DUPLICAT_ERROR "Error:\nTexture in duplicated\n"
 
 /* --- ERROR ERRNO --- */
 # define EGNL 0x55
+# define ETRIM 0x99
 
 #endif

@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   maps_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/31 15:42:33 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 14:19:07 by nclavel          ###   ########.fr       */
+/*   Created: 2026/04/01 17:25:46 by nclavel           #+#    #+#             */
+/*   Updated: 2026/04/01 17:40:50 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-void	init_struct(t_game *game)
+bool	is_map_top_bottom(char *line)
 {
-	ft_memset(game, '\0', sizeof(t_game));
-	ft_memset(&game->map, '\0', sizeof(t_game));
-}
+	size_t	i;
+	size_t	len;
 
-bool	init(t_game *game, char *filepath)
-{
-	init_struct(game);
-	if (!init_map(&game->map, filepath))
+	i = 0;
+	len = ft_strlen(line);
+	if (!line || line[i] == '\n')
 		return (false);
-	// if (!extract_texture_path(&game->map))
-	// 	return (false);
-	return (true);
+	while (line && (line[i] == ' ' || line[i] == '1'))
+		i++;
+	if (i + 1 != len)
+		return (false);
+	else
+		return (true);
 }
