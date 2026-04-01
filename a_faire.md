@@ -7,3 +7,7 @@
 - Check si il n'y a pas de vide en plein millieu de la map
 
 > Si il y a une erreur, on doit mettre OBLIGATOIREMENT **"Error\n{MESSAGE D'ERREUR}"**
+
+
+# Raycasting
+- 70 fov
