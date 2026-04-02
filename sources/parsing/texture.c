@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:45:55 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 17:44:36 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/02 16:16:17 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	get_color(int *color, char *line)
 		i++;
 	while (line[i])
 	{
-		ft_bzero(&number, sizeof(char));
+		ft_memset(&number, '\0', sizeof(char) * 4);
 		j = 0;
 		while (line[i + j] && ft_isdigit(line[i + j]))
 			j++;
@@ -105,12 +105,12 @@ bool	extract_texture_path(t_map *map, char *raw_line)
 	if (errno == ENOMEM)
 		return (false);
 	else if ((line && line[0] == '\0') || !line)
-		return (true);
+		return (free(line), true);
 	if (line[0] != '\0')
 	{
 		id = check_info_type(line);
 		if (id == 0 && line[0] != '\0')
-			return (ft_fprintf(STDERR_FILENO, ID_ERROR), false);
+			return (free(line), ft_fprintf(STDERR_FILENO, ID_ERROR), false);
 		if (!set_info_texture(map, line, id))
 			return (free(line), false);
 	}

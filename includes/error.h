@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 17:01:15 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/02 14:31:32 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define ID_ERROR "Error:\nWrong identifier type\n"
 # define CPY_ERROR "Error:\nFailed to copy\n"
 # define DUPLICAT_ERROR "Error:\nTexture in duplicated\n"
+# define MAP_ERROR "Error:\nInvalid map\n"
 
 /* --- ERROR ERRNO --- */
 # define EGNL 0x55

@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 17:26:14 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/02 16:10:41 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 /* --- ./clean.c --- */
 void			free_tab(char ***tab, ssize_t size);
 void			clear_game(t_game *game);
+void			safe_free(void *to_free);
 
 /* --- ./cube3d.c --- */
 
@@ -42,11 +43,11 @@ t_map			*init_map(t_map *map, char *filepath);
 /* --- ./parsing/texture.c --- */
 t_identifier	check_info_type(char *info);
 bool			extract_texture_path(t_map *map, char *raw_line);
-bool	set_info_texture(t_map *map, char *info_string, t_identifier id);
+bool			set_info_texture(t_map *map, char *info_string,
+					t_identifier id);
 
 /* --- ./parsing/maps_utils.c --- */
-bool	is_map_top_bottom(char *line);
-
+bool			is_map(char *line);
 
 /* -------------------- */
 

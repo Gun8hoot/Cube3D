@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/30 14:22:32 by thlibers          #+#    #+#             */
-/*   Updated: 2026/03/06 06:05:10 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/02 14:16:05 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+// void	*ft_realloc_rmx(void	*ptr, size_t size)
+// {
+// 	void	*new_ptr;
+
+// 	if (ptr == NULL)
+// 		return (ft_calloc(size, sizeof(char)));
+// 	if (size == 0)
+// 	{
+// 		free(ptr);
+// 		return (NULL);
+// 	}
+// }
 
 void	*ft_realloc(void *ptr, size_t size)
 {

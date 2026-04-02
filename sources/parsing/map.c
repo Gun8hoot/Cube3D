@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:41:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 17:43:41 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/02 18:03:32 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,56 +24,29 @@ bool	check_extension(char *filepath)
 	return (true);
 }
 
-static ssize_t	countline(t_map *map)
+char	*save_line(char **raw_line)
 {
 	char	*line;
-	int		fd;
+	char	*ret_line;
 
-	if (!check_extension(map->filepath))
-		return (ft_fprintf(STDERR_FILENO, EXT_ERROR), -1);
-	fd = open(map->filepath, O_RDONLY);
-	if (fd < 2)
-		return (ft_fprintf(STDERR_FILENO, OPEN_ERROR), -1);
-	line = get_next_line(fd);
-	if (!line)
-	{
-		ft_fprintf(STDERR_FILENO, ALLOC_ERROR);
-		return (ft_fprintf(STDERR_FILENO, ALLOC_ERROR), close(fd), -1);
-	}
-	while (line)
-	{
-		free(line);
-		map->line_number++;
-		line = get_next_line(fd);
-	}
-	get_next_line(-1);
-	close(fd);
-	return (map->line_number);
-}
-
-void	show_map(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < map->line_number)
-	{
-		printf("%s", map->grid[i]);
-		i++;
-	}
-}
-
-t_map	*init_map(t_map *map, char *filepath)
-{
-	char	*raw_line;
-	size_t	i;
-	bool	is_map;
-
-	i = 0;
-	is_map = false;
-	(void)countline;
+	line = NULL;
+	ret_line = NULL;
+	line = ft_strtrim(*raw_line, "\n");
+	if (!line || line[0] == '\0')
+		return (NULL);
 	raw_line = NULL;
-	map->fd = open(filepath, O_RDONLY);
+	ret_line = ft_strdup(line);
+	if (!ret_line)
+		return (NULL);
+	return (ret_line);
+}
+t_map	*extract_info(t_map *map)
+{
+	size_t	i;
+	char	*raw_line;
+
+	i = 0;
+	map->fd = open(map->filepath, O_RDONLY);
 	if (map->fd < 3)
 		return (NULL);
 	while (i == 0 || raw_line)
@@ -81,14 +54,63 @@ t_map	*init_map(t_map *map, char *filepath)
 		raw_line = get_next_line(map->fd);
 		if (errno == EGNL)
 			return (NULL);
-		if (is_map_top_bottom(raw_line) || is_map)
+		if (is_map(raw_line))
 		{
-			is_map = true;
-			printf("%s", raw_line);
+			map->line_number++;
+			map->pos_start_map += i + 1;
+			while (is_map(get_next_line(map->fd)))
+				map->line_number++;
+			break ;
 		}
-		else if (!is_map && !extract_texture_path(map, raw_line))
-			return (NULL);
+		else if (!extract_texture_path(map, raw_line))
+			return ((free(raw_line), raw_line = NULL), NULL);
 		i++;
 	}
+	safe_free(&raw_line);
+	if (map->fd > 2)
+		(close(map->fd), map->fd = 0);
+	return (map);
+}
+
+char **extract_map(t_map *map)
+{
+	size_t	i;
+	char	*raw_line;
+
+	i = -1;
+	map->grid = ft_calloc(map->line_number + 1, sizeof(char *));
+	if (!map->grid)
+		return (NULL);
+	map->fd = open(map->filepath, O_RDONLY);
+	if (map->fd < 3)
+		return (NULL);
+	while (++i < map->pos_start_map - 1)
+		get_next_line(map->fd);
+	i = 0;
+	while (i <= map->line_number)
+	{
+		raw_line = get_next_line(map->fd);
+		if (errno == EGNL)
+			return (NULL);
+		if (raw_line && raw_line[0] != '\0')
+		{
+			map->grid[i] = ft_strtrim(raw_line, "\n");
+			if (!map->grid[i])
+				return (NULL);
+			i++;
+		}
+	}
+	return (map->grid);
+}
+
+t_map	*init_map(t_map *map, char *filepath)
+{
+	map->filepath = filepath;
+
+	if (!extract_info(map))
+		return (NULL);
+	if (!extract_map(map))
+		return (NULL);
+	
 	return (map);
 }

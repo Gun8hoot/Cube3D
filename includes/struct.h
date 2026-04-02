@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 12:08:31 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/02 18:03:42 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ typedef struct s_ray
 }				t_ray;
 
 /* --- MAP --- */
+typedef enum e_allow_char
+{
+	INVALID = -1,
+	FLOOR = 0,
+	WALL = 1,
+	DOOR,
+	SPACE,
+	PLAYER
+}			t_allow_char;
+
 typedef enum e_start_looking
 {
 	NORTH = 0,
@@ -79,7 +89,7 @@ typedef struct s_map
 	int16_t fd;                 // Map file fd
 	char *filepath;             // Map filepath
 	char **grid;                // BASE MAP
-	ssize_t line_number;        // Map y size
+	size_t line_number;        // Map y size
 	char *NO_texture;           // Path of texture NORTH
 	char *EA_texture;           // Path of texture EAST
 	char *SO_texture;           // Path of texture SOUTH
@@ -88,7 +98,9 @@ typedef struct s_map
 	int C_color;                // COLOR OF THE CELLING
 	size_t start_pos[2];        // Position on the grid of the PLAYER start
 	t_start_looking looking_at; // Direction of the PLAYER start
+	size_t	pos_start_map;		// Position of the map in the file
 } t_map;                        // MAIN MAP STRUCTURE
+
 
 typedef struct s_game
 {

@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:07:56 by thlibers          #+#    #+#             */
-/*   Updated: 2026/03/31 19:51:38 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/02 12:07:58 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
+		if (stock)
+			(free(stock), stock = NULL);
 		errno = -1;
 		return (NULL);
 	}

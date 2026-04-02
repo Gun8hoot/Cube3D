@@ -6,7 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:08:25 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/01 09:59:00 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/02 12:03:54 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,10 @@ char	*ft_strjoin_mod(char *s1, char *s2)
 		join[i + j] = s2[j];
 		j++;
 	}
-	return (join[i + j] = '\0', free(s1), join);
+	if (s1)
+	{
+		free(s1);
+		s1 = NULL;
+	}
+	return (join[i + j] = '\0', join);
 }
