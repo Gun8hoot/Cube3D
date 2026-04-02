@@ -8,4 +8,4 @@ int	main(void)
 	nb += 128 << 8;
 	nb += 0;
 	printf("%d\n", nb);
-}
+)

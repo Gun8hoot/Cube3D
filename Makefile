@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+         #
+#    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/01 17:33:01 by nclavel          ###   ########.fr        #
+#    Updated: 2026/04/02 12:13:03 by thlibers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,9 @@ NAME = cube3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 -I.
 INCLUDES = -I./includes
+
+# Flags Mlx
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 # Paths
 SRC_DIR = sources
@@ -31,7 +34,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 MLX	= $(LIB_DIR)/minilibx-linux
 
 # Srcs
-SRCS =	$(SRC_DIR)/cube3d.c\
+SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/init.c\
 		$(SRC_DIR)/parsing/check.c\
 		$(SRC_DIR)/parsing/map.c\
@@ -52,7 +55,7 @@ all: $(NAME)
 # Compilation program
 $(NAME): MLX $(LIBFT) $(OBJS)
 	@echo "$(BLUE)Linking $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIB) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBFT) $(LIB) -o $(NAME)
 	@echo "$(GREEN)✓ $(NAME) compiled successfully!$(RESET)"
 
 # Compilation files obj

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3d.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 08:10:54 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/02 12:21:59 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,29 @@ void	debug_show_t_map(t_map map)
 	show_grid(map.grid);
 }
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
+// int	main(int argc, char **argv)
+// {
+// 	t_game	game;
 
-	ft_memset(&game, '\0', sizeof(t_game));
-	if (argc != 2)
-	{
-		ft_fprintf(STDERR_FILENO, ARG_ERROR);
-		return (1);
-	}
-	init(&game, argv[1]);
-	debug_show_t_map(game.map);
+// 	ft_memset(&game, '\0', sizeof(t_game));
+// 	if (argc != 2)
+// 	{
+// 		ft_fprintf(STDERR_FILENO, ARG_ERROR);
+// 		return (1);
+// 	}
+// 	init(&game, argv[1]);
+// 	debug_show_t_map(game.map);
+// }
+
+int main(void)
+{
+    t_data data;
+    
+    data.mlx = mlx_init();
+    data.win = mlx_new_window(data.mlx, HEIGHT, WIDTH, "Cube3D");
+    data.img = mlx_new_image(data.mlx, HEIGHT, WIDTH);
+    data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian); // ???
+    mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+    mlx_loop(data.mlx);
+    return (0);
 }
