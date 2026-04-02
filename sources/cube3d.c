@@ -6,13 +6,23 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 17:41:32 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/02 08:10:54 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-void	debug_show_map(t_map map)
+void	show_grid(char **grid)
+{
+	size_t	i;
+
+	i = 0;
+	printf("[+] Grid content\n\n");
+	while (grid && grid[i])
+		printf("%s\n", grid[i++]);
+}
+
+void	debug_show_t_map(t_map map)
 {
 	printf("\n\n--- t_map Content ---\n");
 	if (map.filepath)
@@ -27,6 +37,7 @@ void	debug_show_map(t_map map)
 		printf("[+] Texture file WE = \"%s\"\n", map.WE_texture);
 	printf("[+] Floor color = %X\n", map.C_color);
 	printf("[+] Celling color = %X\n", map.F_color);
+	show_grid(map.grid);
 }
 
 int	main(int argc, char **argv)
@@ -40,5 +51,5 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init(&game, argv[1]);
-	debug_show_map(game.map);
+	debug_show_t_map(game.map);
 }
