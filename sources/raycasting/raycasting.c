@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:50:21 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/02 18:46:39 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 09:45:39 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,6 @@ void	render_init(t_render *render)
 	render->draw_start = 0;
 	render->draw_end = 0;
 	render->line_height = 0;
-}
-
-void	celling_floor(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length, &game->endian);
-	while (y <= WIDTH / 2)
-	{
-		x = 0;
-		while (x <= HEIGHT)
-		{
-			my_mlx_pixel_put(&game, x, y, game->map.c_color);
-			x++;
-		}
-		y++;
-	}
-	while (y <= WIDTH)
-	{
-		x = 0;
-		while (x <= HEIGHT)
-		{
-			my_mlx_pixel_put(&game, x, y, game->map.f_color);
-			x++;
-		}
-		y++;
-	}
 }
 
 void	ft_raycasting(t_ray *ray, t_game game)
@@ -81,6 +52,8 @@ void	ft_raycasting(t_ray *ray, t_game game)
 void	ft_rayshooter(t_ray *ray, t_game game)
 {
 	int		x;
+	int		y;
+	int	color = 0x00000000;
 	double	camera;
 
 	x = 0;
@@ -98,6 +71,12 @@ void	ft_rayshooter(t_ray *ray, t_game game)
 		ft_dda(ray, game);
 		ft_raycasting(ray, game);
 		line_height(&game.render, *ray);
+        y = game.render.draw_start;
+        while (y < game.render.draw_end)
+        {
+            my_mlx_pixel_put(&game, x, y, color);
+            y++;
+        }
 		x++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 08:50:00 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 09:28:59 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ void	ft_rayshooter(t_ray *ray, t_game game);
 void	ft_dda(t_ray *ray, t_game game);
 void	line_height(t_render *render, t_ray ray);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
-
+void	celling_floor(t_game *game);
 
 #endif

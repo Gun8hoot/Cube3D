@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 08:51:14 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 09:53:25 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,26 @@ void	debug_show_t_map(t_map map)
 		printf("[+] Texture file SO = \"%s\"\n", map.SO_texture);
 	if (map.WE_texture)
 		printf("[+] Texture file WE = \"%s\"\n", map.WE_texture);
-	printf("[+] Floor color = #%X\n", map.C_color);
-	printf("[+] Celling color = #%X\n", map.F_color);
+	printf("[+] Floor color = #%X\n", map.c_color);
+	printf("[+] Celling color = #%X\n", map.f_color);
 	printf("[+] Map started pos %ld\n", map.pos_start_map);
 	printf("\n");
 	show_grid(map.grid);
 }
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
+// int	main(int argc, char **argv)
+// {
+// 	t_game	game;
 
-	ft_memset(&game, '\0', sizeof(t_game));
-	if (argc != 2)
-	{
-		ft_fprintf(STDERR_FILENO, ARG_ERROR);
-		return (1);
-	}
-	init(&game, argv[1]);
-	debug_show_t_map(game.map);
-}
+// 	ft_memset(&game, '\0', sizeof(t_game));
+// 	if (argc != 2)
+// 	{
+// 		ft_fprintf(STDERR_FILENO, ARG_ERROR);
+// 		return (1);
+// 	}
+// 	init(&game, argv[1]);
+// 	debug_show_t_map(game.map);
+// }
 
 // int main(void)
 // {
@@ -73,24 +73,38 @@ int	main(int argc, char **argv)
 //     return (0);
 // }
 
-void	game_loop() // fonction qui va permettre d'update la fenetre
+int	game_loop(t_game *game)
 {
-	
+    // mlx_clear_window(game->mlx, game->win);
+    celling_floor(game);
+    ft_rayshooter(&game->ray, *game);
+    mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+    return (0);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
-	double posX = 22, posY = 12;
-  	double dirX = -1, dirY = 0;
-  	double planeX = 0, planeY = 0.66;
     t_game game;
     
+	ft_memset(&game, '\0', sizeof(t_game));
+	if (argc != 2)
+    {
+        ft_fprintf(STDERR_FILENO, ARG_ERROR);
+        return (1);
+    }
+	init(&game, argv[1]);
+    debug_show_t_map(game.map);
     game.mlx = mlx_init();
-    game.win = mlx_new_window(game.mlx, HEIGHT, WIDTH, "Cube3D");
-	ft_rayshooter(&game.ray, game);
+    game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
     game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
-    game.addr = mlx_get_data_addr(game.img, &game.bits_per_pixel, &game.line_length, &game.endian); // ???
-    mlx_put_image_to_window(game.mlx, game.win, game.img, 0, 0);
+    game.addr = mlx_get_data_addr(game.img, &game.bits_per_pixel, &game.line_length, &game.endian);
+	
+	game.player.pos_x = 25;
+	game.player.pos_y = 11;
+  	game.player.dir_x = -1.0;
+	game.player.dir_y = 0.0;
+	
     mlx_loop_hook(game.mlx, game_loop, &game);
+	mlx_loop(game.mlx);
     return (0);
 }

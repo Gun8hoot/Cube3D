@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:45:55 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 16:16:17 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/07 09:25:13 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ bool	set_info_texture(t_map *map, char *info_string, t_identifier id)
 	else if (id == WE)
 		return (set_texture(&map->WE_texture, &info_string[i]));
 	else if (id == C)
-		return (get_color(&map->C_color, info_string));
+		return (get_color(&map->c_color, info_string));
 	else if (id == F)
-		return (get_color(&map->F_color, info_string));
+		return (get_color(&map->f_color, info_string));
 	return (false);
 }
 

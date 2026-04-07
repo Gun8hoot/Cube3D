@@ -6,7 +6,7 @@
 #    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/02 12:13:03 by thlibers         ###   ########.fr        #
+#    Updated: 2026/04/07 09:46:54 by thlibers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = cube3D
 
 # Flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -I.
+CFLAGS = -Wall -Wextra -Werror -O3 -I.
 INCLUDES = -I./includes
 
 # Flags Mlx
@@ -44,6 +44,7 @@ SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/raycasting/raycasting.c\
 		$(SRC_DIR)/raycasting/ray_utils.c\
 		$(SRC_DIR)/render/render.c\
+		$(SRC_DIR)/utils/mlx_utils.c\
 
 # Obj
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

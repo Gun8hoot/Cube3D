@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:33:17 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/02 16:55:09 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 08:56:46 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ void	line_height(t_render *render, t_ray ray)
     render->draw_end = render->line_height / 2 + h / 2;
     if(render->draw_end >= h)
 		render->draw_end = h - 1;
-}
-
-void	choose_color(t_game *game)
-{
-	
 }
 
 // void	calculate_fps(t_render *render, double *movespeed, double *rotspeed)
