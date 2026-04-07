@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <unistd.h>
-#include <math.h>
+# include <math.h>
+# include <X11/keysymdef.h>
 
 #endif

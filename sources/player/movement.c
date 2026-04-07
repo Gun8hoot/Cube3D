@@ -33,6 +33,7 @@ static void	update_player_position(t_game *game, int new_x, int new_y)
 	game->player.pos_x = new_x;
 	game->player.pos_y = new_y;
 	game->map.grid[new_y][new_x] = PLAYER;
+	system("clear");					// DEBUG
 	show_grid(game->map.grid);
 }
 
@@ -58,4 +59,7 @@ void	move_camera(t_game *game, double rot_speed)
 	game->player.dir_y = olddir * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
 	game->render.plane.x = game->render.plane.x * cos(rot_speed) - game->render.plane.y * sin(rot_speed);
 	game->render.plane.y = oldplane * sin(rot_speed) + game->render.plane.y * cos(rot_speed);
+	system("clear");					// DEBUG
+	show_grid(game->map.grid);
+	printf("\n[+] Direction of view:\n\tx = %.2f\n\ty = %.2f\n", game->player.dir_x, game->player.dir_y);
 }

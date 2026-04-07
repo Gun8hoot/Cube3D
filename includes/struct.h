@@ -59,12 +59,12 @@ typedef struct s_ray
 /* --- MAP --- */
 typedef enum e_allow_char
 {
-	INVALID = -1,
-	FLOOR = 0,
-	WALL = 1,
-	DOOR,
-	SPACE,
-	PLAYER
+	INVALID = 'X',
+	FLOOR = '0',
+	WALL = '1',
+	DOOR = 'D',
+	SPACE = ' ',
+	PLAYER = 'P'
 }			t_allow_char;
 
 typedef enum e_start_looking
@@ -91,6 +91,7 @@ typedef struct s_map
 	int16_t fd;                 // Map file fd
 	char *filepath;             // Map filepath
 	char **grid;                // BASE MAP
+	size_t	number_char_max;	// Number of char max in the biggest line
 	size_t line_number;        // Map y size
 	char *NO_texture;           // Path of texture NORTH
 	char *EA_texture;           // Path of texture EAST

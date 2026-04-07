@@ -21,10 +21,10 @@
 # define M_PI 3.141592653589793
 
 /* Event player */
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
+# define KEY_W 0x77
+# define KEY_S 0x73
+# define KEY_A 0x61
+# define KEY_D 0x64
 # define KEY_ESC 65307
 # define KEY_UP 65362
 # define KEY_LEFT 65361

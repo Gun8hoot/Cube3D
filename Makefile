@@ -15,7 +15,7 @@ NAME = cube3D
 
 # Flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -O3 -I.
+CFLAGS = -Wall -Wextra -Werror -g3 -I.
 INCLUDES = -I./includes
 
 # Flags Mlx

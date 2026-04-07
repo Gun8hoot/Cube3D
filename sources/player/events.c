@@ -14,6 +14,7 @@
 
 int	handle_keypress(int keycode, t_game *game)
 {
+	printf("keycode : %d\n", keycode);
 	if (keycode == KEY_ESC)
 		handle_close(game);
 	if (keycode == KEY_W)

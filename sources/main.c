@@ -43,6 +43,7 @@ void	debug_show_t_map(t_map map)
 	printf("[+] Celling color = #%X\n", map.f_color);
 	printf("[+] Map started pos %ld\n", map.pos_start_map);
 	printf("[+] Map size y %ld\n", map.line_number);
+	printf("[+] Size max of a line %ld\n", map.number_char_max);
 	printf("[+] Player looking direction y = %.2f, x = %.2f\n", map.looking_at[0], map.looking_at[1]);
 	printf("[+] Player starting position y = %.2f, x = %.2f\n", map.start_pos[0], map.start_pos[1]);
 	printf("\n");

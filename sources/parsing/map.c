@@ -119,6 +119,8 @@ char **extract_map(t_map *map)
 			map->grid[i] = ft_strtrim(raw_line, "\n");
 			if (!map->grid[i])
 				return (NULL);
+			if (map->number_char_max < ft_strlen(map->grid[i]))
+				map->number_char_max = ft_strlen(map->grid[i]);
 			i++;
 		}
 		else
