@@ -36,4 +36,9 @@
 # define KEY_RELEASE 3
 # define DESTROY_NOTIFY 17
 
+/* MINIMAP */
+# define PIXEL_PER_TILES	8
+# define MINIMAP_WIDTH		WIDTH/4
+# define MINIMAP_HEIGHT		HEIGHT/4
+
 #endif

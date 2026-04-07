@@ -36,6 +36,7 @@ bool	get_color(int *color, char *line)
 	size_t	i;
 	size_t	j;
 	char	number[4];
+	int		tmp;
 
 	i = 0;
 	shift = 16;
@@ -44,6 +45,7 @@ bool	get_color(int *color, char *line)
 		i++;
 	while (line[i])
 	{
+		tmp = 0;
 		ft_memset(&number, '\0', sizeof(char) * 4);
 		j = 0;
 		while (line[i + j] && ft_isdigit(line[i + j]))
@@ -52,9 +54,15 @@ bool	get_color(int *color, char *line)
 			return (false);
 		if (!ft_strlcpy(number, &line[i], j + 1))
 			return (ft_fprintf(STDERR_FILENO, CPY_ERROR), false);
-		*color += ft_atoi(number) << shift;
+		tmp = ft_atoi(number);
+		if (tmp < 0 || tmp > 255)
+			return (ft_fprintf(STDERR_FILENO, OOB_ERROR), false);
+		*color += tmp << shift;
 		shift -= 8;
-		i += j + 1;
+		if (line[i + j] == '\0')
+			i += j;
+		else
+			i += j + 1;
 	}
 	return (true);
 }
@@ -95,17 +103,15 @@ bool	set_info_texture(t_map *map, char *info_string, t_identifier id)
 
 bool	extract_texture_path(t_map *map, char *raw_line)
 {
-	size_t			i;
 	char			*line;
 	t_identifier	id;
 
-	i = 0;
 	id = 0;
 	line = ft_strtrim(raw_line, " \n");
 	if (errno == ENOMEM)
 		return (false);
 	else if ((line && line[0] == '\0') || !line)
-		return (free(line), true);
+		return (free(line),true);
 	if (line[0] != '\0')
 	{
 		id = check_info_type(line);
@@ -115,6 +121,5 @@ bool	extract_texture_path(t_map *map, char *raw_line)
 			return (free(line), false);
 	}
 	free(line);
-	i++;
 	return (true);
 }

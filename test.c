@@ -6,6 +6,6 @@ int	main(void)
 
 	nb += 255 << 16;
 	nb += 128 << 8;
-	nb += 0;
-	printf("%d\n", nb);
-)
+	nb += 15;
+	printf("%X\n", nb);
+}

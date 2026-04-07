@@ -43,7 +43,7 @@ void	ft_raycasting(t_ray *ray, t_game game)
       if (game.map.grid[ray->map_y][ray->map_x] == '1')
 		ray->hit = 1;
     }
-      if(ray->side == 0) 
+      if(ray->side == 0)
 	  	ray->perp_wall_dist = (ray->side_dist.x - ray->delta_dist.x);
     else
 	  	ray->perp_wall_dist = (ray->side_dist.y - ray->delta_dist.y);
@@ -53,7 +53,7 @@ void	ft_rayshooter(t_ray *ray, t_game game)
 {
 	int		x;
 	int		y;
-	int	color = 0x00000000;
+	int	color = 0xFF808080;
 	double	camera;
 
 	x = 0;

@@ -20,7 +20,7 @@
 /* --- ./clean.c --- */
 void			free_tab(char ***tab, ssize_t size);
 void			clear_game(t_game *game);
-void			safe_free(void *to_free);
+void			safe_free(char **to_free);
 
 /* --- ./cube3d.c --- */
 
@@ -33,6 +33,8 @@ bool			init(t_game *game, char *filepath);
 /* ##### PARSING ##### */
 /* --- ./parsing/check.c --- */
 bool			extract_texture(void);
+void	show_grid(char **grid);
+bool	get_player_pos(t_map *map);
 
 /* --- ./parsing/map.c --- */
 bool			check_extension(char *filepath);
@@ -62,5 +64,7 @@ int handle_close(t_game *game);
 
 void	move_player(t_game *game, double dx, double dy);
 void	move_camera(t_game *game, double rot_speed);
+
+void	show_minimap(t_game *game);
 
 #endif

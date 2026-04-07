@@ -44,6 +44,7 @@ SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/raycasting/raycasting.c\
 		$(SRC_DIR)/raycasting/ray_utils.c\
 		$(SRC_DIR)/render/render.c\
+		$(SRC_DIR)/render/minimap.c\
 		$(SRC_DIR)/utils/mlx_utils.c\
 		$(SRC_DIR)/player/events.c\
 		$(SRC_DIR)/player/movement.c\
@@ -79,7 +80,7 @@ $(LIBFT):
 MLX:
 	@rm -f minilibx-linux.tgz
 	@mkdir -p $(LIB_DIR)
-	@printf "$(GREEN)Downloading minilibx$(RESET)\n"	
+	@printf "$(GREEN)Downloading minilibx$(RESET)\n"
 	@wget https://cdn.intra.42.fr/document/document/46415/minilibx-linux.tgz
 	@tar xvfz minilibx-linux.tgz -C $(LIB_DIR)
 	@printf "$(GREEN)Compiling minilibx$(RESET)\n"

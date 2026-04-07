@@ -28,7 +28,7 @@ void	show_grid(char **grid)
 
 void	debug_show_t_map(t_map map)
 {
-	printf("\n\n--- t_map Content ---\n");
+	printf("\n--- t_map Content ---\n");
 	if (map.filepath)
 		printf("[+] Filepath = \"%s\"\n", map.filepath);
 	if (map.NO_texture)
@@ -42,6 +42,9 @@ void	debug_show_t_map(t_map map)
 	printf("[+] Floor color = #%X\n", map.c_color);
 	printf("[+] Celling color = #%X\n", map.f_color);
 	printf("[+] Map started pos %ld\n", map.pos_start_map);
+	printf("[+] Map size y %ld\n", map.line_number);
+	printf("[+] Player looking direction y = %.2f, x = %.2f\n", map.looking_at[0], map.looking_at[1]);
+	printf("[+] Player starting position y = %.2f, x = %.2f\n", map.start_pos[0], map.start_pos[1]);
 	printf("\n");
 	show_grid(map.grid);
 }
@@ -63,7 +66,7 @@ void	debug_show_t_map(t_map map)
 // int main(void)
 // {
 //     t_data data;
-    
+
 //     data.mlx = mlx_init();
 //     data.win = mlx_new_window(data.mlx, HEIGHT, WIDTH, "Cube3D");
 //     data.img = mlx_new_image(data.mlx, HEIGHT, WIDTH);
@@ -77,6 +80,7 @@ int	game_loop(t_game *game)
 {
     celling_floor(game);
     ft_rayshooter(&game->ray, *game);
+	show_minimap(game);
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
     return (0);
 }
@@ -84,25 +88,26 @@ int	game_loop(t_game *game)
 int main(int argc, char **argv)
 {
     t_game game;
-    
+
 	ft_memset(&game, '\0', sizeof(t_game));
 	if (argc != 2)
     {
         ft_fprintf(STDERR_FILENO, ARG_ERROR);
         return (1);
     }
-	init(&game, argv[1]);
+	if (!init(&game, argv[1]))
+		return (1);
     debug_show_t_map(game.map);
     game.mlx = mlx_init();
     game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
     game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
     game.addr = mlx_get_data_addr(game.img, &game.bits_per_pixel, &game.line_length, &game.endian);
-	
-	game.player.pos_x = 25;
-	game.player.pos_y = 11;
-  	game.player.dir_x = 0.0;
-	game.player.dir_y = -1.0;
-	
+
+	game.player.pos_x = game.map.start_pos[1];
+	game.player.pos_y = game.map.start_pos[0];
+  	game.player.dir_x =	game.map.looking_at[1];
+	game.player.dir_y = game.map.looking_at[0];
+
 	mlx_hook(game.win, 17, 0, handle_close, &game);
 	mlx_hook(game.win, 2, 1L<<0, handle_keypress, &game);
     mlx_loop_hook(game.mlx, game_loop, &game);

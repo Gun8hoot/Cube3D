@@ -14,7 +14,7 @@
 
 // void	choose_textures(t_game *game)
 // {
-	
+
 // }
 
 void	celling_floor(t_game *game)

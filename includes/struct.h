@@ -13,6 +13,8 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+#include "includes/includes.h"
+
 /* --- RENDER --- */
 typedef struct s_player
 {
@@ -96,8 +98,8 @@ typedef struct s_map
 	char *WE_texture;           // Path of texture WEST
 	int f_color;                // COLOR OF THE FLOOR
 	int c_color;                // COLOR OF THE CELLING
-	size_t start_pos[2];        // Position on the grid of the PLAYER start
-	t_start_looking looking_at; // Direction of the PLAYER start
+	double start_pos[2];        // Position on the grid of the PLAYER start
+	double		looking_at[2];	// Direction of the PLAYER start
 	size_t	pos_start_map;		// Position of the map in the file
 }	t_map;                        // MAIN MAP STRUCTURE
 

@@ -33,6 +33,7 @@ static void	update_player_position(t_game *game, int new_x, int new_y)
 	game->player.pos_x = new_x;
 	game->player.pos_y = new_y;
 	game->map.grid[new_y][new_x] = PLAYER;
+	show_grid(game->map.grid);
 }
 
 void	move_player(t_game *game, double dx, double dy)

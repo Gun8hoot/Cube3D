@@ -19,32 +19,34 @@ void	free_tab(char ***tab, ssize_t size)
 	i = 0;
 	if (size < 0)
 	{
-		while (*tab[i])
+		while ((*tab)[i])
 		{
-			if (*tab[i])
-				(free(*tab[i]), *tab[i] = NULL);
+			if ((*tab)[i])
+				(free((*tab)[i]), (*tab)[i] = NULL);
+			i++;
 		}
 		if (*tab)
 			(free(*tab), *tab = NULL);
 	}
 	else
 	{
-		while (i < size - 1)
+		while (i < size)
 		{
-			if (*tab[i])
-				(free(*tab[i]), *tab[i] = NULL);
+			if ((*tab)[i])
+				(free((*tab)[i]), (*tab)[i] = NULL);
+			i++;
 		}
 		if (*tab)
 			(free(*tab), *tab = NULL);
 	}
 }
 
-void	safe_free(void *to_free)
+void	safe_free(char **to_free)
 {
-	if (*(unsigned char **)to_free)
+	if (*(char **)to_free)
 	{
-		free(*(unsigned char **)to_free);
-		*(unsigned char **)to_free = NULL;
+		free(*(char **)to_free);
+		*(char **)to_free = NULL;
 	}
 }
 

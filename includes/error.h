@@ -19,9 +19,12 @@
 # define ALLOC_ERROR "Error:\nFailed to allocated\n"
 # define EXT_ERROR "Error:\nWrong extension type\n"
 # define ID_ERROR "Error:\nWrong identifier type\n"
+# define OOB_ERROR "Error:\nOut-Of-Bound error\n"
 # define CPY_ERROR "Error:\nFailed to copy\n"
 # define DUPLICAT_ERROR "Error:\nTexture in duplicated\n"
 # define MAP_ERROR "Error:\nInvalid map\n"
+# define MULT_PLAYER_ERROR "Error:\nMultiple user defined\n"
+# define PLAYER_ERR	"Error:\nNeed a ONE player\n"
 
 /* --- ERROR ERRNO --- */
 # define EGNL 0x55

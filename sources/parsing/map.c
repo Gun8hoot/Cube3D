@@ -40,6 +40,26 @@ char	*save_line(char **raw_line)
 		return (NULL);
 	return (ret_line);
 }
+
+ssize_t	countline(t_map *map)
+{
+	char	*line;
+
+	line = get_next_line(map->fd);
+	if (!line)
+		return (0);
+	while (line && line[0] != '\n')
+	{
+		if (line)
+			free(line);
+		map->line_number++;
+		line = get_next_line(map->fd);
+		if (errno == EGNL)
+			return (-1);
+	}
+	return (map->line_number);
+}
+
 t_map	*extract_info(t_map *map)
 {
 	size_t	i;
@@ -58,12 +78,11 @@ t_map	*extract_info(t_map *map)
 		{
 			map->line_number++;
 			map->pos_start_map += i + 1;
-			while (is_map(get_next_line(map->fd)))
-				map->line_number++;
+			countline(map);
 			break ;
 		}
 		else if (!extract_texture_path(map, raw_line))
-			return ((free(raw_line), raw_line = NULL), NULL);
+			return (NULL);
 		i++;
 	}
 	safe_free(&raw_line);
@@ -85,7 +104,10 @@ char **extract_map(t_map *map)
 	if (map->fd < 3)
 		return (NULL);
 	while (++i < map->pos_start_map - 1)
-		get_next_line(map->fd);
+	{
+		raw_line = get_next_line(map->fd);
+		safe_free(&raw_line);
+	}
 	i = 0;
 	while (i <= map->line_number)
 	{
@@ -99,6 +121,8 @@ char **extract_map(t_map *map)
 				return (NULL);
 			i++;
 		}
+		else
+			break ;
 	}
 	return (map->grid);
 }
@@ -111,6 +135,8 @@ t_map	*init_map(t_map *map, char *filepath)
 		return (NULL);
 	if (!extract_map(map))
 		return (NULL);
-	
+	if (!get_player_pos(map))
+		return (NULL);
+
 	return (map);
 }
