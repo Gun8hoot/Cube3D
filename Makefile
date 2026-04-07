@@ -6,7 +6,7 @@
 #    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/07 09:46:54 by thlibers         ###   ########.fr        #
+#    Updated: 2026/04/07 10:35:37 by thlibers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,8 @@ SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/raycasting/ray_utils.c\
 		$(SRC_DIR)/render/render.c\
 		$(SRC_DIR)/utils/mlx_utils.c\
+		$(SRC_DIR)/player/events.c\
+		$(SRC_DIR)/player/movement.c\
 
 # Obj
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

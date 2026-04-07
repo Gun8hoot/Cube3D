@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 09:53:25 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 12:09:31 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	debug_show_t_map(t_map map)
 
 int	game_loop(t_game *game)
 {
-    // mlx_clear_window(game->mlx, game->win);
     celling_floor(game);
     ft_rayshooter(&game->ray, *game);
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
@@ -101,9 +100,11 @@ int main(int argc, char **argv)
 	
 	game.player.pos_x = 25;
 	game.player.pos_y = 11;
-  	game.player.dir_x = -1.0;
-	game.player.dir_y = 0.0;
+  	game.player.dir_x = 0.0;
+	game.player.dir_y = -1.0;
 	
+	mlx_hook(game.win, 17, 0, handle_close, &game);
+	mlx_hook(game.win, 2, 1L<<0, handle_keypress, &game);
     mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
     return (0);

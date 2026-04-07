@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 09:59:26 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/07 10:00:03 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 12:15:49 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,27 @@ int	handle_keypress(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 		handle_close(game);
-	else if (keycode == KEY_W || keycode == KEY_UP)
-		move_player(game, 0, -1);
-	else if (keycode == KEY_S || keycode == KEY_DOWN)
-		move_player(game, 0, 1);
-	else if (keycode == KEY_D || keycode == KEY_RIGHT)
-		move_player(game, 1, 0);
-	else if (keycode == KEY_A || keycode == KEY_LEFT)
-		move_player(game, -1, 0);
+	if (keycode == KEY_W)
+		move_player(game, 0.0, -0.3);
+	if (keycode == KEY_S)
+		move_player(game, 0.0, 0.3);
+	if (keycode == KEY_D)
+		move_player(game, 0.3, 0.0);
+	if (keycode == KEY_A)
+		move_player(game, -0.3, 0.0);
+	if (keycode == KEY_RIGHT)
+		move_camera(game, 0.1, 0.0);
+	if (keycode == KEY_LEFT)
+		move_camera(game, -0.1, 0.0);
+	return (0);
+}
+
+int handle_close(t_game *game)
+{
+    mlx_destroy_image(game->mlx, game->img);
+    mlx_destroy_window(game->mlx, game->win);
+    mlx_destroy_display(game->mlx);
+    free(game->mlx);
+    exit(0);
 	return (0);
 }
