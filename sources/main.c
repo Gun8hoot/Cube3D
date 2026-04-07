@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 18:02:47 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/07 08:51:14 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,3 +72,25 @@ int	main(int argc, char **argv)
 //     mlx_loop(data.mlx);
 //     return (0);
 // }
+
+void	game_loop() // fonction qui va permettre d'update la fenetre
+{
+	
+}
+
+int main(void)
+{
+	double posX = 22, posY = 12;
+  	double dirX = -1, dirY = 0;
+  	double planeX = 0, planeY = 0.66;
+    t_game game;
+    
+    game.mlx = mlx_init();
+    game.win = mlx_new_window(game.mlx, HEIGHT, WIDTH, "Cube3D");
+	ft_rayshooter(&game.ray, game);
+    game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
+    game.addr = mlx_get_data_addr(game.img, &game.bits_per_pixel, &game.line_length, &game.endian); // ???
+    mlx_put_image_to_window(game.mlx, game.win, game.img, 0, 0);
+    mlx_loop_hook(game.mlx, game_loop, &game);
+    return (0);
+}

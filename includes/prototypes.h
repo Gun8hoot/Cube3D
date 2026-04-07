@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 16:10:41 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/07 08:50:00 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,11 @@ bool			set_info_texture(t_map *map, char *info_string,
 bool			is_map(char *line);
 
 /* -------------------- */
+
+void	ft_rayshooter(t_ray *ray, t_game game);
+void	ft_dda(t_ray *ray, t_game game);
+void	line_height(t_render *render, t_ray ray);
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+
 
 #endif

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 08:49:48 by thlibers         ###   ########.fr       */
+/*   Created: 2026/04/02 17:06:12 by thlibers          #+#    #+#             */
+/*   Updated: 2026/04/02 17:06:38 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINE_H
-# define DEFINE_H
+#include "includes/cube3d.h"
 
-# define WIDTH 1280
-# define HEIGHT 720
-# define FOV 66
-# define M_PI 3.141592653589793
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
+{
+	char	*dst;
 
-#endif
+	dst = game->addr + (y * game->line_length) + (x * (game->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}

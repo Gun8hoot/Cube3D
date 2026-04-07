@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 18:03:42 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/07 08:49:27 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@ typedef struct s_player
 	double		pos_y;
 	double		dir_x;
 	double		dir_y;
-	// double		angle;
 }				t_player;
 
 typedef struct s_vec
 {
 	double		x;
 	double		y;
+	double		z;
 }				t_vec;
+
+// typdef struct s_texture
+// {
+// 	t_img
+// };
 
 typedef struct s_render
 {
@@ -94,8 +99,8 @@ typedef struct s_map
 	char *EA_texture;           // Path of texture EAST
 	char *SO_texture;           // Path of texture SOUTH
 	char *WE_texture;           // Path of texture WEST
-	int F_color;                // COLOR OF THE FLOOR
-	int C_color;                // COLOR OF THE CELLING
+	int f_color;                // COLOR OF THE FLOOR
+	int c_color;                // COLOR OF THE CELLING
 	size_t start_pos[2];        // Position on the grid of the PLAYER start
 	t_start_looking looking_at; // Direction of the PLAYER start
 	size_t	pos_start_map;		// Position of the map in the file
@@ -108,12 +113,6 @@ typedef struct s_game
 	t_player	player;
 	t_render	render;
 	t_ray		ray;
-	int			mlx;
-	int			win;
-}				t_game;
-
-typedef struct s_data
-{
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -121,6 +120,6 @@ typedef struct s_data
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-}				t_data;
+}				t_game;
 
 #endif

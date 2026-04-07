@@ -41,6 +41,9 @@ SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/parsing/maps_utils.c\
 		$(SRC_DIR)/parsing/texture.c\
 		$(SRC_DIR)/clean.c\
+		$(SRC_DIR)/raycasting/raycasting.c\
+		$(SRC_DIR)/raycasting/ray_utils.c\
+		$(SRC_DIR)/render/render.c\
 
 # Obj
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

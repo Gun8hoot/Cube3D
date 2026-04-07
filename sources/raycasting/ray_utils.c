@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:33:17 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/02 11:45:26 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/02 16:55:09 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,36 +48,20 @@ void	line_height(t_render *render, t_ray ray)
 		render->draw_end = h - 1;
 }
 
-void	choose_color()
+void	choose_color(t_game *game)
 {
-	// //choose wall color
-    //   ColorRGB color;
-    //   switch(worldMap[mapX][mapY])
-    //   {
-    //     case 1:  color = RGB_Red;  break; //red
-    //     case 2:  color = RGB_Green;  break; //green
-    //     case 3:  color = RGB_Blue;   break; //blue
-    //     case 4:  color = RGB_White;  break; //white
-    //     default: color = RGB_Yellow; break; //yellow
-    //   }
-
-    //   //give x and y sides different brightness
-    //   if (side == 1) {color = color / 2;}
-
-    //   //draw the pixels of the stripe as a vertical line
-    //   verLine(x, drawStart, drawEnd, color);
-    // }
-}
-
-void	calculate_fps(t_render *render, double *movespeed, double *rotspeed)
-{
-	double frametime;
 	
-    frametime = (render->time - render->oldtime) / 1000.0;
-	if (frametime > 0)
-	{
-		*movespeed = frametime * 5.0; //the constant value is in squares/second
-    	*rotspeed = frametime * 3.0; //the constant value is in radians/second
-	}
-	render->oldtime = render->time;
 }
+
+// void	calculate_fps(t_render *render, double *movespeed, double *rotspeed)
+// {
+// 	double frametime;
+	
+//     frametime = (render->time - render->oldtime) / 1000.0;
+// 	if (frametime > 0)
+// 	{
+// 		*movespeed = frametime * 5.0; //the constant value is in squares/second
+//     	*rotspeed = frametime * 3.0; //the constant value is in radians/second
+// 	}
+// 	render->oldtime = render->time;
+// }
