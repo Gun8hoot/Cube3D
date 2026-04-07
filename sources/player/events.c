@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 09:59:26 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/07 12:15:49 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 14:52:39 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 		handle_close(game);
 	if (keycode == KEY_W)
-		move_player(game, 0.0, -0.3);
+		move_player(game, 0.0, -0.1);
 	if (keycode == KEY_S)
-		move_player(game, 0.0, 0.3);
+		move_player(game, 0.0, 0.1);
 	if (keycode == KEY_D)
-		move_player(game, 0.3, 0.0);
+		move_player(game, 0.1, 0.0);
 	if (keycode == KEY_A)
-		move_player(game, -0.3, 0.0);
+		move_player(game, -0.1, 0.0);
 	if (keycode == KEY_RIGHT)
-		move_camera(game, 0.1, 0.0);
+		move_camera(game, ROT_SPEED);
 	if (keycode == KEY_LEFT)
-		move_camera(game, -0.1, 0.0);
+		move_camera(game, -ROT_SPEED);
 	return (0);
 }
 

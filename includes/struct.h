@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 11:11:03 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 14:51:32 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ typedef struct s_vec
 	double		z;
 }				t_vec;
 
-// typdef struct s_texture
-// {
-// 	t_img
-// };
-
 typedef struct s_render
 {
 	t_vec		plane;
@@ -55,8 +50,8 @@ typedef struct s_ray
 	double		perp_wall_dist;
 	int			map_x;
 	int			map_y;
-	int hit;  // was a wall hit?
-	int side; // was a NS or a EW wall hit?
+	int			hit;  // was a wall hit?
+	int			side; // was a NS or a EW wall hit?
 }				t_ray;
 
 /* --- MAP --- */
@@ -104,7 +99,7 @@ typedef struct s_map
 	size_t start_pos[2];        // Position on the grid of the PLAYER start
 	t_start_looking looking_at; // Direction of the PLAYER start
 	size_t	pos_start_map;		// Position of the map in the file
-} t_map;                        // MAIN MAP STRUCTURE
+}	t_map;                        // MAIN MAP STRUCTURE
 
 
 typedef struct s_game

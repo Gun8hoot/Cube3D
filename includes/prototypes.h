@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 10:52:26 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 14:11:03 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int	handle_keypress(int keycode, t_game *game);
 int handle_close(t_game *game);
 
 void	move_player(t_game *game, double dx, double dy);
-void	move_camera(t_game *game, double dx, double dy);
+void	move_camera(t_game *game, double rot_speed);
 
 #endif

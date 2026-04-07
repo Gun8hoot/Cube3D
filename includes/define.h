@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 10:01:23 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 13:59:21 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define FOV 66
+# define ROT_SPEED 0.1
 # define M_PI 3.141592653589793
 
 /* Event player */
