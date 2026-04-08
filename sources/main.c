@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/08 12:21:36 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/08 17:31:25 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	TEST_asign(t_game *game)
 
 int	game_loop(t_game *game)
 {
+	chose_action(game);
     celling_floor(game);
     ft_rayshooter(&game->ray, *game);
 	show_minimap(game);
@@ -117,7 +118,8 @@ int main(int argc, char **argv)
 	game.player.dir_y = game.map.looking_at[0];
 
 	mlx_hook(game.win, 17, 0, handle_close, &game);
-	mlx_hook(game.win, 2, 1L<<0, handle_keypress, &game);
+	mlx_hook(game.win, 2, 1L<<0, handle_key_press, &game);
+	mlx_hook(game.win, 3, 1L<<1, handle_key_release, &game);
     mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
     return (0);

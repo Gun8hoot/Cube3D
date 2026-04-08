@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 15:14:11 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/08 17:28:10 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct s_game
 	void		*win;
 	void		*img;
 	char		*addr;
+	int			keys_pressed[65535];
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;

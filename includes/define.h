@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/08 15:43:09 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/08 16:42:58 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 # define KEY_A 0x61
 # define KEY_D 0x64
 # define KEY_ESC 65307
-# define KEY_UP 65362
 # define KEY_LEFT 65361
-# define KEY_DOWN 65364
 # define KEY_RIGHT 65363
+// # define KEY_UP 65362
+// # define KEY_DOWN 65364
 
 /* Event MLX */
 # define KEY_PRESS 2

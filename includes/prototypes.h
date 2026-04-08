@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 15:09:41 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/08 17:31:29 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,13 @@ void	line_height(t_render *render, t_ray ray);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	celling_floor(t_game *game);
 
-int		handle_keypress(int keycode, t_game *game);
+int		handle_key_press(int keycode, t_game *game);
+int		handle_key_release(int keycode, t_game *game);
 int		handle_close(t_game *game);
 
 void	move_player(t_game *game, double dx, double dy);
 void	move_camera(t_game *game, double rot_speed);
+void	chose_action(t_game *game);
 
 void	show_minimap(t_game *game);
 

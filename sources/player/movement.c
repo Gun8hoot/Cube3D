@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:19:45 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/08 15:37:24 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/08 17:12:22 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static int	can_move(t_game *game, double new_x, double new_y)
 	return (1);
 }
 
-static void	update_player_position(t_game *game, double new_x, double new_y)
-{
-	game->player.pos_x = new_x;
-	game->player.pos_y = new_y;
-	system("clear");					// DEBUG
-	show_grid(game->map.grid);
-}
+// static void	update_player_position(t_game *game, double new_x, double new_y)
+// {
+// 	game->player.pos_x = new_x;
+// 	game->player.pos_y = new_y;
+// 	system("clear");					// DEBUG
+// 	show_grid(game->map.grid);
+// }
 
 void	move_player(t_game *game, double dx, double dy)
 {
@@ -38,7 +38,28 @@ void	move_player(t_game *game, double dx, double dy)
 	new_x = game->player.pos_x + dx;
 	new_y = game->player.pos_y + dy;
 	if (can_move(game, new_x, new_y))
-		update_player_position(game, new_x, new_y);
+	{
+		game->player.pos_x = new_x;
+		game->player.pos_y = new_y;
+		system("clear");					// DEBUG
+		show_grid(game->map.grid);
+	}
+}
+
+void	chose_action(t_game *game)
+{
+	if (game->keys_pressed[KEY_W] == 1 && game->keys_pressed[KEY_S] == 0)
+		move_player(game, game->player.dir_x * PLA_SPEED, game->player.dir_y * PLA_SPEED);
+	else if (game->keys_pressed[KEY_S] == 1 && game->keys_pressed[KEY_W] == 0)
+		move_player(game, -game->player.dir_x * PLA_SPEED, -game->player.dir_y * PLA_SPEED);		// quand deux input sont presses simutanement
+	else if (game->keys_pressed[KEY_D] == 1 && game->keys_pressed[KEY_A] == 0)
+		move_player(game, -game->player.dir_y * PLA_SPEED, game->player.dir_x * PLA_SPEED);
+	else if (game->keys_pressed[KEY_A] == 1 && game->keys_pressed[KEY_D] == 0)
+		move_player(game, game->player.dir_y * PLA_SPEED, -game->player.dir_x * PLA_SPEED);
+	else if (game->keys_pressed[KEY_RIGHT] == 1 && game->keys_pressed[KEY_LEFT] == 0)
+		move_camera(game, ROT_SPEED);
+	else if (game->keys_pressed[KEY_LEFT] == 1 && game->keys_pressed[KEY_RIGHT] == 0)
+		move_camera(game, -ROT_SPEED);
 }
 
 void	move_camera(t_game *game, double rot_speed)
