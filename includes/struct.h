@@ -57,6 +57,16 @@ typedef struct s_ray
 	int			side; // was a NS or a EW wall hit?
 }				t_ray;
 
+typedef struct s_minimap
+{
+	double	ratio;				// The ratio used to zoom or unzoom the minimap in case of too big minimap
+	size_t		pixel_per_elem;		// Number of pixel to display one element of a grid ex: 8 == 8 width * 8 height
+	size_t	width_max;			// Width maximum we can get
+	size_t	height_max;			// Height maximum we can get
+	size_t	padding_top_bottom;	// The number of pixel for the map top/bottom padding
+	size_t	padding_right_left;	// The number of pixel for the map right/left padding
+}				t_minimap;
+
 /* --- MAP --- */
 typedef enum e_allow_char
 {
@@ -109,6 +119,7 @@ typedef struct s_map
 typedef struct s_game
 {
 	t_map		map;
+	t_minimap	minimap;
 	t_player	player;
 	t_render	render;
 	t_ray		ray;
