@@ -2,15 +2,15 @@
 
 #include "includes/cube3d.h"
 
-void	draw_box(t_game *game, int max_x, int max_y, int color)
+void	draw_box(t_game *game, int max_x, int max_y, int color, int pad)
 {
 	int	x;
 	int	y;
 
-	y = 0;
+	y = pad;
 	while (y < max_y)
 	{
-		x = 0;
+		x = pad;
 		while (x < max_x)
 		{
 			my_mlx_pixel_put(game, x, y, color);
@@ -43,10 +43,10 @@ bool	calculate_minimap(t_game *game)
 {
 	size_t	px_per_line;
 
-	game->minimap.pixel_per_elem = 8;
+	game->minimap.pixel_per_elem = DEFAULT_ELEM_SIZE;
 	while (game->minimap.pixel_per_elem > 0)
 	{
-		px_per_line = game->minimap.pixel_per_elem * game->map.number_char_max;
+		px_per_line = game->minimap.pixel_per_elem * game->map.number_char_max + 6;
 		if (px_per_line > MINIMAP_WIDTH)
 			game->minimap.pixel_per_elem--;
 		else
@@ -58,7 +58,7 @@ bool	calculate_minimap(t_game *game)
 
 	while (game->minimap.pixel_per_elem > 0)
 	{
-		px_per_line = game->minimap.pixel_per_elem * game->map.line_number;
+		px_per_line = game->minimap.pixel_per_elem * game->map.line_number + 6;
 		if (px_per_line > MINIMAP_HEIGHT)
 			game->minimap.pixel_per_elem--;
 		else
@@ -78,7 +78,9 @@ void	render_minimap(t_game *game)
 void	show_minimap(t_game *game)
 {
 	calculate_minimap(game);
-	draw_box(game, MINIMAP_WIDTH, MINIMAP_HEIGHT, 0x000000);
+	draw_box(game, MINIMAP_WIDTH + 2, MINIMAP_HEIGHT + 2, 0xFFFFFF, 2);
+	draw_box(game, MINIMAP_WIDTH, MINIMAP_HEIGHT, 0x202020, 4);
+	draw_box(game, 25, 1, 0xFF0000, 0);
 	size_t py = game->minimap.padding_top_bottom;
 
 	for (size_t y = 0; game->map.grid[y]; y++)
@@ -88,12 +90,12 @@ void	show_minimap(t_game *game)
 		for (size_t x = 0; game->map.grid[y][x]; x++)
 		{
 			if (game->map.grid[y][x] == WALL)
-				draw_square(game, py, px, 8, 0x00FF00);
+				draw_square(game, py, px, game->minimap.pixel_per_elem, 0x00FF00);
 			else if (game->map.grid[y][x] == PLAYER)
-				draw_square(game, py, px, 8, 0xFF0000);
+				draw_square(game, py, px, game->minimap.pixel_per_elem, 0xFF0000);
 
-			px += 8;
+			px += game->minimap.pixel_per_elem;
 		}
-		py += 8;
+		py += game->minimap.pixel_per_elem;
 	}
 }

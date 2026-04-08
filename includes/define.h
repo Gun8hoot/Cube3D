@@ -41,5 +41,6 @@
 # define PIXEL_PER_TILES	8
 # define MINIMAP_WIDTH		WIDTH/4
 # define MINIMAP_HEIGHT		HEIGHT/4
+# define DEFAULT_ELEM_SIZE	16
 
 #endif
