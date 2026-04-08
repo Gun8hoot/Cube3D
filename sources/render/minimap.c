@@ -46,7 +46,7 @@ bool	calculate_minimap(t_game *game)
 	game->minimap.pixel_per_elem = DEFAULT_ELEM_SIZE;
 	while (game->minimap.pixel_per_elem > 0)
 	{
-		px_per_line = game->minimap.pixel_per_elem * game->map.number_char_max + 6;
+		px_per_line = game->minimap.pixel_per_elem * game->map.number_char_max;
 		if (px_per_line > MINIMAP_WIDTH)
 			game->minimap.pixel_per_elem--;
 		else
@@ -58,8 +58,8 @@ bool	calculate_minimap(t_game *game)
 
 	while (game->minimap.pixel_per_elem > 0)
 	{
-		px_per_line = game->minimap.pixel_per_elem * game->map.line_number + 6;
-		if (px_per_line > MINIMAP_HEIGHT)
+		px_per_line = game->minimap.pixel_per_elem * game->map.line_number;
+		if (px_per_line >= MINIMAP_HEIGHT)
 			game->minimap.pixel_per_elem--;
 		else
 			break;
@@ -78,14 +78,14 @@ void	render_minimap(t_game *game)
 void	show_minimap(t_game *game)
 {
 	calculate_minimap(game);
-	draw_box(game, MINIMAP_WIDTH + 2, MINIMAP_HEIGHT + 2, 0xFFFFFF, 2);
-	draw_box(game, MINIMAP_WIDTH, MINIMAP_HEIGHT, 0x202020, 4);
+	draw_box(game, MINIMAP_WIDTH + 4, MINIMAP_HEIGHT + 4, 0xFFFFFF, 4);
+	draw_box(game, MINIMAP_WIDTH, MINIMAP_HEIGHT, 0x202020, 6);
 	draw_box(game, 25, 1, 0xFF0000, 0);
-	size_t py = game->minimap.padding_top_bottom;
+	size_t py = game->minimap.padding_top_bottom + 4;
 
 	for (size_t y = 0; game->map.grid[y]; y++)
 	{
-		size_t px = game->minimap.padding_right_left;
+		size_t px = game->minimap.padding_right_left + 4;
 
 		for (size_t x = 0; game->map.grid[y][x]; x++)
 		{

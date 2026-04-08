@@ -5,6 +5,8 @@
 - Check si il y a des texture pour toutes les direction
 - Check si elle est possible
 - Check si il n'y a pas de vide en plein millieu de la map
+- Limite de 321 character <-> & 180+ haut
+- Si map trop haute, probleme de padding car padding gauche/droite calculer en premier
 
 > Si il y a une erreur, on doit mettre OBLIGATOIREMENT **"Error\n{MESSAGE D'ERREUR}"**
 

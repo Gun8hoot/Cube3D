@@ -44,6 +44,7 @@ void	move_player(t_game *game, double dx, double dy)
 		system("clear");					// DEBUG
 		show_grid(game->map.grid);
 	}
+	printf("Pos x = %.2f ; y = %.2f\n", game->player.pos_x, game->player.pos_y);
 }
 
 void	chose_action(t_game *game)
