@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 09:59:26 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/07 14:52:39 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/08 15:48:43 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 		handle_close(game);
 	if (keycode == KEY_W)
-		move_player(game, 0.0, -0.1);
+		move_player(game, game->player.dir_x, game->player.dir_y);		// les controles ne suivent pas le joueur
 	if (keycode == KEY_S)
-		move_player(game, 0.0, 0.1);
-	if (keycode == KEY_D)
-		move_player(game, 0.1, 0.0);
+		move_player(game, -game->player.dir_x, -game->player.dir_y);		// quand deux input sont presses simutanement
+	if (keycode == KEY_D)														// le joueur bouge quand meme
+		move_player(game, game->player.dir_x, -game->player.dir_y);
 	if (keycode == KEY_A)
-		move_player(game, -0.1, 0.0);
+		move_player(game, -game->player.dir_x, game->player.dir_y);
 	if (keycode == KEY_RIGHT)
 		move_camera(game, ROT_SPEED);
 	if (keycode == KEY_LEFT)
