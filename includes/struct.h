@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 14:51:32 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 15:14:11 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_vec
 typedef struct s_render
 {
 	t_vec		plane;
+	double		plane_length;
 	double		oldtime;
 	double		time;
 	int			draw_start;

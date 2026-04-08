@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 14:11:03 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/07 15:09:41 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void			safe_free(char **to_free);
 /* --- ./init.c --- */
 void			init_struct(t_game *game);
 bool			init(t_game *game, char *filepath);
+
+void	show_grid(char **grid);
 
 /* -------------------- */
 
@@ -59,8 +61,8 @@ void	line_height(t_render *render, t_ray ray);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	celling_floor(t_game *game);
 
-int	handle_keypress(int keycode, t_game *game);
-int handle_close(t_game *game);
+int		handle_keypress(int keycode, t_game *game);
+int		handle_close(t_game *game);
 
 void	move_player(t_game *game, double dx, double dy);
 void	move_camera(t_game *game, double rot_speed);

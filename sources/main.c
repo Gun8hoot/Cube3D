@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 12:09:31 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/08 12:21:36 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ void	debug_show_t_map(t_map map)
 //     mlx_loop(data.mlx);
 //     return (0);
 // }
+void	TEST_asign(t_game *game)
+{
+	game->player.pos_x = 19;
+	game->player.pos_y = 3;
+  	game->player.dir_x = 0.0;
+	game->player.dir_y = -1.0;
+}
 
 int	game_loop(t_game *game)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:41:54 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/01 12:01:41 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/08 12:29:04 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ bool	get_player_pos(t_map *map)
 		i++;
 	}
 	if (map->looking_at[0] == 0.0 && map->looking_at[1] == 0.0)
-		return (ft_fprintf(STDERR_FILENO, PLAYER_ERR), false);
+		return (ft_fprintf(STDERR_FILENO, "ABC\n"), false);
 	return (true);
 }

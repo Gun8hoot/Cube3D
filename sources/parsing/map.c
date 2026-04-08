@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:41:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 18:03:32 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/08 12:33:33 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ char **extract_map(t_map *map)
 	char	*raw_line;
 
 	i = -1;
+	raw_line = NULL;
 	map->grid = ft_calloc(map->line_number + 1, sizeof(char *));
 	if (!map->grid)
 		return (NULL);
