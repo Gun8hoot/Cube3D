@@ -6,22 +6,34 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:50:21 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/08 12:22:04 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 17:23:29 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-void	render_init(t_game *game)
+void	ft_dda(t_ray *ray, t_game game)
 {
-	game->render.plane_length = tan((FOV * M_PI / 180.0) / 2.0);
-	game->render.plane.x = -game->player.dir_y * game->render.plane_length;
-    game->render.plane.y = game->player.dir_x * game->render.plane_length;
-	game->render.time = 0.0;
-	game->render.oldtime = 0.0;
-	game->render.draw_start = 0;
-	game->render.draw_end = 0;
-	game->render.line_height = 0;
+    if (ray->ray_dir.x < 0)
+    {
+      ray->step.x = -1;
+      ray->side_dist.x = (game.player.pos_x - ray->map_x) * ray->delta_dist.x;
+    }
+    else
+    {
+      ray->step.x = 1;
+      ray->side_dist.x = (ray->map_x + 1.0 - game.player.pos_x) * ray->delta_dist.x;
+    }
+    if (ray->ray_dir.y < 0)
+    {
+      ray->step.y = -1;
+      ray->side_dist.y = (game.player.pos_y - ray->map_y) * ray->delta_dist.y;
+    }
+    else
+    {
+      ray->step.y = 1;
+      ray->side_dist.y = (ray->map_y + 1.0 - game.player.pos_y) * ray->delta_dist.y;
+    }
 }
 
 void	check_hit(t_ray *ray, t_game game)
@@ -54,7 +66,7 @@ void	ft_rayshooter(t_ray *ray, t_game game)
 {
 	int		x;
 	int		y;
-	int	color = 0xFF808080;
+	int		color = 0xFF808080;
 	double	camera;
 
 	x = 0;

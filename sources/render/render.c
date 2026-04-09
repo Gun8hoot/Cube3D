@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 08:56:35 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/09 14:36:57 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 17:18:09 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ void	weapon(t_game *game)
 
 	if (!game->balista)
 		return ;
-	game->weapon.start_x = 1280 - game->w_width - 280;
-	game->weapon.start_y = 720 - game->w_height;
+	game->weapon.start_x = 1280 - game->w_img.width - 280;
+	game->weapon.start_y = 720 - game->w_img.height;
 	y = 0;
-	while (y < game->w_height)
+	while (y < game->w_img.height)
 	{
 		x = 0;
-		while (x < game->w_width)
+		while (x < game->w_img.width)
 		{
-			game->weapon.dst = game->weapon_addr + (y
-					* game->weapon_line_length) + (x
-					* (game->weapon_bits_per_pixel / 8));
+			game->weapon.dst = game->w_img.addr + (y
+					* game->w_img.line_length) + (x
+					* (game->w_img.bits_per_pixel / 8));
 			game->weapon.color = *(int *)game->weapon.dst;
 			if (game->weapon.color != 0x000000)
 				my_mlx_pixel_put(game, game->weapon.start_x + x,

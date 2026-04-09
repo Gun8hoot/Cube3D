@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 15:06:57 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 17:21:12 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,11 @@ int main(int argc, char **argv)
     game.mlx = mlx_init();
     game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
     game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
-    game.addr = mlx_get_data_addr(game.img, &game.bits_per_pixel, &game.line_length, &game.endian);
-	game.balista = mlx_xpm_file_to_image(game.mlx, "textures/weapon.xpm", &game.w_width, &game.w_height);
+    game.r_img.addr = mlx_get_data_addr(game.img, &game.r_img.bits_per_pixel, &game.r_img.line_length, &game.r_img.endian);
+	game.balista = mlx_xpm_file_to_image(game.mlx, "textures/weapon.xpm", &game.w_img.width, &game.w_img.height);
 	if (!game.balista)
         return (ft_fprintf(2, "Error: Impossible de charger weapon.xpm\n"), 1);
-	game.weapon_addr = mlx_get_data_addr(game.balista, &game.weapon_bits_per_pixel, &game.weapon_line_length, &game.weapon_endian);
+	game.w_img.addr = mlx_get_data_addr(game.balista, &game.w_img.bits_per_pixel, &game.w_img.line_length, &game.w_img.endian);
 
 	game.player.pos_x = game.map.start_pos[1];
 	game.player.pos_y = game.map.start_pos[0];

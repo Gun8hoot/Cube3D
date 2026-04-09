@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 12:13:12 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 17:23:37 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void			safe_free(char **to_free);
 /* --- ./init.c --- */
 void			init_struct(t_game *game);
 bool			init(t_game *game, char *filepath);
+void			render_init(t_game *game);
 
 void	show_grid(char **grid);
 
@@ -56,8 +57,9 @@ bool			is_map(char *line);
 
 /* -------------------- */
 
-void	ft_rayshooter(t_ray *ray, t_game game);
 void	ft_dda(t_ray *ray, t_game game);
+void	check_hit(t_ray *ray, t_game game);
+void	ft_rayshooter(t_ray *ray, t_game game);
 void	line_height(t_render *render, t_ray ray);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	celling_floor(t_game *game);
@@ -76,7 +78,6 @@ bool	calculate_minimap(t_game *game);
 void	draw_box(t_game *game, int max_x, int max_y, int color, int pad);
 void	draw_square(t_game *game, int pos_y, int pos_x, int len, int color);
 void 	draw_line(t_game *game, int x0, int y0, int x1, int y1);
-void	check_hit(t_ray *ray, t_game game);
 
 void	weapon(t_game *game);
 

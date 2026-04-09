@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 14:53:05 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 17:18:44 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ typedef struct s_player
 	double		dir_x;
 	double		dir_y;
 }				t_player;
+
+typedef struct s_img
+{
+	char			*addr;
+	int				width;
+	int				height;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}					t_img;
 
 typedef struct s_vec
 {
@@ -134,6 +144,8 @@ typedef struct s_game
 	int				old_mouse_pos;
 	double			fps;						// Number of fps
 	t_map			map;						// Overall map structure
+	t_img			r_img;
+	t_img			w_img;
 	t_minimap		minimap;					// Minimap data structure
 	t_weapon		weapon;
 	t_player		player;						// Player data structure
@@ -141,18 +153,18 @@ typedef struct s_game
 	t_ray			ray;						// Raycasting data structure
 	void			*mlx;						// Pointer to MLX data
 	void			*win;						// Pointer to window
-	void			*img;
 	void			*balista;
-	char			*addr;
-	char			*weapon_addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-	int				weapon_bits_per_pixel;
-	int				weapon_line_length;
-	int				weapon_endian;
-	int				w_width;
-	int				w_height;
+	void			*img;
+	// char			*addr;
+	// char			*weapon_addr;
+	// int				bits_per_pixel;
+	// int				line_length;
+	// int				endian;
+	// int				weapon_bits_per_pixel;
+	// int				weapon_line_length;
+	// int				weapon_endian;
+	// int				w_width;
+	// int				w_height;
 	int				keys_pressed[65535];
 }					t_game;						// All game data
 
