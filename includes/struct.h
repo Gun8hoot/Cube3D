@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 17:18:44 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 18:13:00 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_player
 
 typedef struct s_img
 {
+	void			*img;
 	char			*addr;
 	int				width;
 	int				height;
@@ -146,6 +147,8 @@ typedef struct s_game
 	t_map			map;						// Overall map structure
 	t_img			r_img;
 	t_img			w_img;
+	t_img			textures[4];				// Wall textures [NO, SO, EA, WE]
+	t_img			*img;
 	t_minimap		minimap;					// Minimap data structure
 	t_weapon		weapon;
 	t_player		player;						// Player data structure
@@ -154,7 +157,6 @@ typedef struct s_game
 	void			*mlx;						// Pointer to MLX data
 	void			*win;						// Pointer to window
 	void			*balista;
-	void			*img;
 	// char			*addr;
 	// char			*weapon_addr;
 	// int				bits_per_pixel;

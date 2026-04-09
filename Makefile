@@ -6,7 +6,7 @@
 #    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/09 12:27:10 by thlibers         ###   ########.fr        #
+#    Updated: 2026/04/09 18:13:58 by thlibers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/render/render.c\
 		$(SRC_DIR)/render/shape.c\
 		$(SRC_DIR)/render/minimap.c\
+		$(SRC_DIR)/render/tex_load.c\
 		$(SRC_DIR)/utils/mlx_utils.c\
 		$(SRC_DIR)/player/events.c\
 		$(SRC_DIR)/player/movement.c\

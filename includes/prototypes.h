@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 17:23:37 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 18:02:50 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,10 @@ void	draw_square(t_game *game, int pos_y, int pos_x, int len, int color);
 void 	draw_line(t_game *game, int x0, int y0, int x1, int y1);
 
 void	weapon(t_game *game);
+void	draw_textured_line(t_game *game, int x, int img_x);
+void	get_texture(t_ray *ray, t_game *game);
+void	draw_textured_line(t_game *game, int x, int img_x);
+int		convert_coords_textures(t_ray *ray, t_game *game);
+void	load_textures(t_game *game);
 
 #endif

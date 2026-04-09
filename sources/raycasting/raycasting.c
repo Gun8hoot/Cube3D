@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:50:21 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/09 17:23:29 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 18:17:29 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	ft_rayshooter(t_ray *ray, t_game game)
 		ft_dda(ray, game);
 		check_hit(ray, game);
 		line_height(&game.render, *ray);
+		// get_texture(ray, &game);
+		// draw_textured_line(&game, x, convert_coords_textures(ray, &game));
         y = game.render.draw_start;
         while (y < game.render.draw_end)
         {

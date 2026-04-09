@@ -134,6 +134,8 @@ int main(int argc, char **argv)
         return (ft_fprintf(2, "Error: Impossible de charger weapon.xpm\n"), 1);
 	game.w_img.addr = mlx_get_data_addr(game.balista, &game.w_img.bits_per_pixel, &game.w_img.line_length, &game.w_img.endian);
 
+	load_textures(&game);
+
 	game.player.pos_x = game.map.start_pos[1];
 	game.player.pos_y = game.map.start_pos[0];
   	game.player.dir_x =	game.map.looking_at[1];
