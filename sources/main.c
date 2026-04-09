@@ -50,6 +50,56 @@ void	debug_show_t_map(t_map map)
 	show_grid(map.grid);
 }
 
+// int	main(int argc, char **argv)
+// {
+// 	t_game	game;
+
+// 	ft_memset(&game, '\0', sizeof(t_game));
+// 	if (argc != 2)
+// 	{
+// 		ft_fprintf(STDERR_FILENO, ARG_ERROR);
+// 		return (1);
+// 	}
+// 	init(&game, argv[1]);
+// 	debug_show_t_map(game.map);
+// }
+
+// int main(void)
+// {
+//     t_data data;
+
+//     data.mlx = mlx_init();
+//     data.win = mlx_new_window(data.mlx, HEIGHT, WIDTH, "Cube3D");
+//     data.img = mlx_new_image(data.mlx, HEIGHT, WIDTH);
+//     data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian); // ???
+//     mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+//     mlx_loop(data.mlx);
+//     return (0);
+// }
+void	TEST_asign(t_game *game)
+{
+	game->player.pos_x = 19;
+	game->player.pos_y = 3;
+  	game->player.dir_x = 0.0;
+	game->player.dir_y = -1.0;
+}
+
+int	mouse(t_game *game)
+{
+	int new_x;
+	int new_y;
+	double	rotation;
+
+	mlx_mouse_get_pos(game->mlx, game->win, &new_x, &new_y);
+	rotation = (new_x - (WIDTH / 2));
+	mlx_mouse_move(game->mlx, game->win, WIDTH/2, HEIGHT/2);
+	if (rotation != 0)
+		move_camera(game, rotation / 1000);
+	game->old_mouse_pos = new_x;
+	(void)new_y;
+	return (0);
+}
+
 int	game_loop(t_game *game)
 {
 	chose_action(game);
@@ -58,6 +108,7 @@ int	game_loop(t_game *game)
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	weapon(game);
 	show_minimap(game);
+	mouse(game);
     return (0);
 }
 
@@ -91,6 +142,7 @@ int main(int argc, char **argv)
 	if (!calculate_minimap(&game))
 		return (ft_fprintf(2, "ERROR MINIMAP\n"), false);
 
+	mlx_mouse_hide(game.mlx, game.win);
 	mlx_hook(game.win, 17, 0, handle_close, &game);
 	mlx_hook(game.win, 2, 1L<<0, handle_key_press, &game);
 	mlx_hook(game.win, 3, 1L<<1, handle_key_release, &game);

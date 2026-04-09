@@ -131,6 +131,7 @@ typedef struct s_map
 typedef struct s_game
 {
 	long long		old_time;					// Timestamp to calculate time to render
+	int				old_mouse_pos;
 	double			fps;						// Number of fps
 	t_map			map;						// Overall map structure
 	t_minimap		minimap;					// Minimap data structure

@@ -59,7 +59,7 @@ void draw_line(t_game *game, int x0, int y0, int x1, int y1)
 
     while (1)
     {
-        mlx_pixel_put(game->mlx, game->win, x0, y0, 0xFF0000);  // Red line
+        mlx_pixel_put(game->mlx, game->win, x0, y0, 0xFFA500);  // Red line
 
         if (x0 == x1 && y0 == y1)
             break;
