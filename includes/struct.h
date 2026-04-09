@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/08 17:28:10 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 12:53:14 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ typedef struct s_render
 	int			draw_end;
 	int			line_height;
 }				t_render;
+
+typedef struct s_weapon
+{
+	char		*dst;
+    int			color;
+    int			start_x;
+    int			start_y;
+}				t_weapon;
 
 typedef struct s_ray
 {
@@ -125,17 +133,25 @@ typedef struct s_game
 	double			fps;						// Number of fps
 	t_map			map;						// Overall map structure
 	t_minimap		minimap;					// Minimap data structure
+	t_weapon		weapon;
 	t_player		player;						// Player data structure
 	t_render		render;						// Render data structure
 	t_ray			ray;						// Raycasting data structure
 	void			*mlx;						// Pointer to MLX data
 	void			*win;						// Pointer to window
 	void			*img;
+	void			*balista;
 	char			*addr;
-	int				keys_pressed[65535];
+	char			*weapon_addr;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
+	int				weapon_bits_per_pixel;
+	int				weapon_line_length;
+	int				weapon_endian;
+	int				w_width;
+	int				w_height;
+	int				keys_pressed[65535];
 }				t_game;						// All game data
 
 #endif

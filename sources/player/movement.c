@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:19:45 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/08 17:12:22 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 11:42:06 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	chose_action(t_game *game)
 	if (game->keys_pressed[KEY_W] == 1 && game->keys_pressed[KEY_S] == 0)
 		move_player(game, game->player.dir_x * PLA_SPEED, game->player.dir_y * PLA_SPEED);
 	else if (game->keys_pressed[KEY_S] == 1 && game->keys_pressed[KEY_W] == 0)
-		move_player(game, -game->player.dir_x * PLA_SPEED, -game->player.dir_y * PLA_SPEED);		// quand deux input sont presses simutanement
+		move_player(game, -game->player.dir_x * PLA_SPEED, -game->player.dir_y * PLA_SPEED);
 	else if (game->keys_pressed[KEY_D] == 1 && game->keys_pressed[KEY_A] == 0)
 		move_player(game, -game->player.dir_y * PLA_SPEED, game->player.dir_x * PLA_SPEED);
 	else if (game->keys_pressed[KEY_A] == 1 && game->keys_pressed[KEY_D] == 0)

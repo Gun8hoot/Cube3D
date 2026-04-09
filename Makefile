@@ -6,7 +6,7 @@
 #    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/07 15:25:38 by thlibers         ###   ########.fr        #
+#    Updated: 2026/04/09 12:27:10 by thlibers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ MLX	= $(LIB_DIR)/minilibx-linux
 
 # Srcs
 SRCS =	$(SRC_DIR)/main.c\
-		$(SRC_DIR)/init.c\
+		$(SRC_DIR)/init/init.c\
 		$(SRC_DIR)/parsing/check.c\
 		$(SRC_DIR)/parsing/map.c\
 		$(SRC_DIR)/parsing/maps_utils.c\

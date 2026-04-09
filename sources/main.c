@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/08 17:31:25 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 13:16:21 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	game_loop(t_game *game)
     celling_floor(game);
     ft_rayshooter(&game->ray, *game);
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	weapon(game);
 	show_minimap(game);
     return (0);
 }
@@ -111,6 +112,10 @@ int main(int argc, char **argv)
     game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
     game.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
     game.addr = mlx_get_data_addr(game.img, &game.bits_per_pixel, &game.line_length, &game.endian);
+	game.balista = mlx_xpm_file_to_image(game.mlx, "textures/weapon.xpm", &game.w_width, &game.w_height);
+	if (!game.balista)
+        return (ft_fprintf(2, "Error: Impossible de charger weapon.xpm\n"), 1);
+	game.weapon_addr = mlx_get_data_addr(game.balista, &game.weapon_bits_per_pixel, &game.weapon_line_length, &game.weapon_endian);
 
 	game.player.pos_x = game.map.start_pos[1];
 	game.player.pos_y = game.map.start_pos[0];
