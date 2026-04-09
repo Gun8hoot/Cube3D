@@ -59,6 +59,7 @@ typedef struct s_ray
 	t_vec		side_dist;
 	t_vec		delta_dist;
 	double		perp_wall_dist;
+	int			wall_pos[2];
 	int			map_x;
 	int			map_y;
 	int			hit;  // was a wall hit?

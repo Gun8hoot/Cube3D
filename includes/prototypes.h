@@ -76,6 +76,7 @@ bool	calculate_minimap(t_game *game);
 void	draw_box(t_game *game, int max_x, int max_y, int color, int pad);
 void	draw_square(t_game *game, int pos_y, int pos_x, int len, int color);
 void 	draw_line(t_game *game, int x0, int y0, int x1, int y1);
+void	check_hit(t_ray *ray, t_game game);
 
 void	weapon(t_game *game);
 

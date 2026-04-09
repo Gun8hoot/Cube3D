@@ -45,24 +45,34 @@ bool	calculate_minimap(t_game *game)
 	return (true);
 }
 
-bool	is_wall(t_map map, int ray_x, int ray_y)
+void	show_vision(t_game *game, int	height, int width)
 {
-	if (ray_x < 0 || ray_y == 0 || ray_y >= (int)map.line_number || ray_x >= (int)map.number_char_max)
-		return (false);
-	return (map.grid[ray_y][ray_x] == '1');
-}
+	t_ray	ray;
+	double	camera;
 
-void	show_vision(t_game *game)
-{
-	t_vec	ray;
-	(void)game;
-	(void)ray;
+	camera = (double)height / (double)width;
+	ray.ray_dir.x = game->player.dir_x + game->render.plane.x * camera;
+	ray.ray_dir.y = game->player.dir_y + game->render.plane.y * camera;
+	ray.map_x = (int)game->player.pos_x;
+    ray.map_y = (int)game->player.pos_y;
+    ray.delta_dist.x = fabs(1.0 / ray.ray_dir.x);
+    ray.delta_dist.y = fabs(1.0 / ray.ray_dir.y);
+    ft_dda(&ray, *game);
+    check_hit(&ray, *game);
+    if (ray.hit == 1)
+    {
+   		draw_line(game, game->minimap.padding_right_left + 4 + game->minimap.pixel_per_elem/2 + (int)game->player.pos_x * game->minimap.pixel_per_elem,
+     					game->minimap.padding_top_bottom + 4 + game->minimap.pixel_per_elem/2 +  (int)game->player.pos_y * game->minimap.pixel_per_elem,
+          				game->minimap.padding_right_left + 4 +  ray.map_x * game->minimap.pixel_per_elem,
+              			game->minimap.padding_top_bottom + 4 + ray.map_y * game->minimap.pixel_per_elem);
+    }
 }
 
 void	show_minimap(t_game *game)
 {
 	draw_box(game, MINIMAP_WIDTH + 4, MINIMAP_HEIGHT + 4, 0xFFFFFF, 4);
 	draw_box(game, MINIMAP_WIDTH, MINIMAP_HEIGHT, 0x202020, 8);
+
 	double py = game->minimap.padding_top_bottom + 4;
 
 	for (double y = 0; game->map.grid[(size_t)y]; y++)
@@ -81,5 +91,6 @@ void	show_minimap(t_game *game)
 		}
 		py += game->minimap.pixel_per_elem;
 	}
-	show_vision(game);
+	show_vision(game, HEIGHT, WIDTH);
+	show_vision(game, HEIGHT, WIDTH);
 }
