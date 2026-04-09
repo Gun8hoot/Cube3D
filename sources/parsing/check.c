@@ -59,6 +59,7 @@ bool	get_player_pos(t_map *map)
 					return (ft_fprintf(STDERR_FILENO, MULT_PLAYER_ERROR), false);
 				map->start_pos[0] = i;
 				map->start_pos[1] = j;
+				map->grid[i][j] = PLAYER;
 			}
 			j++;
 		}
@@ -67,4 +68,25 @@ bool	get_player_pos(t_map *map)
 	if (map->looking_at[0] == 0.0 && map->looking_at[1] == 0.0)
 		return (ft_fprintf(STDERR_FILENO, "ABC\n"), false);
 	return (true);
+}
+
+void	init_door(t_map *map)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (map->grid[i])
+	{
+		j = 0;
+		while(map->grid[i][j])
+		{
+			if (map->grid[i][j] == 'D')
+			{
+				map->grid[i][j] = DOOR_CLOSE;
+			}
+			j++;
+		}
+		i++;
+	}
 }

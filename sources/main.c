@@ -89,8 +89,8 @@ int	game_loop(t_game *game)
 	chose_action(game);
     celling_floor(game);
     ft_rayshooter(&game->ray, *game);
-	show_minimap(game);
     mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	show_minimap(game);
     return (0);
 }
 
@@ -116,6 +116,9 @@ int main(int argc, char **argv)
 	game.player.pos_y = game.map.start_pos[0];
   	game.player.dir_x =	game.map.looking_at[1];
 	game.player.dir_y = game.map.looking_at[0];
+
+	if (!calculate_minimap(&game))
+		return (ft_fprintf(2, "ERROR MINIMAP\n"), false);
 
 	mlx_hook(game.win, 17, 0, handle_close, &game);
 	mlx_hook(game.win, 2, 1L<<0, handle_key_press, &game);

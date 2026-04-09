@@ -44,6 +44,7 @@ SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/raycasting/raycasting.c\
 		$(SRC_DIR)/raycasting/ray_utils.c\
 		$(SRC_DIR)/render/render.c\
+		$(SRC_DIR)/render/shape.c\
 		$(SRC_DIR)/render/minimap.c\
 		$(SRC_DIR)/utils/mlx_utils.c\
 		$(SRC_DIR)/player/events.c\

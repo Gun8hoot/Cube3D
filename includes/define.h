@@ -44,5 +44,6 @@
 # define BACKBOX_PADD		4
 # define FRONTBOX_PADD		6
 # define DEFAULT_ELEM_SIZE	16
+# define RAY_PRECISION		0.1
 
 #endif

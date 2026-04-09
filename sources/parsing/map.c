@@ -140,6 +140,7 @@ t_map	*init_map(t_map *map, char *filepath)
 		return (NULL);
 	if (!get_player_pos(map))
 		return (NULL);
+	init_door(map);
 
 	return (map);
 }

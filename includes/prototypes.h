@@ -37,6 +37,7 @@ void	show_grid(char **grid);
 bool			extract_texture(void);
 void	show_grid(char **grid);
 bool	get_player_pos(t_map *map);
+void	init_door(t_map *map);
 
 /* --- ./parsing/map.c --- */
 bool			check_extension(char *filepath);
@@ -70,5 +71,11 @@ void	move_camera(t_game *game, double rot_speed);
 void	chose_action(t_game *game);
 
 void	show_minimap(t_game *game);
+bool	calculate_minimap(t_game *game);
+
+void	draw_box(t_game *game, int max_x, int max_y, int color, int pad);
+void	draw_square(t_game *game, int pos_y, int pos_x, int len, int color);
+void 	draw_line(t_game *game, int x0, int y0, int x1, int y1);
+
 
 #endif

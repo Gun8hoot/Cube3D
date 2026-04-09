@@ -39,12 +39,17 @@ void	move_player(t_game *game, double dx, double dy)
 	new_y = game->player.pos_y + dy;
 	if (can_move(game, new_x, new_y))
 	{
+		if (game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] != WALL)
+		{
+			game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] = FLOOR;
+			game->map.grid[(int)new_y][(int)new_x] = PLAYER;
+		}
 		game->player.pos_x = new_x;
 		game->player.pos_y = new_y;
 		system("clear");					// DEBUG
 		show_grid(game->map.grid);
 	}
-	printf("Pos x = %.2f ; y = %.2f\n", game->player.pos_x, game->player.pos_y);
+	printf("Pos x = %.2f ; y = %.2f\n", round(game->player.pos_x), round(game->player.pos_y));
 }
 
 void	chose_action(t_game *game)
