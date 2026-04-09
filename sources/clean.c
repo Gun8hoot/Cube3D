@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:59:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 17:32:03 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/09 15:25:11 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void	safe_free(char **to_free)
 
 void	clear_t_map(t_map *map)
 {
-	if (map->NO_texture)
-		(free(map->NO_texture), map->NO_texture = NULL);
-	if (map->EA_texture)
-		(free(map->EA_texture), map->EA_texture = NULL);
-	if (map->SO_texture)
-		(free(map->SO_texture), map->SO_texture = NULL);
-	if (map->WE_texture)
-		safe_free(&map->WE_texture);
+	if (map->no_texture)
+		(free(map->no_texture), map->no_texture = NULL);
+	if (map->ea_texture)
+		(free(map->ea_texture), map->ea_texture = NULL);
+	if (map->so_texture)
+		(free(map->so_texture), map->so_texture = NULL);
+	if (map->we_texture)
+		safe_free(&map->we_texture);
 	if (map->fd > 2)
 		(get_next_line(-1), close(map->fd), map->fd = 0);
 	if (map->grid)

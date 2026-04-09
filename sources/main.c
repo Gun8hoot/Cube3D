@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 13:16:21 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 15:06:57 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	debug_show_t_map(t_map map)
 	printf("\n--- t_map Content ---\n");
 	if (map.filepath)
 		printf("[+] Filepath = \"%s\"\n", map.filepath);
-	if (map.NO_texture)
-		printf("[+] Texture file NO = \"%s\"\n", map.NO_texture);
-	if (map.EA_texture)
-		printf("[+] Texture file EA = \"%s\"\n", map.EA_texture);
-	if (map.SO_texture)
-		printf("[+] Texture file SO = \"%s\"\n", map.SO_texture);
-	if (map.WE_texture)
-		printf("[+] Texture file WE = \"%s\"\n", map.WE_texture);
+	if (map.no_texture)
+		printf("[+] Texture file NO = \"%s\"\n", map.no_texture);
+	if (map.ea_texture)
+		printf("[+] Texture file EA = \"%s\"\n", map.ea_texture);
+	if (map.so_texture)
+		printf("[+] Texture file SO = \"%s\"\n", map.so_texture);
+	if (map.we_texture)
+		printf("[+] Texture file WE = \"%s\"\n", map.we_texture);
 	printf("[+] Floor color = #%X\n", map.c_color);
 	printf("[+] Celling color = #%X\n", map.f_color);
 	printf("[+] Map started pos %ld\n", map.pos_start_map);
@@ -48,40 +48,6 @@ void	debug_show_t_map(t_map map)
 	printf("[+] Player starting position y = %.2f, x = %.2f\n", map.start_pos[0], map.start_pos[1]);
 	printf("\n");
 	show_grid(map.grid);
-}
-
-// int	main(int argc, char **argv)
-// {
-// 	t_game	game;
-
-// 	ft_memset(&game, '\0', sizeof(t_game));
-// 	if (argc != 2)
-// 	{
-// 		ft_fprintf(STDERR_FILENO, ARG_ERROR);
-// 		return (1);
-// 	}
-// 	init(&game, argv[1]);
-// 	debug_show_t_map(game.map);
-// }
-
-// int main(void)
-// {
-//     t_data data;
-
-//     data.mlx = mlx_init();
-//     data.win = mlx_new_window(data.mlx, HEIGHT, WIDTH, "Cube3D");
-//     data.img = mlx_new_image(data.mlx, HEIGHT, WIDTH);
-//     data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian); // ???
-//     mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-//     mlx_loop(data.mlx);
-//     return (0);
-// }
-void	TEST_asign(t_game *game)
-{
-	game->player.pos_x = 19;
-	game->player.pos_y = 3;
-  	game->player.dir_x = 0.0;
-	game->player.dir_y = -1.0;
 }
 
 int	game_loop(t_game *game)

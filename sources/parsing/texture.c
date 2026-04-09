@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:45:55 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/07 09:25:13 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 15:24:19 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ bool	set_info_texture(t_map *map, char *info_string, t_identifier id)
 	while (info_string[i] && info_string[i] == ' ')
 		i++;
 	if (id == NO)
-		return (set_texture(&map->NO_texture, &info_string[i]));
+		return (set_texture(&map->no_texture, &info_string[i]));
 	else if (id == EA)
-		return (set_texture(&map->EA_texture, &info_string[i]));
+		return (set_texture(&map->ea_texture, &info_string[i]));
 	else if (id == SO)
-		return (set_texture(&map->SO_texture, &info_string[i]));
+		return (set_texture(&map->so_texture, &info_string[i]));
 	else if (id == WE)
-		return (set_texture(&map->WE_texture, &info_string[i]));
+		return (set_texture(&map->we_texture, &info_string[i]));
 	else if (id == C)
 		return (get_color(&map->c_color, info_string));
 	else if (id == F)

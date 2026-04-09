@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 12:53:14 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/09 14:53:05 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,21 +111,21 @@ typedef enum e_identifier
 
 typedef struct s_map
 {
-	int16_t fd;                 // Map file fd
-	char *filepath;             // Map filepath
-	char **grid;                // BASE MAP
-	size_t	number_char_max;	// Number of char max in the biggest line
-	size_t line_number;			// Map y size
-	char *NO_texture;           // Path of texture NORTH
-	char *EA_texture;           // Path of texture EAST
-	char *SO_texture;           // Path of texture SOUTH
-	char *WE_texture;           // Path of texture WEST
-	int f_color;                // COLOR OF THE FLOOR
-	int c_color;                // COLOR OF THE CELLING
-	double start_pos[2];        // Position on the grid of the PLAYER start
-	double		looking_at[2];	// Direction of the PLAYER start
-	size_t	pos_start_map;		// Position of the map in the file
-}	t_map;						// MAIN MAP STRUCTURE
+	int16_t			fd;                 // Map file fd
+	char			**grid;                // BASE MAP
+	char			*filepath;             // Map filepath
+	char			*no_texture;           // Path of texture NORTH
+	char			*ea_texture;           // Path of texture EAST
+	char			*so_texture;           // Path of texture SOUTH
+	char			*we_texture;           // Path of texture WEST
+	size_t			number_char_max;	// Number of char max in the biggest line
+	size_t			line_number;			// Map y size
+	size_t			pos_start_map;		// Position of the map in the file
+	int				f_color;                // COLOR OF THE FLOOR
+	int				c_color;            // COLOR OF THE CELLING
+	double			start_pos[2];		// Position on the grid of the PLAYER start
+	double			looking_at[2];		// Direction of the PLAYER start
+}					t_map;				// MAIN MAP STRUCTURE
 
 
 typedef struct s_game
@@ -153,6 +153,6 @@ typedef struct s_game
 	int				w_width;
 	int				w_height;
 	int				keys_pressed[65535];
-}				t_game;						// All game data
+}					t_game;						// All game data
 
 #endif
