@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:19:45 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/10 16:44:57 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 17:36:04 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void	move_player(t_game *game, double dx, double dy)
 
 void	chose_action(t_game *game)
 {
+	if (game->keys_pressed[KEY_W] == 1 || game->keys_pressed[KEY_S] == 1 || game->keys_pressed[KEY_A] == 1 || game->keys_pressed[KEY_D] == 1)
+	{
+		if (!game->weapon.is_animating)
+			game->weapon.is_animating = true;
+	}
 	if (game->keys_pressed[KEY_W] == 1 && game->keys_pressed[KEY_S] == 0)
 		move_player(game, game->player.dir_x * PLA_SPEED, game->player.dir_y * PLA_SPEED);
 	if (game->keys_pressed[KEY_S] == 1 && game->keys_pressed[KEY_W] == 0)

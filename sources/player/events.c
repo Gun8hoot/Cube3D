@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 09:59:26 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/10 17:11:30 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 17:35:06 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ int handle_key_press(int keycode, t_game *game)
     if (keycode == KEY_ESC)
         handle_close(game);
     game->keys_pressed[keycode] = 1;
-	if (!game->weapon.is_animating)
-	{
-		game->weapon.is_animating = true;
-		game->weapon.anim_frame = 0;
-	}
     return (0);
 }
 

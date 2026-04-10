@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 08:56:35 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/10 17:09:32 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 17:44:58 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,17 @@ void	weapon(t_game *game)
 {
 	int	x;
 	int	y;
+	int offset;
 
 	if (!game->w_img.img)
 		return ;
 	game->weapon.start_x = WIDTH - game->w_img.width - 280;
 	game->weapon.start_y = HEIGHT - game->w_img.height;
 	if (game->weapon.is_animating)
-		game->weapon.start_y += (10 * game->weapon.anim_frame);	
+	{
+		offset = (ANIM_FRAME / 2) - abs(game->weapon.anim_frame - (ANIM_FRAME / 2));
+        game->weapon.start_y += offset * 2;
+	}
 	y = 0;
 	while (y < game->w_img.height)
 	{
