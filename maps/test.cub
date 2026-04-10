@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-EA ./path_to_the_east_texture
-SO ./path_to_the_north_texture
-WE ./path_to_the_west_texture
+NO ./textures/jhauvill.xpm
+SO ./textures/zombie.xpm
+EA ./textures/wall1.xpm
+WE ./textures/wall1.xpm
 
 C 122,71,107
 F 0,200,0

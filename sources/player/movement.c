@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:19:45 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/09 11:42:06 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 12:58:15 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	move_player(t_game *game, double dx, double dy)
 		}
 		game->player.pos_x = new_x;
 		game->player.pos_y = new_y;
-		system("clear");					// DEBUG
-		show_grid(game->map.grid);
 	}
 	printf("Pos x = %.2f ; y = %.2f\n", round(game->player.pos_x), round(game->player.pos_y));
 }
@@ -79,7 +77,5 @@ void	move_camera(t_game *game, double rot_speed)
 	game->player.dir_y = olddir * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
 	game->render.plane.x = game->render.plane.x * cos(rot_speed) - game->render.plane.y * sin(rot_speed);
 	game->render.plane.y = oldplane * sin(rot_speed) + game->render.plane.y * cos(rot_speed);
-	system("clear");					// DEBUG
-	show_grid(game->map.grid);
 	printf("\n[+] Direction of view:\n\tx = %.2f\n\ty = %.2f\n", game->player.dir_x, game->player.dir_y);
 }
