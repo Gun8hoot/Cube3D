@@ -24,6 +24,18 @@ typedef struct s_player
 	double		dir_y;
 }				t_player;
 
+typedef struct	s_fps
+{
+	struct timeval	frame_start;
+	struct timeval	frame_end;
+
+	double			delta_fps;			// a simple variable that calculate the time to process
+	double			fps_timer;
+	int				fps_counter;		// The fps counter;
+	struct timeval	last_frame_time;	// The timestamp of the last frame
+	char			string[16];
+}				t_fps;
+
 typedef struct s_img
 {
 	void			*img;
@@ -143,7 +155,6 @@ typedef struct s_game
 {
 	long long		old_time;					// Timestamp to calculate time to render
 	int				old_mouse_pos;
-	double			fps;						// Number of fps
 	t_map			map;						// Overall map structure
 	t_img			r_img;						// raycasting
 	t_img			w_img;						// weapon
@@ -156,6 +167,7 @@ typedef struct s_game
 	void			*mlx;						// Pointer to MLX data
 	void			*win;						// Pointer to window
 	int				keys_pressed[65535];
+	t_fps			fps;						// Structure that contained fps related data
 }					t_game;						// All game data
 
 #endif

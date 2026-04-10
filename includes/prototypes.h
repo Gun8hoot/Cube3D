@@ -85,5 +85,8 @@ void	get_texture(t_ray *ray, t_game *game);
 void	draw_textured_line(t_game *game, int x, int img_x);
 int		convert_coords_textures(t_ray *ray, t_game *game);
 void	load_textures(t_game *game);
+void	show_fps(t_game *game);
+void	fps_limiter(t_game *game);
+void	crosshair(t_game *game);
 
 #endif

@@ -24,6 +24,8 @@ void	init_struct(t_game *game)
 	ft_memset(&game->r_img, '\0', sizeof(t_img));
 	ft_memset(&game->w_img, '\0', sizeof(t_img));
 	ft_memset(game->keys_pressed, 0, sizeof(game->keys_pressed));
+	ft_memset(&game->fps, '\0', sizeof(t_fps));
+
 }
 
 void	render_init(t_game *game)

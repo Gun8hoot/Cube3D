@@ -25,6 +25,7 @@
 # define MAP_ERROR "Error:\nInvalid map\n"
 # define MULT_PLAYER_ERROR "Error:\nMultiple user defined\n"
 # define PLAYER_ERR	"Error:\nNeed a ONE player\n"
+# define TOO_BIG_ERROR "Error:\nMap is too big (< 321 width and < 180 line height)\n"
 
 /* --- ERROR ERRNO --- */
 # define EGNL 0x55

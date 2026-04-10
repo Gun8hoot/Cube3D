@@ -47,22 +47,21 @@ void	move_player(t_game *game, double dx, double dy)
 		game->player.pos_x = new_x;
 		game->player.pos_y = new_y;
 	}
-	printf("Pos x = %.2f ; y = %.2f\n", round(game->player.pos_x), round(game->player.pos_y));
 }
 
 void	chose_action(t_game *game)
 {
 	if (game->keys_pressed[KEY_W] == 1 && game->keys_pressed[KEY_S] == 0)
 		move_player(game, game->player.dir_x * PLA_SPEED, game->player.dir_y * PLA_SPEED);
-	else if (game->keys_pressed[KEY_S] == 1 && game->keys_pressed[KEY_W] == 0)
+	if (game->keys_pressed[KEY_S] == 1 && game->keys_pressed[KEY_W] == 0)
 		move_player(game, -game->player.dir_x * PLA_SPEED, -game->player.dir_y * PLA_SPEED);
-	else if (game->keys_pressed[KEY_D] == 1 && game->keys_pressed[KEY_A] == 0)
+	if (game->keys_pressed[KEY_D] == 1 && game->keys_pressed[KEY_A] == 0)
 		move_player(game, -game->player.dir_y * PLA_SPEED, game->player.dir_x * PLA_SPEED);
-	else if (game->keys_pressed[KEY_A] == 1 && game->keys_pressed[KEY_D] == 0)
+	if (game->keys_pressed[KEY_A] == 1 && game->keys_pressed[KEY_D] == 0)
 		move_player(game, game->player.dir_y * PLA_SPEED, -game->player.dir_x * PLA_SPEED);
-	else if (game->keys_pressed[KEY_RIGHT] == 1 && game->keys_pressed[KEY_LEFT] == 0)
+	if (game->keys_pressed[KEY_RIGHT] == 1 && game->keys_pressed[KEY_LEFT] == 0)
 		move_camera(game, ROT_SPEED);
-	else if (game->keys_pressed[KEY_LEFT] == 1 && game->keys_pressed[KEY_RIGHT] == 0)
+	if (game->keys_pressed[KEY_LEFT] == 1 && game->keys_pressed[KEY_RIGHT] == 0)
 		move_camera(game, -ROT_SPEED);
 }
 
@@ -77,5 +76,4 @@ void	move_camera(t_game *game, double rot_speed)
 	game->player.dir_y = olddir * sin(rot_speed) + game->player.dir_y * cos(rot_speed);
 	game->render.plane.x = game->render.plane.x * cos(rot_speed) - game->render.plane.y * sin(rot_speed);
 	game->render.plane.y = oldplane * sin(rot_speed) + game->render.plane.y * cos(rot_speed);
-	printf("\n[+] Direction of view:\n\tx = %.2f\n\ty = %.2f\n", game->player.dir_x, game->player.dir_y);
 }

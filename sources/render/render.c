@@ -52,8 +52,8 @@ void	weapon(t_game *game)
 
 	if (!game->w_img.img)
 		return ;
-	game->weapon.start_x = 1280 - game->w_img.width - 280;
-	game->weapon.start_y = 720 - game->w_img.height;
+	game->weapon.start_x = WIDTH - game->w_img.width - 280;
+	game->weapon.start_y = HEIGHT - game->w_img.height;
 	y = 0;
 	while (y < game->w_img.height)
 	{

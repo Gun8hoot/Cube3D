@@ -17,8 +17,11 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define FOV 66
-# define ROT_SPEED 0.1
-# define PLA_SPEED 0.1
+# define CROSSHAIR_SIZE 150
+# define FPS 60
+# define FPS_TIME (1000000.0 / FPS)
+# define ROT_SPEED 0.05
+# define PLA_SPEED 0.05
 # define M_PI 3.141592653589793
 
 /* Event player */
@@ -43,6 +46,7 @@
 # define MINIMAP_HEIGHT		HEIGHT/4
 # define BACKBOX_PADD		4
 # define FRONTBOX_PADD		6
+# define INBOX_PADD			10
 # define TOT_PADD			BACKBOX_PADD + FRONTBOX_PADD
 # define DEFAULT_ELEM_SIZE	16
 # define RAY_PRECISION		0.1

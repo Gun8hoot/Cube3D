@@ -90,26 +90,35 @@ int	mouse(t_game *game)
 	int new_y;
 	double	rotation;
 
+	(void)new_y;
 	mlx_mouse_get_pos(game->mlx, game->win, &new_x, &new_y);
 	rotation = (new_x - (WIDTH / 2));
 	mlx_mouse_move(game->mlx, game->win, WIDTH/2, HEIGHT/2);
 	if (rotation != 0)
-		move_camera(game, rotation / 1000);
+		move_camera(game, rotation / 500);
 	game->old_mouse_pos = new_x;
-	(void)new_y;
 	return (0);
+}
+
+void	ui(t_game *game)
+{
+	weapon(game);
+	show_minimap(game);
+	crosshair(game);
+	show_fps(game);
 }
 
 int	game_loop(t_game *game)
 {
+	gettimeofday(&game->fps.frame_start, 0);
 	chose_action(game);
     celling_floor(game);
     ft_rayshooter(&game->ray, *game);
     mlx_put_image_to_window(game->mlx, game->win, game->r_img.img, 0, 0);
-	weapon(game);
-	show_minimap(game);
+    ui(game);
 	mouse(game);
-    return (0);
+	fps_limiter(game);
+	return (1);
 }
 
 int main(int argc, char **argv)
@@ -124,7 +133,6 @@ int main(int argc, char **argv)
     }
 	if (!init(&game, argv[1]))
 		return (1);
-    debug_show_t_map(game.map);
     game.mlx = mlx_init();
     game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
     game.r_img.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
@@ -142,7 +150,7 @@ int main(int argc, char **argv)
 	game.player.dir_y = game.map.looking_at[0];
 
 	if (!calculate_minimap(&game))
-		return (ft_fprintf(2, "ERROR MINIMAP\n"), false);
+		return (ft_fprintf(2, TOO_BIG_ERROR), false);
 
 	mlx_mouse_hide(game.mlx, game.win);
 	mlx_hook(game.win, 17, 0, handle_close, &game);

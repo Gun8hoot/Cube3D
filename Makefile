@@ -14,8 +14,9 @@
 NAME = cube3D
 
 # Flags
+# -O0 -g2 -ggdb
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -I.
+CFLAGS = -Wall -Wextra -Werror -O2 -I.
 INCLUDES = -I./includes
 
 # Flags Mlx
@@ -44,7 +45,9 @@ SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/raycasting/raycasting.c\
 		$(SRC_DIR)/raycasting/ray_utils.c\
 		$(SRC_DIR)/render/render.c\
+		$(SRC_DIR)/render/fps.c\
 		$(SRC_DIR)/render/shape.c\
+		$(SRC_DIR)/render/crosshair.c\
 		$(SRC_DIR)/render/minimap.c\
 		$(SRC_DIR)/render/tex_load.c\
 		$(SRC_DIR)/utils/mlx_utils.c\

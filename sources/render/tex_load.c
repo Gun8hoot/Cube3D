@@ -19,7 +19,7 @@ void	load_textures(t_game *game)
 	int tex_height;
 	int i;
 	char *paths[4] = {game->map.no_texture, game->map.so_texture, game->map.ea_texture, game->map.we_texture};
-	
+
 	i = 0;
 	while (i < 4)
 	{
