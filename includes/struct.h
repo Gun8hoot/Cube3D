@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 18:13:00 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 12:37:04 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_weapon
 
 typedef struct s_ray
 {
-	t_vec		dir;
+	t_img		*current_texture;
 	t_vec		step;
 	t_vec		cam;
 	t_vec		ray_dir;
@@ -145,10 +145,9 @@ typedef struct s_game
 	int				old_mouse_pos;
 	double			fps;						// Number of fps
 	t_map			map;						// Overall map structure
-	t_img			r_img;
-	t_img			w_img;
+	t_img			r_img;						// raycasting
+	t_img			w_img;						// weapon
 	t_img			textures[4];				// Wall textures [NO, SO, EA, WE]
-	t_img			*img;
 	t_minimap		minimap;					// Minimap data structure
 	t_weapon		weapon;
 	t_player		player;						// Player data structure
@@ -156,17 +155,6 @@ typedef struct s_game
 	t_ray			ray;						// Raycasting data structure
 	void			*mlx;						// Pointer to MLX data
 	void			*win;						// Pointer to window
-	void			*balista;
-	// char			*addr;
-	// char			*weapon_addr;
-	// int				bits_per_pixel;
-	// int				line_length;
-	// int				endian;
-	// int				weapon_bits_per_pixel;
-	// int				weapon_line_length;
-	// int				weapon_endian;
-	// int				w_width;
-	// int				w_height;
 	int				keys_pressed[65535];
 }					t_game;						// All game data
 

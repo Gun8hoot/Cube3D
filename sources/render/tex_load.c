@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:42:14 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/09 18:16:07 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 12:46:14 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	load_textures(t_game *game)
 	int tex_width;
 	int tex_height;
 	int i;
-	char *paths[4] = {"textures/jhauvill.xpm", "textures/zombie.xpm", "textures/wall1.xpm", "textures/wall2.xpm"};
+	char *paths[4] = {"textures/jhauvill.xpm", "textures/zombie.xpm", "textures/wall1.xpm", "textures/wall1.xpm"};
 	
 	i = 0;
 	while (i < 4)

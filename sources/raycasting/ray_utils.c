@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:33:17 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/09 18:17:07 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 12:47:54 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,72 +36,80 @@ static int	get_texture_color(t_img *r_img, int x, int y)
 
 void	draw_textured_line(t_game *game, int x, int img_x)
 {
-	int		y;
-	double	step;
-	double	tex_pos;
-	int		img_y;
-	int		color;
+    int		y;
+    double	step;
+    double	tex_pos;
+    int		img_y;
+    int		color;
+    t_img	*tex;
 
-	if (!game->img || !game->img->addr)
-		return ;
-	step = (double)game->img->height / game->render.line_height;
-	tex_pos = (game->render.draw_start - HEIGHT / 2 + game->render.line_height / 2) * step;
-	y = game->render.draw_start;
-	while (y < game->render.draw_end)
-	{
-		img_y = (int)tex_pos;
-		if (img_y < 0)
-			img_y = 0;
-		if (img_y >= game->img->height)
-			img_y = game->img->height - 1;
-		tex_pos += step;
-		color = get_texture_color(game->img, img_x, img_y);
-		my_mlx_pixel_put(game, x, y, color);
-		y++;
-	}
+    tex = game->ray.current_texture;
+    if (!tex || !tex->img)
+        return ;
+    step = (double)tex->height / game->render.line_height;
+    tex_pos = (game->render.draw_start - HEIGHT / 2 + game->render.line_height / 2) * step;
+    y = game->render.draw_start;
+    while (y < game->render.draw_end)
+    {
+        img_y = (int)tex_pos;
+        if (img_y < 0)
+            img_y = 0;
+        if (img_y >= tex->height)
+            img_y = tex->height - 1;
+        tex_pos += step;
+        color = get_texture_color(tex, img_x, img_y);
+        my_mlx_pixel_put(game, x, y, color);
+        y++;
+    }
 }
 
 void	get_texture(t_ray *ray, t_game *game)
 {
-	char	wall_type;
+	// char	wall_type;
+	t_img	*current_texture;
 
-	wall_type = game->map.grid[ray->map_y][ray->map_x];
+	// wall_type = game->map.grid[ray->map_y][ray->map_x];
 	if (ray->side == 0)
-	{
-		if (ray->dir.x > 0)
-			game->img = &game->textures[0];
-		else
-			game->img = &game->textures[1];
-	}
-	else
-	{
-		if (ray->dir.y > 0)
-			game->img = &game->textures[2];
-		else
-			game->img = &game->textures[3];
-	}
+    {
+        if (ray->ray_dir.x > 0)
+            current_texture = &game->textures[3];
+        else
+            current_texture = &game->textures[2];
+    }
+    else
+    {
+        if (ray->ray_dir.y > 0)
+            current_texture = &game->textures[0];
+        else
+            current_texture = &game->textures[1];
+    }
+	// if (wall_type == 'D')
+	// 	utils->img = &game->textures[4];
+	ray->current_texture = current_texture;
 }
 
 int	convert_coords_textures(t_ray *ray, t_game *game)
 {
-	int		img_x;
-	double	wall_x;
+    int		img_x;
+    double	wall_x;
+    t_img	*tex;
 
-	if (!game->img)
-		return (0);
-	if (ray->side == 0)
-		wall_x = game->player.pos_y + ray->perp_wall_dist * ray->dir.y;
-	else
-		wall_x = game->player.pos_x + ray->perp_wall_dist * ray->dir.x;
-	wall_x -= floor(wall_x);
-	img_x = (int)(wall_x * (double)game->img->width);
-	if (img_x >= game->img->width)
-		img_x = game->img->width - 1;
-	if (img_x < 0)
-		img_x = 0;
-	if (ray->side == 0 && ray->dir.x < 0)
-		img_x = game->img->width - img_x - 1;
-	if (ray->side == 1 && ray->dir.y > 0)
-		img_x = game->img->width - img_x - 1;
-	return (img_x);
+    tex = ray->current_texture;
+    if (!tex || !tex->img)
+        return (0);
+    if (ray->side == 0)
+        wall_x = game->player.pos_y + ray->perp_wall_dist * ray->ray_dir.y;
+    else
+        wall_x = game->player.pos_x + ray->perp_wall_dist * ray->ray_dir.x;
+    wall_x -= floor(wall_x);
+    img_x = (int)(wall_x * (double)tex->width);
+    if (img_x >= tex->width)
+        img_x = tex->width - 1;
+    if (img_x < 0)
+        img_x = 0;
+    if (ray->side == 0 && ray->ray_dir.x < 0)
+        img_x = tex->width - img_x - 1;
+    if (ray->side == 1 && ray->ray_dir.y < 0)
+        img_x = tex->width - img_x - 1;
+    return (img_x);
 }

@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 08:56:35 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/09 17:18:09 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 11:41:04 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	weapon(t_game *game)
 	int	x;
 	int	y;
 
-	if (!game->balista)
+	if (!game->w_img.img)
 		return ;
 	game->weapon.start_x = 1280 - game->w_img.width - 280;
 	game->weapon.start_y = 720 - game->w_img.height;

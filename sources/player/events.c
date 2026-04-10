@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 09:59:26 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/08 17:34:16 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 11:41:18 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,19 @@ int handle_key_release(int keycode, t_game *game)
 
 int handle_close(t_game *game)
 {
-    mlx_destroy_image(game->mlx, game->img);
+	int i;
+
+	if (game->r_img.img)
+		mlx_destroy_image(game->mlx, game->r_img.img);
+	if (game->w_img.img)
+		mlx_destroy_image(game->mlx, game->w_img.img);
+	i = 0;
+	while (i < 4)
+	{
+		if (game->textures[i].img)
+			mlx_destroy_image(game->mlx, game->textures[i].img);
+		i++;
+	}
     mlx_destroy_window(game->mlx, game->win);
     mlx_destroy_display(game->mlx);
     free(game->mlx);
