@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/10 12:37:04 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 16:13:36 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_weapon
     int			color;
     int			start_x;
     int			start_y;
+	int			anim_frame;
+	bool		is_animating;
 }				t_weapon;
 
 typedef struct s_ray

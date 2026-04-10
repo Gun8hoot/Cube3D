@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:19:45 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/10 12:58:15 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 16:44:57 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,3 +77,4 @@ void	move_camera(t_game *game, double rot_speed)
 	game->render.plane.x = game->render.plane.x * cos(rot_speed) - game->render.plane.y * sin(rot_speed);
 	game->render.plane.y = oldplane * sin(rot_speed) + game->render.plane.y * cos(rot_speed);
 }
+

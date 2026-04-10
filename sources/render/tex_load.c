@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:42:14 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/10 12:55:50 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 14:35:25 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	load_textures(t_game *game)
 	char *paths[4] = {game->map.no_texture, game->map.so_texture, game->map.ea_texture, game->map.we_texture};
 
 	i = 0;
+	// door
 	while (i < 4)
 	{
 		if (!paths[i])

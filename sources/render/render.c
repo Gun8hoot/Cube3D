@@ -6,13 +6,13 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 08:56:35 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/10 11:41:04 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 17:09:32 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-// void	choose_textures(t_game *game)
+// void	textures(t_game *game)
 // {
 
 // }
@@ -54,6 +54,8 @@ void	weapon(t_game *game)
 		return ;
 	game->weapon.start_x = WIDTH - game->w_img.width - 280;
 	game->weapon.start_y = HEIGHT - game->w_img.height;
+	if (game->weapon.is_animating)
+		game->weapon.start_y += (10 * game->weapon.anim_frame);	
 	y = 0;
 	while (y < game->w_img.height)
 	{
@@ -70,5 +72,16 @@ void	weapon(t_game *game)
 			x++;
 		}
 		y++;
+	}
+}
+
+void	animating_weapon(t_game *game)
+{
+	if (game->weapon.is_animating && game->weapon.anim_frame < ANIM_FRAME)
+		game->weapon.anim_frame++;
+	else if (game->weapon.anim_frame == ANIM_FRAME)
+	{
+		game->weapon.is_animating = false;
+		game->weapon.anim_frame = 0;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/08 16:42:58 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 16:44:51 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # define HEIGHT 720
 # define FOV 66
 # define CROSSHAIR_SIZE 150
-# define FPS 60
+# define ANIM_FRAME 10
+# define FPS 120
 # define FPS_TIME (1000000.0 / FPS)
 # define ROT_SPEED 0.05
 # define PLA_SPEED 0.05

@@ -44,60 +44,6 @@ bool	calculate_minimap(t_game *game)
 	return (true);
 }
 
-void	draw_fov_cone(t_game *game)
-{
-	t_ray	ray_left;
-	t_ray	ray_right;
-	double	hit_x_left;
-	double	hit_y_left;
-	double	hit_x_right;
-	double	hit_y_right;
-	int		player_screen_x;
-	int		player_screen_y;
-
-	// Calculate player position on minimap
-	player_screen_x = game->minimap.padding_right_left + 4 + game->minimap.pixel_per_elem/2 + (int)game->player.pos_x * game->minimap.pixel_per_elem;
-	player_screen_y = game->minimap.padding_top_bottom + 4 + game->minimap.pixel_per_elem/2 + (int)game->player.pos_y * game->minimap.pixel_per_elem;
-
-	// Left edge of FOV (camera plane goes left)
-	ray_left.ray_dir.x = game->player.dir_x - game->render.plane.x;
-	ray_left.ray_dir.y = game->player.dir_y - game->render.plane.y;
-	ray_left.map_x = (int)game->player.pos_x;
-	ray_left.map_y = (int)game->player.pos_y;
-	ray_left.delta_dist.x = fabs(1.0 / ray_left.ray_dir.x);
-	ray_left.delta_dist.y = fabs(1.0 / ray_left.ray_dir.y);
-	ft_dda(&ray_left, *game);
-
-	if (ray_left.hit == 1)
-	{
-		hit_x_left = game->player.pos_x + ray_left.perp_wall_dist * ray_left.ray_dir.x;
-		hit_y_left = game->player.pos_y + ray_left.perp_wall_dist * ray_left.ray_dir.y;
-
-		draw_line(game, player_screen_x, player_screen_y,
-			game->minimap.padding_right_left + 4 + hit_x_left * game->minimap.pixel_per_elem,
-			game->minimap.padding_top_bottom + 4 + hit_y_left * game->minimap.pixel_per_elem);
-	}
-
-	// Right edge of FOV (camera plane goes right)
-	ray_right.ray_dir.x = game->player.dir_x + game->render.plane.x;
-	ray_right.ray_dir.y = game->player.dir_y + game->render.plane.y;
-	ray_right.map_x = (int)game->player.pos_x;
-	ray_right.map_y = (int)game->player.pos_y;
-	ray_right.delta_dist.x = fabs(1.0 / ray_right.ray_dir.x);
-	ray_right.delta_dist.y = fabs(1.0 / ray_right.ray_dir.y);
-	ft_dda(&ray_right, *game);
-
-	if (ray_right.hit == 1)
-	{
-		hit_x_right = game->player.pos_x + ray_right.perp_wall_dist * ray_right.ray_dir.x;
-		hit_y_right = game->player.pos_y + ray_right.perp_wall_dist * ray_right.ray_dir.y;
-
-		draw_line(game, player_screen_x, player_screen_y,
-			game->minimap.padding_right_left + 4 + hit_x_right * game->minimap.pixel_per_elem,
-			game->minimap.padding_top_bottom + 4 + hit_y_right * game->minimap.pixel_per_elem);
-	}
-}
-
 void	show_vision(t_game *game, int height, int width)
 {
 	t_ray	ray;
@@ -105,15 +51,15 @@ void	show_vision(t_game *game, int height, int width)
 	double	hit_x;
 	double	hit_y;
 
-	camera = (double)height / (double)width;							//
-	ray.ray_dir.x = game->player.dir_x + game->render.plane.x * camera;	//
+	camera = (double)height / (double)width;						
+	ray.ray_dir.x = game->player.dir_x + game->render.plane.x * camera;
 	ray.ray_dir.y = game->player.dir_y + game->render.plane.y * camera;
 	ray.map_x = (int)game->player.pos_x;
     ray.map_y = (int)game->player.pos_y;
     ray.delta_dist.x = fabs(1.0 / ray.ray_dir.x);
     ray.delta_dist.y = fabs(1.0 / ray.ray_dir.y);
-    ft_dda(&ray, *game);
-    check_hit(&ray, *game);
+    ft_dda(&ray, game);
+    check_hit(&ray, game);
     if (ray.hit == 1)
     {
     	hit_x = game->player.pos_x + ray.perp_wall_dist * ray.ray_dir.x;
@@ -149,5 +95,4 @@ void	show_minimap(t_game *game)
 		py += game->minimap.pixel_per_elem;
 	}
 	show_vision(game, HEIGHT, WIDTH);
-	draw_fov_cone(game);
 }

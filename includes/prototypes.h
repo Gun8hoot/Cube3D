@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 18:02:50 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/10 16:32:27 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ bool			is_map(char *line);
 
 /* -------------------- */
 
-void	ft_dda(t_ray *ray, t_game game);
-void	check_hit(t_ray *ray, t_game game);
-void	ft_rayshooter(t_ray *ray, t_game game);
+void	ft_dda(t_ray *ray, t_game *game);
+void	check_hit(t_ray *ray, t_game *game);
+void	ft_rayshooter(t_ray *ray, t_game *game);
 void	line_height(t_render *render, t_ray ray);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void	celling_floor(t_game *game);
@@ -88,5 +88,7 @@ void	load_textures(t_game *game);
 void	show_fps(t_game *game);
 void	fps_limiter(t_game *game);
 void	crosshair(t_game *game);
+
+void	animating_weapon(t_game *game);
 
 #endif
