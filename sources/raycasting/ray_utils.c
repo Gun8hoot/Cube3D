@@ -72,16 +72,16 @@ void	get_texture(t_ray *ray, t_game *game)
 	if (ray->side == 0)
     {
         if (ray->ray_dir.x > 0)
-            current_texture = &game->textures[3];
-        else
             current_texture = &game->textures[2];
+        else
+            current_texture = &game->textures[3];
     }
     else
     {
         if (ray->ray_dir.y > 0)
-            current_texture = &game->textures[0];
-        else
             current_texture = &game->textures[1];
+        else
+            current_texture = &game->textures[0];
     }
 	// if (wall_type == 'D')
 	// 	utils->img = &game->textures[4];
