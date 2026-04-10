@@ -98,11 +98,11 @@ char **extract_map(t_map *map)
 
 	i = -1;
 	raw_line = NULL;
-	map->grid = ft_calloc(map->line_number + 1, sizeof(char *));
-	if (!map->grid)
-		return (NULL);
 	map->fd = open(map->filepath, O_RDONLY);
 	if (map->fd < 3)
+		return (NULL);
+	map->grid = ft_calloc(map->line_number + 1, sizeof(char *));
+	if (!map->grid)
 		return (NULL);
 	while (++i < map->pos_start_map - 1)
 	{

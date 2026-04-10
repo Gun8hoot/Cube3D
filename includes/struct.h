@@ -138,6 +138,7 @@ typedef struct s_map
 {
 	int16_t			fd;                 // Map file fd
 	char			**grid;                // BASE MAP
+	char			**flood_filled;                // BASE MAP
 	char			*filepath;             // Map filepath
 	char			*no_texture;           // Path of texture NORTH
 	char			*ea_texture;           // Path of texture EAST

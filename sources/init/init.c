@@ -15,7 +15,7 @@
 void	init_struct(t_game *game)
 {
 	ft_memset(game, '\0', sizeof(t_game));
-	ft_memset(&game->map, '\0', sizeof(t_game));
+	ft_memset(&game->map, '\0', sizeof(t_map));
 	ft_memset(&game->minimap, '\0', sizeof(t_minimap));
 	ft_memset(&game->player, '\0', sizeof(t_player));
 	ft_memset(&game->ray, '\0', sizeof(t_ray));
@@ -23,9 +23,8 @@ void	init_struct(t_game *game)
 	ft_memset(&game->weapon, '\0', sizeof(t_weapon));
 	ft_memset(&game->r_img, '\0', sizeof(t_img));
 	ft_memset(&game->w_img, '\0', sizeof(t_img));
-	ft_memset(game->keys_pressed, 0, sizeof(game->keys_pressed));
+	ft_memset(&game->keys_pressed, '\0', sizeof(game->keys_pressed));
 	ft_memset(&game->fps, '\0', sizeof(t_fps));
-
 }
 
 void	render_init(t_game *game)

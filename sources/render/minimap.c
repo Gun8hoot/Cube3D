@@ -51,9 +51,9 @@ void	show_vision(t_game *game, int height, int width)
 	double	hit_x;
 	double	hit_y;
 
-	camera = (double)height / (double)width;						
-	ray.ray_dir.x = game->player.dir_x + game->render.plane.x * camera;
-	ray.ray_dir.y = game->player.dir_y + game->render.plane.y * camera;
+	camera = (double)height / (double)width;
+	ray.ray_dir.x = game->player.dir_x + (int)game->render.plane.x * camera;
+	ray.ray_dir.y = game->player.dir_y + (int)game->render.plane.y * camera;
 	ray.map_x = (int)game->player.pos_x;
     ray.map_y = (int)game->player.pos_y;
     ray.delta_dist.x = fabs(1.0 / ray.ray_dir.x);

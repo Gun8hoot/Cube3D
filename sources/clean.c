@@ -64,6 +64,8 @@ void	clear_t_map(t_map *map)
 		(get_next_line(-1), close(map->fd), map->fd = 0);
 	if (map->grid)
 		free_tab(&map->grid, map->line_number);
+	if (map->flood_filled)
+		free_tab(&map->flood_filled, map->line_number);
 }
 
 void	clear_game(t_game *game)

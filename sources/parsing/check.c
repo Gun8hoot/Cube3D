@@ -90,3 +90,66 @@ void	init_door(t_map *map)
 		i++;
 	}
 }
+
+bool	arr_copy(t_map *map)
+{
+	size_t	y;
+
+	y = 0;
+	if (!map->grid)
+		return (false);
+	map->flood_filled = ft_calloc(map->line_number, sizeof(char *));
+	if (!map->flood_filled)
+		return (false);
+	while (y < map->line_number)
+	{
+		map->flood_filled[y] = ft_strdup(map->grid[y]);
+		if (!map->flood_filled[y])
+			return (false);
+		y++;
+	}
+	map->flood_filled[y] = NULL;
+	return (true);
+}
+
+bool	check_floodfill(char **grid)
+{
+	size_t x;
+	size_t y;
+
+	y = 0;
+	while (grid[y])
+	{
+		x = 0;
+		while (grid[y][x])
+		{
+			if (grid[y][x] != ' '
+				&& grid[y][x] != 'F'
+				&& grid[y][x] != '1')
+			{
+				return (false);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (true);
+}
+
+void	floodfill(size_t x, size_t y, t_map *map)
+{
+	if (	x < 0
+			|| x >= ft_strlen(map->flood_filled[y])
+			|| y < 0
+			|| y >= map->line_number
+			|| map->flood_filled[y][x] == '1'
+			|| map->flood_filled[y][x] == 'F')
+	{
+		return;
+	}
+	map->flood_filled[y][x] = 'F';
+	floodfill(x, y - 1, map);
+	floodfill(x, y + 1, map);
+	floodfill(x - 1, y, map);
+	floodfill(x + 1, y, map);
+}

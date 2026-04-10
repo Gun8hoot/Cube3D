@@ -12,11 +12,6 @@
 
 #include "includes/cube3d.h"
 
-// void	textures(t_game *game)
-// {
-
-// }
-
 void	celling_floor(t_game *game)
 {
 	int	x;

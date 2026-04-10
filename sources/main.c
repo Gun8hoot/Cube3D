@@ -92,7 +92,6 @@ int main(int argc, char **argv)
 {
     t_game game;
 
-	ft_memset(&game, '\0', sizeof(t_game));
 	if (argc != 2)
     {
         ft_fprintf(STDERR_FILENO, ARG_ERROR);
@@ -111,8 +110,8 @@ int main(int argc, char **argv)
 
 	load_textures(&game);
 
-	game.player.pos_x = game.map.start_pos[1];
-	game.player.pos_y = game.map.start_pos[0];
+	game.player.pos_x = game.map.start_pos[1] + 0.50;
+	game.player.pos_y = game.map.start_pos[0] + 0.50;
   	game.player.dir_x =	game.map.looking_at[1];
 	game.player.dir_y = game.map.looking_at[0];
 
