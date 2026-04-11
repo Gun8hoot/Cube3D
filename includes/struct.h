@@ -15,9 +15,18 @@
 
 #include "includes/includes.h"
 
+typedef long long ll;
+
 /* --- RENDER --- */
+typedef struct	s_door
+{
+	bool		is_on_door;
+	size_t		door_cord[2];
+}				t_door;
+
 typedef struct s_player
 {
+	t_door		door;
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
@@ -73,6 +82,9 @@ typedef struct s_weapon
     int			start_y;
 	int			anim_frame;
 	bool		is_animating;
+	bool		cannot_shoot;
+	bool		is_reloading;
+	int			remaining_bullet;
 }				t_weapon;
 
 typedef struct s_ray
@@ -136,19 +148,19 @@ typedef enum e_identifier
 
 typedef struct s_map
 {
-	int16_t			fd;                 // Map file fd
-	char			**grid;                // BASE MAP
-	char			**flood_filled;                // BASE MAP
-	char			*filepath;             // Map filepath
-	char			*no_texture;           // Path of texture NORTH
-	char			*ea_texture;           // Path of texture EAST
-	char			*so_texture;           // Path of texture SOUTH
-	char			*we_texture;           // Path of texture WEST
+	int16_t			fd;					// Map file fd
+	char			**grid;				// BASE MAP
+	char			**flood_filled;		// BASE MAP
+	char			*filepath;			// Map filepath
+	char			*no_texture;		// Path of texture NORTH
+	char			*ea_texture;		// Path of texture EAST
+	char			*so_texture;		// Path of texture SOUTH
+	char			*we_texture;		// Path of texture WEST
 	size_t			number_char_max;	// Number of char max in the biggest line
-	size_t			line_number;			// Map y size
+	size_t			line_number;		// Map y size
 	size_t			pos_start_map;		// Position of the map in the file
-	int				f_color;                // COLOR OF THE FLOOR
-	int				c_color;            // COLOR OF THE CELLING
+	int				f_color;			// COLOR OF THE FLOOR
+	int				c_color;			// COLOR OF THE CELLING
 	double			start_pos[2];		// Position on the grid of the PLAYER start
 	double			looking_at[2];		// Direction of the PLAYER start
 }					t_map;				// MAIN MAP STRUCTURE
@@ -163,13 +175,13 @@ typedef struct s_game
 	t_img			w_img;						// weapon
 	t_img			textures[4];				// Wall textures [NO, SO, EA, WE]
 	t_minimap		minimap;					// Minimap data structure
-	t_weapon		weapon;
+	t_weapon		weapon;						// Weapon related data
 	t_player		player;						// Player data structure
 	t_render		render;						// Render data structure
 	t_ray			ray;						// Raycasting data structure
 	void			*mlx;						// Pointer to MLX data
 	void			*win;						// Pointer to window
-	int				keys_pressed[65535];
+	int				keys_pressed[65535];		// Keys input arrays
 	t_fps			fps;						// Structure that contained fps related data
 }					t_game;						// All game data
 

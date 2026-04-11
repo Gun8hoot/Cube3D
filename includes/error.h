@@ -29,6 +29,7 @@
 
 /* --- ERROR ERRNO --- */
 # define EGNL 0x55
+# define ELESS 0xAB
 # define ETRIM 0x99
 
 #endif

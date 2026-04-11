@@ -3,7 +3,7 @@ EA ./textures/test.xpm
 SO ./textures/test.xpm
 WE ./textures/test.xpm
 
-F 60,60,60
+F 20,20,20
 C 0,60,200
 
         1111111111111111111111111

@@ -58,7 +58,7 @@ int	mouse(t_game *game)
 
 	(void)new_y;
 	mlx_mouse_get_pos(game->mlx, game->win, &new_x, &new_y);
-	rotation = (new_x - (WIDTH / 2));
+	rotation = (new_x - ((double)WIDTH / 2));
 	mlx_mouse_move(game->mlx, game->win, WIDTH/2, HEIGHT/2);
 	if (rotation != 0)
 		move_camera(game, rotation / 500);
@@ -72,6 +72,8 @@ void	ui(t_game *game)
 	show_minimap(game);
 	crosshair(game);
 	show_fps(game);
+	bullet_nb(game);
+
 }
 
 int	game_loop(t_game *game)
@@ -85,7 +87,7 @@ int	game_loop(t_game *game)
     ui(game);
 	mouse(game);
 	fps_limiter(game);
-	return (1);
+	return (0);
 }
 
 int main(int argc, char **argv)
@@ -119,6 +121,7 @@ int main(int argc, char **argv)
 		return (ft_fprintf(2, TOO_BIG_ERROR), false);
 
 	mlx_mouse_hide(game.mlx, game.win);
+	mlx_mouse_hook(game.win, ui_weapon_gunfire, &game);
 	mlx_hook(game.win, 17, 0, handle_close, &game);
 	mlx_hook(game.win, 2, 1L<<0, handle_key_press, &game);
 	mlx_hook(game.win, 3, 1L<<1, handle_key_release, &game);

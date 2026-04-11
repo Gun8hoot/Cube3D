@@ -25,6 +25,8 @@ void	init_struct(t_game *game)
 	ft_memset(&game->w_img, '\0', sizeof(t_img));
 	ft_memset(&game->keys_pressed, '\0', sizeof(game->keys_pressed));
 	ft_memset(&game->fps, '\0', sizeof(t_fps));
+	ft_memset(&game->player.door, '\0', sizeof(t_door));
+	game->weapon.remaining_bullet = MAX_AMMO_NUM;
 }
 
 void	render_init(t_game *game)

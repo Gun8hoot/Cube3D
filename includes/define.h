@@ -13,28 +13,43 @@
 #ifndef DEFINE_H
 # define DEFINE_H
 
-/* Game */
+/* SETTINGS */
+# define FPS UNLIMITED
+# define FOV DEFAULT_FOV
+# define MAX_AMMO_NUM 7
 # define WIDTH 1280
 # define HEIGHT 720
-# define FOV 66
-# define CROSSHAIR_SIZE 150
+
+/* Game */
+# define UNLIMITED 99999
+# define DEFAULT_FOV 66
+# define CR_SIZE 130
+# define CR_PADD_CENTER 150
 # define ANIM_FRAME 30
-# define FPS 60
 # define FPS_TIME (1000000.0 / FPS)
 # define ROT_SPEED 0.05
 # define PLA_SPEED 0.05
 # define M_PI 3.141592653589793
+
+# define B_GREEN 0x00FF00
+# define B_RED 0xFF0000
+# define B_BLUE 0x0000FF
+# define B_BLACK 0x000000
+# define B_WHITE 0xFFFFFF
+# define B_YELLOW 0xFFFF00
 
 /* Event player */
 # define KEY_W 0x77
 # define KEY_S 0x73
 # define KEY_A 0x61
 # define KEY_D 0x64
+# define KEY_R 0x72
+# define KEY_SPC 32
+# define KEY_E 101
+
 # define KEY_ESC 65307
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
-// # define KEY_UP 65362
-// # define KEY_DOWN 65364
 
 /* Event MLX */
 # define KEY_PRESS 2
@@ -43,8 +58,8 @@
 
 /* MINIMAP */
 # define PIXEL_PER_TILES	8
-# define MINIMAP_WIDTH		WIDTH/4
-# define MINIMAP_HEIGHT		HEIGHT/4
+# define MINIMAP_WIDTH		WIDTH / 4
+# define MINIMAP_HEIGHT		HEIGHT / 4
 # define BACKBOX_PADD		4
 # define FRONTBOX_PADD		6
 # define INBOX_PADD			10

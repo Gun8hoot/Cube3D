@@ -68,7 +68,7 @@ int		handle_key_press(int keycode, t_game *game);
 int		handle_key_release(int keycode, t_game *game);
 int		handle_close(t_game *game);
 
-void	move_player(t_game *game, double dx, double dy);
+void	move_player(t_game *game, double dx, double dy, unsigned short keycode);
 void	move_camera(t_game *game, double rot_speed);
 void	chose_action(t_game *game);
 
@@ -90,5 +90,14 @@ void	fps_limiter(t_game *game);
 void	crosshair(t_game *game);
 
 void	animating_weapon(t_game *game);
+void	bullet_nb(t_game *game);
+int		ui_weapon_gunfire(int keycode, int x, int y, t_game *game);
+void	ui_weapon_reload(t_game *game);
+
+
+ll	ms_to_s(ll timestamp, ll *ll_ptr);
+ll	ms_time(ll *ll_ptr);
+ll	ms_time_cmp(ll timestamp1, ll timestamp2, ll *ll_ptr);
+ll	timeval_to_ms(struct timeval time, ll *ll_ptr);
 
 #endif

@@ -76,6 +76,11 @@ void	weapon(t_game *game)
 
 void	animating_weapon(t_game *game)
 {
+	static struct timeval last_anim = {0};
+
+	if (ms_time(NULL) - timeval_to_ms(last_anim, NULL) < 10)
+		return;
+	gettimeofday(&last_anim, NULL);
 	if (game->weapon.is_animating && game->weapon.anim_frame < ANIM_FRAME)
 		game->weapon.anim_frame++;
 	else if (game->weapon.anim_frame == ANIM_FRAME)
