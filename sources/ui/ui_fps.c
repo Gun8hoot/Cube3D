@@ -15,7 +15,7 @@ void	show_fps(t_game *game)
 
 	if (game->fps.fps_timer >= 1)
 	{
-		sprintf(game->fps.string, "FPS: %s", ft_itoa(game->fps.fps_counter));
+		sprintf(game->fps.string, "FPS: %d",game->fps.fps_counter);
 		game->fps.fps_counter = 0;
 		game->fps.fps_timer = 0;
 	}

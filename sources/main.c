@@ -120,7 +120,6 @@ int main(int argc, char **argv)
 	if (!calculate_minimap(&game))
 		return (ft_fprintf(2, TOO_BIG_ERROR), false);
 
-	mlx_mouse_hide(game.mlx, game.win);
 	mlx_mouse_hook(game.win, ui_weapon_gunfire, &game);
 	mlx_hook(game.win, 17, 0, handle_close, &game);
 	mlx_hook(game.win, 2, 1L<<0, handle_key_press, &game);

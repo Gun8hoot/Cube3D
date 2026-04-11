@@ -1,5 +1,4 @@
 *.o
-library
 minilibx-linux.tgz
 .clangd
 cube3D

@@ -27,29 +27,29 @@
 # define CR_PADD_CENTER 150
 # define ANIM_FRAME 30
 # define FPS_TIME (1000000.0 / FPS) /* Convert to nanosec */
-# define ROT_SPEED 0.05
+# define ROT_SPEED 0.025
 # define PLA_SPEED 0.05
 # define M_PI 3.141592653589793
 
-# define B_GREEN 0x00FF00
-# define B_RED 0xFF0000
-# define B_BLUE 0x0000FF
-# define B_BLACK 0x000000
-# define B_WHITE 0xFFFFFF
-# define B_YELLOW 0xFFFF00
+# define B_BLACK	0x000000
+# define B_RED		0xFF0000
+# define B_GREEN	0x00FF00
+# define B_BLUE		0x0000FF
+# define B_YELLOW	0xFFFF00
+# define B_WHITE	0xFFFFFF
 
 /* Event player */
-# define KEY_W 0x77
-# define KEY_S 0x73
-# define KEY_A 0x61
-# define KEY_D 0x64
-# define KEY_R 0x72
-# define KEY_SPC 32
-# define KEY_E 101
-
-# define KEY_ESC 65307
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
+# define KEY_W		0x77
+# define KEY_S		0x73
+# define KEY_A		0x61
+# define KEY_D		0x64
+# define KEY_R		0x72
+# define KEY_E		0x65
+# define KEY_SPC	0x20
+# define KEY_ESC	0xFF1B
+# define KEY_LEFT	0xFF51
+# define KEY_RIGHT	0xFF53
+# define KEY_SHIFT	0xFFE1
 
 /* Event MLX */
 # define KEY_PRESS 2

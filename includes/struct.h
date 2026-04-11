@@ -95,7 +95,7 @@ typedef struct s_weapon
 	bool					cannot_shoot;
 	bool					is_reloading;
 	bool					is_shooting;
-	unsigned int			remaining_bullet;
+	u_int32_t				remaining_bullet;
 }				t_weapon;
 
 typedef struct s_ray
