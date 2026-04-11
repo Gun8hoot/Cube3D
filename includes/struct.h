@@ -18,10 +18,19 @@
 typedef long long ll;
 
 /* --- RENDER --- */
+typedef struct	s_anim
+{
+	struct timeval	start;
+	struct timeval	end;
+	struct timeval	last;
+	bool			animate;
+}				t_anim;
+
 typedef struct	s_door
 {
-	bool		is_on_door;
-	size_t		door_cord[2];
+	struct timeval	start;
+	bool			is_on_door;
+	size_t			door_cord[2];
 }				t_door;
 
 typedef struct s_player
@@ -76,15 +85,17 @@ typedef struct s_render
 
 typedef struct s_weapon
 {
-	char		*dst;
-    int			color;
-    int			start_x;
-    int			start_y;
-	int			anim_frame;
-	bool		is_animating;
-	bool		cannot_shoot;
-	bool		is_reloading;
-	int			remaining_bullet;
+	t_anim					anim;
+	char					*dst;
+    int						color;
+    int						start_x;
+    int						start_y;
+	int						anim_frame;
+	bool					is_animating;
+	bool					cannot_shoot;
+	bool					is_reloading;
+	bool					is_shooting;
+	unsigned int			remaining_bullet;
 }				t_weapon;
 
 typedef struct s_ray

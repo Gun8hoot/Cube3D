@@ -12,3 +12,37 @@ void	crosshair(t_game *game)
 	draw_line(game, WIDTH / 2, HEIGHT /2 - CR_PADD_CENTER,
 					WIDTH /2 , HEIGHT / 2 - CR_SIZE);
 }
+
+// void	hitmarker(t_game *game)
+// {
+// 	ll						value;
+
+// 	if (!game->weapon.is_shooting)
+// 		return;
+// 	value = timeval_to_ms(game->weapon.anim.start, NULL);
+// 	if (value != 0 && value - ms_time(NULL) < 1000)
+// 	{
+// 		draw_line(game, WIDTH / 2 + 10, HEIGHT / 2 + 10,
+// 					WIDTH /2 + 15 , HEIGHT / 2 + 15);
+// 		draw_line(game, WIDTH / 2 + 10, HEIGHT / 2 - 10,
+// 					WIDTH /2 + 15 , HEIGHT / 2 - 15);
+// 		draw_line(game, WIDTH / 2 - 10, HEIGHT / 2 + 10,
+// 					WIDTH /2 - 15 , HEIGHT / 2 + 15);
+// 		draw_line(game, WIDTH / 2 - 10, HEIGHT / 2 - 10,
+// 					WIDTH /2 - 15 , HEIGHT / 2 - 15);
+// 		return;
+// 	}
+// }
+
+void	hitmarker(t_game *game)
+{
+
+	draw_line(game, WIDTH / 2 + 10, HEIGHT / 2 + 10,
+				WIDTH /2 + 15 , HEIGHT / 2 + 15);
+	draw_line(game, WIDTH / 2 + 10, HEIGHT / 2 - 10,
+				WIDTH /2 + 15 , HEIGHT / 2 - 15);
+	draw_line(game, WIDTH / 2 - 10, HEIGHT / 2 + 10,
+				WIDTH /2 - 15 , HEIGHT / 2 + 15);
+	draw_line(game, WIDTH / 2 - 10, HEIGHT / 2 - 10,
+				WIDTH /2 - 15 , HEIGHT / 2 - 15);
+}

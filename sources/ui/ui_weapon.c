@@ -3,10 +3,19 @@
 
 void	ui_reloading_msg(t_game *game)
 {
+	static struct timeval time = {0};
+
 	if (game->weapon.cannot_shoot)
 	{
-		mlx_string_put(game->mlx, game->win, (WIDTH / 2) - 50, (HEIGHT / 2) + 200,
-			B_RED, "Press R to reload");
+		if (ms_time(NULL) - timeval_to_ms(time, 0) < 500)
+		{
+			mlx_string_put(game->mlx, game->win, (WIDTH / 2) - 50, (HEIGHT / 2) + 200,
+				B_RED, "Press R to reload");
+
+		}
+		else if (ms_time(NULL) - timeval_to_ms(time, 0) > 1000)
+			gettimeofday(&time, 0);
+		return;
 	}
 }
 
@@ -44,7 +53,10 @@ int	ui_weapon_gunfire(int keycode, int x, int y, t_game *game)
 	if (keycode == 1)
 	{
 		if (game->weapon.remaining_bullet > 0)
+		{
 			game->weapon.remaining_bullet--;
+			hitmarker(game);
+		}
 		if (game->weapon.remaining_bullet == 0 && game->weapon.cannot_shoot == false)
 			game->weapon.cannot_shoot = true;
 	}

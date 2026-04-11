@@ -88,6 +88,8 @@ void	load_textures(t_game *game);
 void	show_fps(t_game *game);
 void	fps_limiter(t_game *game);
 void	crosshair(t_game *game);
+void	hitmarker(t_game *game);
+void	open_door(t_game *game);
 
 void	animating_weapon(t_game *game);
 void	bullet_nb(t_game *game);

@@ -24,9 +24,9 @@ static int	can_move(t_game *game, double new_x, double new_y)
 
 void	move_player(t_game *game, double dx, double dy, unsigned short keycode)
 {
+	static struct timeval last_move[65535] = {0};
 	double	new_x;
 	double	new_y;
-	static struct timeval last_move[65535] = {0};
 
 	new_x = game->player.pos_x + dx * PLA_SPEED;
 	new_y = game->player.pos_y + dy * PLA_SPEED;
@@ -56,13 +56,21 @@ void	move_player(t_game *game, double dx, double dy, unsigned short keycode)
 		game->player.pos_x = new_x;
 		game->player.pos_y = new_y;
 	}
+	else if ()
+	{
+
+	}
 }
 
 void	move_camera(t_game *game, double rot_speed)
 {
+	static struct timeval last_move = {0};
 	double	olddir;
 	double	oldplane;
 
+	if (ms_time(NULL) - timeval_to_ms(last_move, NULL) < 10)
+		return;
+	gettimeofday(&last_move, 0);
 	olddir = game->player.dir_x;
 	oldplane = game->render.plane.x;
 	game->player.dir_x = game->player.dir_x * cos(rot_speed) - game->player.dir_y * sin(rot_speed);
@@ -92,4 +100,6 @@ void	chose_action(t_game *game)
 		move_camera(game, ROT_SPEED);
 	if (game->keys_pressed[KEY_LEFT] == 1 && game->keys_pressed[KEY_RIGHT] == 0)
 		move_camera(game, -ROT_SPEED);
+	if (game->keys_pressed[KEY_E] == 1)
+		open_door(game);
 }

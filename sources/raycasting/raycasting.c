@@ -56,7 +56,8 @@ void	check_hit(t_ray *ray, t_game *game)
       if (ray->map_x < 0 || ray->map_x >= (int)game->map.number_char_max ||
 	  	ray->map_y < 0 || ray->map_y >= (int)game->map.line_number)
         ray->hit = 1;
-      else if (game->map.grid[ray->map_y][ray->map_x] == '1')
+      else if (game->map.grid[ray->map_y][ray->map_x] == WALL
+      			|| game->map.grid[ray->map_y][ray->map_x] == DOOR_CLOSE)
 		ray->hit = 1;
     }
       if(ray->side == 0)

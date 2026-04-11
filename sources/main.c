@@ -73,7 +73,7 @@ void	ui(t_game *game)
 	crosshair(game);
 	show_fps(game);
 	bullet_nb(game);
-
+	// hitmarker(game);
 }
 
 int	game_loop(t_game *game)

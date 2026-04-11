@@ -53,7 +53,8 @@ void	weapon(t_game *game)
 	if (game->weapon.is_animating)
 	{
 		offset = (ANIM_FRAME / 2) - abs(game->weapon.anim_frame - (ANIM_FRAME / 2));
-        game->weapon.start_y += offset * 2;
+		game->weapon.start_y += offset * 2;
+        game->weapon.start_x -= offset * 2;
 	}
 	y = 0;
 	while (y < game->w_img.height)
@@ -78,7 +79,7 @@ void	animating_weapon(t_game *game)
 {
 	static struct timeval last_anim = {0};
 
-	if (ms_time(NULL) - timeval_to_ms(last_anim, NULL) < 10)
+	if (ms_time(NULL) - timeval_to_ms(last_anim, NULL) < 15)
 		return;
 	gettimeofday(&last_anim, NULL);
 	if (game->weapon.is_animating && game->weapon.anim_frame < ANIM_FRAME)

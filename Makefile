@@ -54,6 +54,7 @@ SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/utils/mlx_utils.c\
 		$(SRC_DIR)/utils/time_based.c\
 		$(SRC_DIR)/player/events.c\
+		$(SRC_DIR)/player/door.c\
 		$(SRC_DIR)/player/movement.c\
 
 # Obj

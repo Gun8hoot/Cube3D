@@ -26,7 +26,7 @@
 # define CR_SIZE 130
 # define CR_PADD_CENTER 150
 # define ANIM_FRAME 30
-# define FPS_TIME (1000000.0 / FPS)
+# define FPS_TIME (1000000.0 / FPS) /* Convert to nanosec */
 # define ROT_SPEED 0.05
 # define PLA_SPEED 0.05
 # define M_PI 3.141592653589793
