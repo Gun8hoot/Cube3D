@@ -17,8 +17,7 @@ static int	can_move(t_game *game, double new_x, double new_y)
 	if (new_x < 0 || new_y < 0 || new_x >= WIDTH
 		|| new_y >= HEIGHT)
 		return (0);
-	if (game->map.grid[(int)new_y][(int)new_x] == WALL
-		|| game->map.grid[(int)new_y][(int)new_x] == DOOR_CLOSE)
+	if (game->map.grid[(int)new_y][(int)new_x] == WALL || game->map.grid[(int)new_y][(int)new_x] == DOOR_CLOSE)
 		return (0);
 	return (1);
 }
@@ -56,11 +55,6 @@ void	move_player(t_game *game, double dx, double dy, unsigned short keycode)
 		}
 		game->player.pos_x = new_x;
 		game->player.pos_y = new_y;
-	}
-	else
-	{
-		printf("x=%2.f;y=%2.f\n", game->ray.ray_dir.x, game->ray.ray_dir.y);
-
 	}
 }
 

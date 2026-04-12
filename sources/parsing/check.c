@@ -153,3 +153,18 @@ void	floodfill(size_t x, size_t y, t_map *map)
 	floodfill(x - 1, y, map);
 	floodfill(x + 1, y, map);
 }
+
+// void	check_side_border(t_game *game, t_vec vec, bool *reach_end, int ope)
+// {
+// 	if (vec.x == game->map.number_char_max)
+// 		return;
+// 	if (vec.y == game->map.line_number)
+// 	{
+// 		*reach_end = true;
+// 		return;
+// 	}
+// 	if (game->map.grid[(int)vec.y + ope][(int)vec.x])
+// 	{
+
+// 	}
+// }

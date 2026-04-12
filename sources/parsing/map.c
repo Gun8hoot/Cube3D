@@ -141,6 +141,7 @@ t_map	*init_map(t_map *map, char *filepath)
 	if (!get_player_pos(map))
 		return (NULL);
 	init_door(map);
-
+	if (map->number_char_max > 320 || map->line_number > 180)
+		return (NULL);
 	return (map);
 }
