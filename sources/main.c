@@ -6,11 +6,7 @@
 /*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-<<<<<<< Updated upstream
 /*   Updated: 2026/04/13 16:48:21 by thlibers         ###   ########.fr       */
-=======
-/*   Updated: 2026/04/13 09:20:54 by nclavel          ###   ########.fr       */
->>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +54,11 @@ int	main(int argc, char **argv)
 		return (ft_fprintf(STDERR_FILENO, ARG_ERROR), 1);
 	if (!init(&game, argv[1]))
 		return (1);
-<<<<<<< Updated upstream
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
-	game.r_img.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
-	game.r_img.addr = mlx_get_data_addr(game.r_img.img,
-			&game.r_img.bits_per_pixel, &game.r_img.line_length,
-			&game.r_img.endian);
-	game.w_img.img = mlx_xpm_file_to_image(game.mlx, "textures/weapon.xpm",
-			&game.w_img.width, &game.w_img.height);
-=======
     game.mlx = mlx_init();
     game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
     game.r_img.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
     game.r_img.addr = mlx_get_data_addr(game.r_img.img, &game.r_img.bits_per_pixel, &game.r_img.line_length, &game.r_img.endian);
 	game.w_img.img = mlx_xpm_file_to_image(game.mlx, "textures/idle.xpm", &game.w_img.width, &game.w_img.height);
->>>>>>> Stashed changes
 	if (!game.w_img.img)
 		return (ft_fprintf(2, "Error: Impossible de charger weapon.xpm\n"), 1);
 	game.w_img.addr = mlx_get_data_addr(game.w_img.img,
