@@ -9,8 +9,13 @@ static void	reloading_msg(t_game *game)
 	{
 		if (ms_time(NULL) - timeval_to_ms(time, 0) < 500)
 		{
+<<<<<<< Updated upstream
 			mlx_string_put(game->mlx, game->win, (WIDTH / 2) - 50, (HEIGHT / 2)
 				+ 200, B_RED, "Press R to reload");
+=======
+			mlx_string_put(game->mlx, game->win, (WIDTH / 2) - 50, (HEIGHT / 2) + 200,
+				B_RED, "Press R to reload");
+>>>>>>> Stashed changes
 		}
 		else if (ms_time(NULL) - timeval_to_ms(time, 0) > 1000)
 			gettimeofday(&time, 0);

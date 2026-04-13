@@ -103,6 +103,6 @@ void	chose_action(t_game *game)
 		move_camera(game, ROT_SPEED);
 	if (game->keys_pressed[KEY_LEFT] == 1 && game->keys_pressed[KEY_RIGHT] == 0)
 		move_camera(game, -ROT_SPEED);
-	if (game->keys_pressed[KEY_E] == 1)
+	if (game->keys_pressed[KEY_E] == 1 ^ game->keys_pressed[KEY_SPC] == 1)
 		open_door(game);
 }

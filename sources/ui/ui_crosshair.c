@@ -34,7 +34,7 @@ void	crosshair(t_game *game)
 // 	}
 // }
 
-void	hitmarker(t_game *game)
+void	draw_hitmarker(t_game *game)
 {
 	draw_line(game, WIDTH / 2 + 10, HEIGHT / 2 + 10, WIDTH / 2 + 15, HEIGHT / 2
 		+ 15);
@@ -44,4 +44,9 @@ void	hitmarker(t_game *game)
 		+ 15);
 	draw_line(game, WIDTH / 2 - 10, HEIGHT / 2 - 10, WIDTH / 2 - 15, HEIGHT / 2
 		- 15);
+}
+
+void	hitmarker(t_game *game)
+{
+	draw_hitmarker(game);
 }

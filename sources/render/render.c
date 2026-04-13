@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 08:56:35 by thlibers          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2026/04/13 14:48:48 by thlibers         ###   ########.fr       */
+=======
+/*   Updated: 2026/04/13 09:33:11 by nclavel          ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +52,7 @@ void	weapon(t_game *game)
 
 	if (!game->w_img.img)
 		return ;
-	game->weapon.start_x = WIDTH - game->w_img.width - 280;
+	game->weapon.start_x = WIDTH - game->w_img.width;
 	game->weapon.start_y = HEIGHT - game->w_img.height;
 	if (game->weapon.is_animating)
 	{
@@ -65,7 +69,7 @@ void	weapon(t_game *game)
 			game->weapon.dst = game->w_img.addr + (y * game->w_img.line_length)
 				+ (x * (game->w_img.bits_per_pixel / 8));
 			game->weapon.color = *(int *)game->weapon.dst;
-			if (game->weapon.color != 0x000000)
+			if (game->weapon.color != B_BLACK)
 				my_mlx_pixel_put(game, game->weapon.start_x + x,
 					game->weapon.start_y + y, game->weapon.color);
 			x++;

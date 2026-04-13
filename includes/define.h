@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/10 17:41:32 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/13 09:11:30 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@
 # define MAX_AMMO_NUM 7
 # define WIDTH 1280
 # define HEIGHT 720
+# define CR_SIZE 130 /* Size of the crosshair */
 
 /* Game */
-# define UNLIMITED 99999
-# define DEFAULT_FOV 66
-# define CR_SIZE 130
+# define UNLIMITED 99999 /* FPS no limit define */
+# define DEFAULT_FOV 66 /* Best FOV define */
 # define CR_PADD_CENTER 150
 # define ANIM_FRAME 30
-# define FPS_TIME (1000000.0 / FPS) /* Convert to nanosec */
+# define RELOADING_TIME 5 /* Reloading animation in second */
+# define SHOOTING_TIME 2 /* Shooting animation in second */
+# define FPS_TIME (1000000.0 / FPS) /* Convert nanosec per frame */
 # define ROT_SPEED 0.025
 # define PLA_SPEED 0.05
 # define M_PI 3.141592653589793
