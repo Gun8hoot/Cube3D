@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 14:31:32 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/13 13:46:41 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define DUPLICAT_ERROR "Error:\nTexture in duplicated\n"
 # define MAP_ERROR "Error:\nInvalid map\n"
 # define MULT_PLAYER_ERROR "Error:\nMultiple user defined\n"
-# define PLAYER_ERR	"Error:\nNeed a ONE player\n"
-# define TOO_BIG_ERROR "Error:\nMap is too big (< 321 width and < 180 line height)\n"
+# define PLAYER_ERR "Error:\nNeed a ONE player\n"
+# define TOO_BIG_ERROR "Error:\nMap is too big (< 321 width & < 180 height)\n"
 
 /* --- ERROR ERRNO --- */
 # define EGNL 0x55

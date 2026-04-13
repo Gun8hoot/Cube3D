@@ -6,11 +6,20 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:59:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/09 15:25:11 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:50:30 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
+
+void	safe_free(char **to_free)
+{
+	if (*(char **)to_free)
+	{
+		free(*(char **)to_free);
+		*(char **)to_free = NULL;
+	}
+}
 
 void	free_tab(char ***tab, ssize_t size)
 {
@@ -38,15 +47,6 @@ void	free_tab(char ***tab, ssize_t size)
 		}
 		if (*tab)
 			(free(*tab), *tab = NULL);
-	}
-}
-
-void	safe_free(char **to_free)
-{
-	if (*(char **)to_free)
-	{
-		free(*(char **)to_free);
-		*(char **)to_free = NULL;
 	}
 }
 

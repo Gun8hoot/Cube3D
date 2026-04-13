@@ -18,6 +18,7 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 
 	if (!(x >= 0 && x <= WIDTH) || !(y >= 0 && y <= HEIGHT))
 		return ;
-	dst = game->r_img.addr + (y * game->r_img.line_length) + (x * (game->r_img.bits_per_pixel / 8));
+	dst = game->r_img.addr + (y * game->r_img.line_length) + (x
+			* (game->r_img.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }

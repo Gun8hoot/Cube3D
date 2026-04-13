@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 08:56:35 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/10 17:44:58 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:48:48 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	weapon(t_game *game)
 {
 	int	x;
 	int	y;
-	int offset;
+	int	offset;
 
 	if (!game->w_img.img)
 		return ;
@@ -52,9 +52,9 @@ void	weapon(t_game *game)
 	game->weapon.start_y = HEIGHT - game->w_img.height;
 	if (game->weapon.is_animating)
 	{
-		offset = (ANIM_FRAME / 2) - abs(game->weapon.anim_frame - (ANIM_FRAME / 2));
+		offset = (ANIM_FRAME / 2) - abs(game->weapon.frame - (ANIM_FRAME / 2));
 		game->weapon.start_y += offset * 2;
-        game->weapon.start_x -= offset * 2;
+		game->weapon.start_x -= offset;
 	}
 	y = 0;
 	while (y < game->w_img.height)
@@ -62,9 +62,8 @@ void	weapon(t_game *game)
 		x = 0;
 		while (x < game->w_img.width)
 		{
-			game->weapon.dst = game->w_img.addr + (y
-					* game->w_img.line_length) + (x
-					* (game->w_img.bits_per_pixel / 8));
+			game->weapon.dst = game->w_img.addr + (y * game->w_img.line_length)
+				+ (x * (game->w_img.bits_per_pixel / 8));
 			game->weapon.color = *(int *)game->weapon.dst;
 			if (game->weapon.color != 0x000000)
 				my_mlx_pixel_put(game, game->weapon.start_x + x,
@@ -77,16 +76,16 @@ void	weapon(t_game *game)
 
 void	animating_weapon(t_game *game)
 {
-	static struct timeval last_anim = {0};
+	static struct timeval	last_anim = {0};
 
 	if (ms_time(NULL) - timeval_to_ms(last_anim, NULL) < 15)
-		return;
+		return ;
 	gettimeofday(&last_anim, NULL);
-	if (game->weapon.is_animating && game->weapon.anim_frame < ANIM_FRAME)
-		game->weapon.anim_frame++;
-	else if (game->weapon.anim_frame == ANIM_FRAME)
+	if (game->weapon.is_animating && game->weapon.frame < ANIM_FRAME)
+		game->weapon.frame++;
+	else if (game->weapon.frame == ANIM_FRAME)
 	{
 		game->weapon.is_animating = false;
-		game->weapon.anim_frame = 0;
+		game->weapon.frame = 0;
 	}
 }

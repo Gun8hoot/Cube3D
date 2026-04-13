@@ -12,23 +12,23 @@
 
 #include "includes/cube3d.h"
 
-int handle_key_press(int keycode, t_game *game)
+int	handle_key_press(int keycode, t_game *game)
 {
-    if (keycode == KEY_ESC)
-        handle_close(game);
-    game->keys_pressed[keycode] = 1;
-    return (0);
+	if (keycode == KEY_ESC)
+		handle_close(game);
+	game->keys_pressed[keycode] = 1;
+	return (0);
 }
 
-int handle_key_release(int keycode, t_game *game)
+int	handle_key_release(int keycode, t_game *game)
 {
-    game->keys_pressed[keycode] = 0;
-    return (0);
+	game->keys_pressed[keycode] = 0;
+	return (0);
 }
 
-int handle_close(t_game *game)
+int	handle_close(t_game *game)
 {
-	int i;
+	int	i;
 
 	if (game->r_img.img)
 		mlx_destroy_image(game->mlx, game->r_img.img);
@@ -41,9 +41,9 @@ int handle_close(t_game *game)
 			mlx_destroy_image(game->mlx, game->textures[i].img);
 		i++;
 	}
-    mlx_destroy_window(game->mlx, game->win);
-    mlx_destroy_display(game->mlx);
-    free(game->mlx);
-    clear_game(game);
-    exit(0);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	clear_game(game);
+	exit(0);
 }

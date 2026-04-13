@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:41:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/10 12:57:07 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:52:21 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_map	*extract_info(t_map *map)
 	return (map);
 }
 
-char **extract_map(t_map *map)
+char	**extract_map(t_map *map)
 {
 	size_t	i;
 	char	*raw_line;
@@ -128,20 +128,4 @@ char **extract_map(t_map *map)
 			break ;
 	}
 	return (map->grid);
-}
-
-t_map	*init_map(t_map *map, char *filepath)
-{
-	map->filepath = filepath;
-
-	if (!extract_info(map))
-		return (NULL);
-	if (!extract_map(map))
-		return (NULL);
-	if (!get_player_pos(map))
-		return (NULL);
-	init_door(map);
-	if (map->number_char_max > 320 || map->line_number > 180)
-		return (NULL);
-	return (map);
 }

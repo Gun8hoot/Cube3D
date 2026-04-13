@@ -31,25 +31,25 @@
 # define PLA_SPEED 0.05
 # define M_PI 3.141592653589793
 
-# define B_BLACK	0x000000
-# define B_RED		0xFF0000
-# define B_GREEN	0x00FF00
-# define B_BLUE		0x0000FF
-# define B_YELLOW	0xFFFF00
-# define B_WHITE	0xFFFFFF
+# define B_BLACK 0x000000
+# define B_RED 0xFF0000
+# define B_GREEN 0x00FF00
+# define B_BLUE 0x0000FF
+# define B_YELLOW 0xFFFF00
+# define B_WHITE 0xFFFFFF
 
 /* Event player */
-# define KEY_W		0x77
-# define KEY_S		0x73
-# define KEY_A		0x61
-# define KEY_D		0x64
-# define KEY_R		0x72
-# define KEY_E		0x65
-# define KEY_SPC	0x20
-# define KEY_ESC	0xFF1B
-# define KEY_LEFT	0xFF51
-# define KEY_RIGHT	0xFF53
-# define KEY_SHIFT	0xFFE1
+# define KEY_W 0x77
+# define KEY_S 0x73
+# define KEY_A 0x61
+# define KEY_D 0x64
+# define KEY_R 0x72
+# define KEY_E 0x65
+# define KEY_SPC 0x20
+# define KEY_ESC 0xFF1B
+# define KEY_LEFT 0xFF51
+# define KEY_RIGHT 0xFF53
+# define KEY_SHIFT 0xFFE1
 
 /* Event MLX */
 # define KEY_PRESS 2
@@ -57,14 +57,14 @@
 # define DESTROY_NOTIFY 17
 
 /* MINIMAP */
-# define PIXEL_PER_TILES	8
-# define MINIMAP_WIDTH		WIDTH / 4
-# define MINIMAP_HEIGHT		HEIGHT / 4
-# define BACKBOX_PADD		4
-# define FRONTBOX_PADD		6
-# define INBOX_PADD			10
-# define TOT_PADD			BACKBOX_PADD + FRONTBOX_PADD
-# define DEFAULT_ELEM_SIZE	16
-# define RAY_PRECISION		0.1
+# define PIXEL_PER_TILES 8
+# define MINIMAP_WIDTH WIDTH / 4
+# define MINIMAP_HEIGHT HEIGHT / 4
+# define BACKBOX_PADD 4
+# define FRONTBOX_PADD 6
+# define INBOX_PADD 10
+# define TOT_PADD BACKBOX_PADD + FRONTBOX_PADD
+# define DEFAULT_ELEM_SIZE 16
+# define RAY_PRECISION 0.1
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:45:55 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/10 12:57:53 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/13 16:20:08 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-t_identifier	check_info_type(char *info)
+t_id	check_info_type(char *info)
 {
 	if (ft_strncmp(info, "C ", 2) == 0)
 		return (C);
@@ -77,7 +77,7 @@ bool	set_texture(char **dest, char *src)
 	return (true);
 }
 
-bool	set_info_texture(t_map *map, char *info_string, t_identifier id)
+bool	set_info_texture(t_map *map, char *info_string, t_id id)
 {
 	size_t	i;
 
@@ -103,15 +103,15 @@ bool	set_info_texture(t_map *map, char *info_string, t_identifier id)
 
 bool	extract_texture_path(t_map *map, char *raw_line)
 {
-	char			*line;
-	t_identifier	id;
+	char	*line;
+	t_id	id;
 
 	id = 0;
 	line = ft_strtrim(raw_line, " \n");
 	if (errno == ENOMEM)
 		return (false);
 	else if ((line && line[0] == '\0') || !line)
-		return (free(line),true);
+		return (free(line), true);
 	if (line[0] != '\0')
 	{
 		id = check_info_type(line);

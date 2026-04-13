@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:50:21 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/10 15:39:17 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:54:44 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_rayshooter(t_ray *ray, t_game *game)
 	double	camera;
 
 	x = 0;
-	render_init(game);
+	init_render(game);
 	while (x < WIDTH)
 	{
 		camera = 2 * x / (double)WIDTH - 1;

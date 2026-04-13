@@ -6,7 +6,7 @@
 #    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/09 18:13:58 by thlibers         ###   ########.fr        #
+#    Updated: 2026/04/13 16:03:44 by thlibers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = cube3D
 CC = cc
 OFLAG = -O3
 GFLAG = -O0 -g3 -ggdb
-CFLAGS = -Wall -Wextra -Werror $(OFLAG) -I.
+CFLAGS = -Wall -Wextra -Werror $(GFLAG) -I.
 INCLUDES = -I./includes
 
 # Flags Mlx
@@ -38,12 +38,12 @@ MLX	= $(LIB_DIR)/minilibx-linux
 
 # Srcs
 SRCS =	$(SRC_DIR)/main.c\
-		$(SRC_DIR)/init/init.c\
+		$(SRC_DIR)/init.c\
 		$(SRC_DIR)/parsing/check.c\
 		$(SRC_DIR)/parsing/map.c\
 		$(SRC_DIR)/parsing/maps_utils.c\
 		$(SRC_DIR)/parsing/texture.c\
-		$(SRC_DIR)/clean.c\
+		$(SRC_DIR)/utils/clean.c\
 		$(SRC_DIR)/raycasting/raycasting.c\
 		$(SRC_DIR)/raycasting/ray_utils.c\
 		$(SRC_DIR)/render/render.c\
@@ -56,8 +56,9 @@ SRCS =	$(SRC_DIR)/main.c\
 		$(SRC_DIR)/utils/mlx_utils.c\
 		$(SRC_DIR)/utils/time_based.c\
 		$(SRC_DIR)/player/events.c\
-		$(SRC_DIR)/player/door.c\
+		$(SRC_DIR)/environement/door.c\
 		$(SRC_DIR)/player/movement.c\
+		$(SRC_DIR)/player/mouse.c\
 
 # Obj
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -109,6 +110,7 @@ clean:
 fclean: clean
 	@echo "$(RED)Cleaning executables...$(RESET)"
 	@rm -f $(NAME)
+	@rm -rf $(MLX)
 	@make -C $(LIBFT_DIR) fclean
 	@echo "$(GREEN)✓ Full clean completed!$(RESET)"
 

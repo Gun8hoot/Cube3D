@@ -6,125 +6,70 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/10 16:26:47 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/13 16:48:21 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-void	show_grid(char **grid)
-{
-	size_t	i;
-
-	i = 0;
-	if (grid)
-		printf("[+] Grid content\n\n");
-	while (grid && grid[i])
-	{
-		printf("%s\n", grid[i]);
-		i++;
-	}
-}
-
-void	debug_show_t_map(t_map map)
-{
-	printf("\n--- t_map Content ---\n");
-	if (map.filepath)
-		printf("[+] Filepath = \"%s\"\n", map.filepath);
-	if (map.no_texture)
-		printf("[+] Texture file NO = \"%s\"\n", map.no_texture);
-	if (map.ea_texture)
-		printf("[+] Texture file EA = \"%s\"\n", map.ea_texture);
-	if (map.so_texture)
-		printf("[+] Texture file SO = \"%s\"\n", map.so_texture);
-	if (map.we_texture)
-		printf("[+] Texture file WE = \"%s\"\n", map.we_texture);
-	printf("[+] Floor color = #%X\n", map.c_color);
-	printf("[+] Celling color = #%X\n", map.f_color);
-	printf("[+] Map started pos %ld\n", map.pos_start_map);
-	printf("[+] Map size y %ld\n", map.line_number);
-	printf("[+] Size max of a line %ld\n", map.number_char_max);
-	printf("[+] Player looking direction y = %.2f, x = %.2f\n", map.looking_at[0], map.looking_at[1]);
-	printf("[+] Player starting position y = %.2f, x = %.2f\n", map.start_pos[0], map.start_pos[1]);
-	printf("\n");
-	show_grid(map.grid);
-}
-
-int	mouse(t_game *game)
-{
-	int new_x;
-	int new_y;
-	double	rotation;
-
-	(void)new_y;
-	mlx_mouse_get_pos(game->mlx, game->win, &new_x, &new_y);
-	rotation = (new_x - ((double)WIDTH / 2));
-	mlx_mouse_move(game->mlx, game->win, WIDTH/2, HEIGHT/2);
-	if (rotation != 0)
-		move_camera(game, rotation / 500);
-	game->old_mouse_pos = new_x;
-	return (0);
-}
-
-void	ui(t_game *game)
+static void	ui(t_game *game)
 {
 	weapon(game);
 	show_minimap(game);
 	crosshair(game);
 	show_fps(game);
 	bullet_nb(game);
+	mouse(game);
 	// hitmarker(game);
 }
 
-int	game_loop(t_game *game)
+static int	game_loop(t_game *game)
 {
 	gettimeofday(&game->fps.frame_start, 0);
 	chose_action(game);
 	animating_weapon(game);
-    celling_floor(game);
-    ft_rayshooter(&game->ray, game);
-    mlx_put_image_to_window(game->mlx, game->win, game->r_img.img, 0, 0);
-    ui(game);
-	mouse(game);
+	celling_floor(game);
+	ft_rayshooter(&game->ray, game);
+	mlx_put_image_to_window(game->mlx, game->win, game->r_img.img, 0, 0);
+	ui(game);
 	fps_limiter(game);
 	return (0);
 }
 
-int main(int argc, char **argv)
+static void	ft_hooks(t_game *game)
 {
-    t_game game;
+	mlx_mouse_hook(game->win, weapon_gunfire, game);
+	mlx_hook(game->win, 17, 0, handle_close, game);
+	mlx_hook(game->win, 2, 1L << 0, handle_key_press, game);
+	mlx_hook(game->win, 3, 1L << 1, handle_key_release, game);
+	mlx_loop_hook(game->mlx, game_loop, game);
+	mlx_loop(game->mlx);
+}
+
+int	main(int argc, char **argv)
+{
+	t_game	game;
 
 	if (argc != 2)
-    {
-        ft_fprintf(STDERR_FILENO, ARG_ERROR);
-        return (1);
-    }
+		return (ft_fprintf(STDERR_FILENO, ARG_ERROR), 1);
 	if (!init(&game, argv[1]))
 		return (1);
-    game.mlx = mlx_init();
-    game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
-    game.r_img.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
-    game.r_img.addr = mlx_get_data_addr(game.r_img.img, &game.r_img.bits_per_pixel, &game.r_img.line_length, &game.r_img.endian);
-	game.w_img.img = mlx_xpm_file_to_image(game.mlx, "textures/weapon.xpm", &game.w_img.width, &game.w_img.height);
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
+	game.r_img.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
+	game.r_img.addr = mlx_get_data_addr(game.r_img.img,
+			&game.r_img.bits_per_pixel, &game.r_img.line_length,
+			&game.r_img.endian);
+	game.w_img.img = mlx_xpm_file_to_image(game.mlx, "textures/weapon.xpm",
+			&game.w_img.width, &game.w_img.height);
 	if (!game.w_img.img)
-        return (ft_fprintf(2, "Error: Impossible de charger weapon.xpm\n"), 1);
-	game.w_img.addr = mlx_get_data_addr(game.w_img.img, &game.w_img.bits_per_pixel, &game.w_img.line_length, &game.w_img.endian);
-
+		return (ft_fprintf(2, "Error: Impossible de charger weapon.xpm\n"), 1);
+	game.w_img.addr = mlx_get_data_addr(game.w_img.img,
+			&game.w_img.bits_per_pixel, &game.w_img.line_length,
+			&game.w_img.endian);
 	load_textures(&game);
-
-	game.player.pos_x = game.map.start_pos[1] + 0.50;
-	game.player.pos_y = game.map.start_pos[0] + 0.50;
-  	game.player.dir_x =	game.map.looking_at[1];
-	game.player.dir_y = game.map.looking_at[0];
-
 	if (!calculate_minimap(&game))
 		return (ft_fprintf(2, TOO_BIG_ERROR), false);
-
-	mlx_mouse_hook(game.win, ui_weapon_gunfire, &game);
-	mlx_hook(game.win, 17, 0, handle_close, &game);
-	mlx_hook(game.win, 2, 1L<<0, handle_key_press, &game);
-	mlx_hook(game.win, 3, 1L<<1, handle_key_release, &game);
-    mlx_loop_hook(game.mlx, game_loop, &game);
-	mlx_loop(game.mlx);
-    return (0);
+	ft_hooks(&game);
+	return (0);
 }

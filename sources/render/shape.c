@@ -49,31 +49,35 @@ void	draw_square(t_game *game, int pos_y, int pos_x, int len, int color)
 	(void)game;
 }
 
-void draw_line(t_game *game, int x0, int y0, int x1, int y1)
+void	draw_line(t_game *game, int x0, int y0, int x1, int y1)
 {
-    int dx = abs(x1 - x0);
-    int dy = abs(y1 - y0);
-    int sx = (x0 < x1) ? 1 : -1;
-    int sy = (y0 < y1) ? 1 : -1;
-    int err = dx - dy;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
 
-    while (1)
-    {
-        mlx_pixel_put(game->mlx, game->win, x0, y0, 0xFFFFFF);
-
-        if (x0 == x1 && y0 == y1)
-            break;
-
-        int e2 = 2 * err;
-        if (e2 > -dy)
-        {
-            err -= dy;
-            x0 += sx;
-        }
-        if (e2 < dx)
-        {
-            err += dx;
-            y0 += sy;
-        }
-    }
+	dx = abs(x1 - x0);
+	dy = abs(y1 - y0);
+	sx = (x0 < x1) ? 1 : -1;
+	sy = (y0 < y1) ? 1 : -1;
+	err = dx - dy;
+	while (1)
+	{
+		mlx_pixel_put(game->mlx, game->win, x0, y0, 0xFFFFFF);
+		if (x0 == x1 && y0 == y1)
+			break ;
+		e2 = 2 * err;
+		if (e2 > -dy)
+		{
+			err -= dy;
+			x0 += sx;
+		}
+		if (e2 < dx)
+		{
+			err += dx;
+			y0 += sy;
+		}
+	}
 }
