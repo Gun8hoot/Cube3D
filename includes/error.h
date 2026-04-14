@@ -23,6 +23,7 @@
 # define CPY_ERROR "Error:\nFailed to copy\n"
 # define DUPLICAT_ERROR "Error:\nTexture in duplicated\n"
 # define MAP_ERROR "Error:\nInvalid map\n"
+# define TEXT_ERROR "Error:\nFailed to load %s\n"
 # define MULT_PLAYER_ERROR "Error:\nMultiple user defined\n"
 # define PLAYER_ERR "Error:\nNeed a ONE player\n"
 # define TOO_BIG_ERROR "Error:\nMap is too big (< 321 width & < 180 height)\n"

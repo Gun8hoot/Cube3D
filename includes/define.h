@@ -69,4 +69,21 @@
 # define DEFAULT_ELEM_SIZE 16
 # define RAY_PRECISION 0.1
 
+/* ANIM FILENAME */
+# define IDLE "./textures/Weapon/idle.xpm"
+
+/* ======== Fire ======== */
+# define FIRE_A1 "textures/Weapon/fire/1.xpm"
+# define FIRE_A2 "textures/Weapon/fire/2.xpm"
+# define FIRE_A3 "textures/Weapon/fire/3.xpm"
+# define FIRE_A4 "textures/Weapon/fire/4.xpm"
+# define FIRE_A5 "textures/Weapon/fire/5.xpm"
+
+/* ======== Reload ======== */
+# define RELOAD_A1 "textures/Weapon/reload/1.xpm"
+# define RELOAD_A2 "textures/Weapon/reload/2.xpm"
+# define RELOAD_A3 "textures/Weapon/reload/3.xpm"
+# define RELOAD_A4 "textures/Weapon/reload/4.xpm"
+# define RELOAD_A5 "textures/Weapon/reload/5.xpm"
+
 #endif

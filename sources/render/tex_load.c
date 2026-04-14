@@ -51,3 +51,24 @@ void	load_textures(t_game *game)
 		i++;
 	}
 }
+
+t_img	*ft_text_load(t_game *game, t_img *img, char *texture)
+{
+	ft_memset(img, '\0', sizeof(t_img));
+	img->img = mlx_xpm_file_to_image(game->mlx, texture, &img->width, &img->height);
+	if (!img->img)
+	{
+		img = NULL;
+		fprintf(stderr, TEXT_ERROR, texture);
+		return (NULL);
+	}
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+		&img->line_length, &img->endian);
+	if (!img->addr)
+	{
+		img = NULL;
+		fprintf(stderr, TEXT_ERROR, texture);
+		return (NULL);
+	}
+	return (img);
+}

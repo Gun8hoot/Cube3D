@@ -53,7 +53,8 @@ SRCS =	$(SRC_DIR)/environement/door.c\
 		$(SRC_DIR)/ui/ui_crosshair.c\
 		$(SRC_DIR)/ui/ui_fps.c\
 		$(SRC_DIR)/ui/ui_minimap.c\
-		$(SRC_DIR)/ui/ui_weapon.c\
+		$(SRC_DIR)/ui/weapon/ui_weapon.c\
+		$(SRC_DIR)/ui/weapon/ui_weapon_render.c\
 		$(SRC_DIR)/utils/clean.c\
 		$(SRC_DIR)/utils/mlx_utils.c\
 		$(SRC_DIR)/utils/time_based.c\

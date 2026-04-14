@@ -68,7 +68,54 @@ void	clear_t_map(t_map *map)
 		free_tab(&map->flood_filled, map->line_number);
 }
 
+void	safety_kill_render(void *mlx_ptr, void *win_ptr, bool loop)
+{
+	if (win_ptr)
+		mlx_destroy_window(mlx_ptr, win_ptr);
+	if (mlx_ptr)
+	{
+		if (loop)
+			mlx_loop_end(mlx_ptr);
+		mlx_destroy_display(mlx_ptr);
+		safe_free(mlx_ptr);
+	}
+}
+
+void	destroy_graphics(t_game *game)
+{
+	safety_kill_render(game->mlx, game->win, game->loop_started);
+	if (game->r_img.img)
+		mlx_destroy_image(game->mlx, &game->r_img.img);
+	if (game->w_img.img)
+		mlx_destroy_image(game->mlx, &game->w_img.img);
+	if (game->weapon.idle.img)
+		mlx_destroy_image(game->mlx, &game->weapon.idle.img);
+	if (game->weapon.fire[0].img)
+		mlx_destroy_image(game->mlx, &game->weapon.fire[0].img);
+	if (game->weapon.fire[1].img)
+		mlx_destroy_image(game->mlx, &game->weapon.fire[1].img);
+	if (game->weapon.fire[2].img)
+		mlx_destroy_image(game->mlx, &game->weapon.fire[2].img);
+	if (game->weapon.fire[3].img)
+		mlx_destroy_image(game->mlx, &game->weapon.fire[3].img);
+	if (game->weapon.fire[4].img)
+		mlx_destroy_image(game->mlx, &game->weapon.fire[4].img);
+	if (game->weapon.reload[0].img)
+		mlx_destroy_image(game->mlx, &game->weapon.reload[0].img);
+	if (game->weapon.reload[1].img)
+		mlx_destroy_image(game->mlx, &game->weapon.reload[1].img);
+	if (game->weapon.reload[2].img)
+		mlx_destroy_image(game->mlx, &game->weapon.reload[2].img);
+	if (game->weapon.reload[3].img)
+		mlx_destroy_image(game->mlx, &game->weapon.reload[3].img);
+	if (game->weapon.reload[4].img)
+		mlx_destroy_image(game->mlx, &game->weapon.reload[4].img);
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
+}
+
 void	clear_game(t_game *game)
 {
 	clear_t_map(&game->map);
+	destroy_graphics(game);
 }

@@ -60,3 +60,8 @@ void	open_door(t_game *game)
 		game->map.grid[look_pos[0]][look_pos[1]] = DOOR_CLOSE;
 	gettimeofday(&game->player.door.start, 0);
 }
+
+void	door_logic(t_game *game)
+{
+	(void)game;
+}

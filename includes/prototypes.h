@@ -80,6 +80,8 @@ void			draw_square(t_game *game, int pos_y, int pos_x, int len, int color);
 void			draw_line(t_game *game, int x0, int y0, int x1, int y1);
 /* --- load_texture.c --- */
 void			load_textures(t_game *game);
+t_img			*ft_text_load(t_game *game, t_img *img, char *texture);
+
 /* -------------------- */
 /* ======= USER INTERFACE ======= */
 /* --- ui_crosshair.c --- */
@@ -95,6 +97,8 @@ void			show_minimap(t_game *game);
 void			bullet_nb(t_game *game);
 void			weapon_reload(t_game *game);
 int				weapon_gunfire(int keycode, int x, int y, t_game *game);
+bool			init_anim_weapon(t_game *game);
+
 /* -------------------- */
 /* ======= UTILS ======= */
 /* --- clean.c --- */

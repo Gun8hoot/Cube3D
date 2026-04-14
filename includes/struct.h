@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/13 16:19:27 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/14 19:06:23 by nclavel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ typedef struct s_fps
 
 typedef struct s_img
 {
-	void			*img;
-	char			*addr;
-	int				width;
-	int				height;
+	void			*img;				// Images ptr
+	char			*addr;				// Pixel ptr
+	int				width;				// Width of the ptr
+	int				height;				// Height of the ptr
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
@@ -85,6 +85,9 @@ typedef struct s_render
 
 typedef struct s_weapon
 {
+	t_img			reload[5];
+	t_img			fire[5];
+	t_img			idle;
 	t_anim			anim;
 	char			*dst;
 	int				color;
@@ -116,9 +119,9 @@ typedef struct s_ray
 
 typedef struct s_minimap
 {
-	double ratio;             
+	double ratio;
 		// The ratio used to zoom or unzoom the minimap in case of too big minimap
-	size_t pixel_per_elem;    
+	size_t pixel_per_elem;
 		// Number of pixel to display one element of a grid ex: 8 == 8 width * 8 height
 	size_t width_max;          // Width maximum we can get
 	size_t height_max;         // Height maximum we can get
@@ -182,6 +185,7 @@ typedef struct s_map
 
 typedef struct s_game
 {
+	bool			loop_started;
 	long long old_time; // Timestamp to calculate time to render
 	int				old_mouse_pos;
 	t_map map;               // Overall map structure

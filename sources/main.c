@@ -42,6 +42,7 @@ static void	ft_hooks(t_game *game)
 	mlx_hook(game->win, 17, 0, handle_close, game);
 	mlx_hook(game->win, 2, 1L << 0, handle_key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, handle_key_release, game);
+	game->loop_started = true;
 	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_loop(game->mlx);
 }
@@ -54,19 +55,6 @@ int	main(int argc, char **argv)
 		return (ft_fprintf(STDERR_FILENO, ARG_ERROR), 1);
 	if (!init(&game, argv[1]))
 		return (1);
-    game.mlx = mlx_init();
-    game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
-    game.r_img.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
-    game.r_img.addr = mlx_get_data_addr(game.r_img.img, &game.r_img.bits_per_pixel, &game.r_img.line_length, &game.r_img.endian);
-	game.w_img.img = mlx_xpm_file_to_image(game.mlx, "textures/idle.xpm", &game.w_img.width, &game.w_img.height);
-	if (!game.w_img.img)
-		return (ft_fprintf(2, "Error: Impossible de charger weapon.xpm\n"), 1);
-	game.w_img.addr = mlx_get_data_addr(game.w_img.img,
-			&game.w_img.bits_per_pixel, &game.w_img.line_length,
-			&game.w_img.endian);
-	load_textures(&game);
-	if (!calculate_minimap(&game))
-		return (ft_fprintf(2, TOO_BIG_ERROR), false);
 	ft_hooks(&game);
 	return (0);
 }

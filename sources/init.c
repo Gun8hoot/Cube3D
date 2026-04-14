@@ -12,23 +12,19 @@
 
 #include "includes/cube3d.h"
 
-void	init_struct(t_game *game)
+bool	init_game(t_game *game)
 {
-	ft_memset(game, '\0', sizeof(t_game));
-	ft_memset(&game->map, '\0', sizeof(t_map));
-	ft_memset(&game->minimap, '\0', sizeof(t_minimap));
-	ft_memset(&game->player, '\0', sizeof(t_player));
-	ft_memset(&game->ray, '\0', sizeof(t_ray));
-	ft_memset(&game->render, '\0', sizeof(t_render));
-	ft_memset(&game->weapon, '\0', sizeof(t_weapon));
-	ft_memset(&game->r_img, '\0', sizeof(t_img));
-	ft_memset(&game->w_img, '\0', sizeof(t_img));
-	ft_memset(&game->keys_pressed, '\0', sizeof(game->keys_pressed));
-	ft_memset(&game->fps, '\0', sizeof(t_fps));
-	ft_memset(&game->player.door, '\0', sizeof(t_door));
-	game->weapon.remaining_bullet = MAX_AMMO_NUM;
+	game->mlx = mlx_init();
+    game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Cube3D");
+    game->r_img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+    game->r_img.addr = mlx_get_data_addr(game->r_img.img, &game->r_img.bits_per_pixel, &game->r_img.line_length, &game->r_img.endian);
+    load_textures(game);
+    if (!ft_text_load(game, &game->weapon.idle, IDLE))
+    	return (false);
+    if (!calculate_minimap(game))
+    	return (ft_fprintf(2, TOO_BIG_ERROR), false);
+    return (true);
 }
-
 void	init_render(t_game *game)
 {
 	game->render.plane_length = tan((FOV * M_PI / 180.0) / 2.0);
@@ -62,11 +58,12 @@ void	init_player(t_game *game)
 	game->player.pos_y = game->map.start_pos[0] + 0.50;
 	game->player.dir_x = game->map.looking_at[1];
 	game->player.dir_y = game->map.looking_at[0];
+	game->weapon.remaining_bullet = MAX_AMMO_NUM;
 }
 
 bool	init(t_game *game, char *filepath)
 {
-	init_struct(game);
+	ft_memset(game, '\0', sizeof(t_game));
 	if (!init_map(&game->map, filepath))
 		return (false);
 	init_player(game);
