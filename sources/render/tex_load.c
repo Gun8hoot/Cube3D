@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:42:14 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/10 14:35:25 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/15 10:53:04 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	load_textures(t_game *game)
 	int		tex_width;
 	int		tex_height;
 	int		i;
-	char	*paths[4] = {game->map.no_texture, game->map.so_texture,
-			game->map.ea_texture, game->map.we_texture};
-
+	char	*paths[5] = {game->map.no_texture, game->map.so_texture,
+			game->map.ea_texture, game->map.we_texture, game->map.d_texture};
 	i = 0;
-	// door
-	while (i < 4)
+	while (i < 5)
 	{
 		if (!paths[i])
 		{
-			ft_fprintf(2, "Error: Texture path %d is NULL\n", i);
-			return ;
+			if (i < 4)
+                ft_fprintf(2, "Error: Texture path %d is NULL\n", i);
+            i++;
+            continue ;
 		}
 		game->textures[i].img = mlx_xpm_file_to_image(game->mlx, paths[i],
 				&tex_width, &tex_height);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/14 19:06:23 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/15 10:51:06 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ typedef struct s_map
 	char *ea_texture;       // Path of texture EAST
 	char *so_texture;       // Path of texture SOUTH
 	char *we_texture;       // Path of texture WEST
+	char *d_texture;       // Path of door texture
 	size_t number_char_max; // Number of char max in the biggest line
 	size_t line_number;     // Map y size
 	size_t pos_start_map;   // Position of the map in the file
@@ -187,11 +188,10 @@ typedef struct s_game
 {
 	bool			loop_started;
 	long long old_time; // Timestamp to calculate time to render
-	int				old_mouse_pos;
 	t_map map;               // Overall map structure
 	t_img r_img;             // raycasting
 	t_img w_img;             // weapon
-	t_img textures[4];       // Wall textures [NO, SO, EA, WE]
+	t_img textures[5];       // Wall textures [NO, SO, EA, WE, door]
 	t_minimap minimap;       // Minimap data structure
 	t_weapon weapon;         // Weapon related data
 	t_player player;         // Player data structure
@@ -200,6 +200,7 @@ typedef struct s_game
 	void *mlx;               // Pointer to MLX data
 	void *win;               // Pointer to window
 	int keys_pressed[65535]; // Keys input arrays
+	int				old_mouse_pos;
 	t_fps fps;               // Structure that contained fps related data
 } t_game;                    // All game data
 
