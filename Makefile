@@ -17,7 +17,7 @@ NAME = cube3D
 # -O0 -g2 -ggdb
 CC = cc
 OFLAG = -O3
-GFLAG = -O0 -g3 -ggdb
+GFLAG = -Og -g3 -ggdb
 CFLAGS = -Wall -Wextra -Werror $(GFLAG) -I.
 INCLUDES = -I./includes
 

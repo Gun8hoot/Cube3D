@@ -33,6 +33,8 @@ t_map			*extract_info(t_map *map);
 char			**extract_map(t_map *map);
 bool			extract_texture(void);
 /* --- check.c --- */								// A trier
+void	floodfill(size_t x, size_t y, t_map *map);
+bool	check_floodfill(char **grid);
 bool			get_player_pos(t_map *map);
 /* --- map.c --- */
 bool			check_extension(char *filepath);
@@ -102,9 +104,13 @@ bool			init_anim_weapon(t_game *game);
 /* -------------------- */
 /* ======= UTILS ======= */
 /* --- clean.c --- */
+
+/* Free the vars and put it to NULL */
 void			safe_free(char **to_free);
+/* Free and put an char ** to NULL */
 void			free_tab(char ***tab, ssize_t size);
-void			clear_game(t_game *game);
+/* Free everything allocated and put everything to NULL */
+int			clear_game(t_game *game);
 /* --- mlx_utils.c --- */
 void			my_mlx_pixel_put(t_game *game, int x, int y, int color);
 /* --- time_based.c --- */

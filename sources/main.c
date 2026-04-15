@@ -39,7 +39,7 @@ static int	game_loop(t_game *game)
 static void	ft_hooks(t_game *game)
 {
 	mlx_mouse_hook(game->win, weapon_gunfire, game);
-	mlx_hook(game->win, 17, 0, handle_close, game);
+	mlx_hook(game->win, 17, 0, clear_game, game);
 	mlx_hook(game->win, 2, 1L << 0, handle_key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, handle_key_release, game);
 	game->loop_started = true;
@@ -54,13 +54,6 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_fprintf(STDERR_FILENO, ARG_ERROR), 1);
 	if (!init(&game, argv[1]))
-		return (1);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "Cube3D");
-	game.r_img.img = mlx_new_image(game.mlx, WIDTH, HEIGHT);
-	game.r_img.addr = mlx_get_data_addr(game.r_img.img, &game.r_img.bits_per_pixel, &game.r_img.line_length, &game.r_img.endian);
-	load_textures(&game);
-	if (!ft_text_load(&game, &game.weapon.idle, IDLE))
 		return (1);
 	ft_hooks(&game);
 	return (0);

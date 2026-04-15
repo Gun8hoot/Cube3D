@@ -93,10 +93,12 @@ void	show_minimap(t_game *game)
 					B_GREEN);
 			else if (game->map.grid[(size_t)y][(size_t)x] == PLAYER)
 				draw_square(game, py, px, game->minimap.pixel_per_elem, B_RED);
-			else if (game->map.grid[(size_t)y][(size_t)x] == DOOR_CLOSE
-				|| game->map.grid[(size_t)y][(size_t)x] == DOOR_OPEN)
+			else if (game->map.grid[(size_t)y][(size_t)x] == DOOR_CLOSE)
 				draw_square(game, py, px, game->minimap.pixel_per_elem,
 					B_YELLOW);
+			else if (game->map.grid[(size_t)y][(size_t)x] == DOOR_OPEN)
+				draw_square(game, py, px, game->minimap.pixel_per_elem,
+					B_BLUE);
 			px += game->minimap.pixel_per_elem;
 		}
 		py += game->minimap.pixel_per_elem;

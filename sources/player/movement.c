@@ -38,22 +38,15 @@ void	move_player(t_game *game, double dx, double dy, unsigned short keycode)
 		if (game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] != WALL
 			&& game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] != DOOR_CLOSE)
 		{
-			if (game->map.grid[(int)new_y][(int)new_x] == DOOR_OPEN)
-			{
-				game->player.door.is_on_door = true;
-				game->player.door.door_cord[0] = new_y;
-				game->player.door.door_cord[1] = new_x;
-			}
-			// printf("[+] is_ondoor=%d\ndoor coords\n\tx=%ld\n\ty=%ld\nNew coords\n\tx=%ld\n\ty=%ld\n\n", game->player.door.is_on_door, game->player.door.door_cord[1], game->player.door.door_cord[0], (size_t)new_x, (size_t)new_y);
-			if (game->player.door.is_on_door
-				&& (game->player.door.door_cord[0] != (size_t)new_y
-					|| game->player.door.door_cord[1] != (size_t)new_x))
+			if (game->player.door.is_on_door)
 			{
 				game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] = DOOR_OPEN;
-				ft_memset(&game->player.door, '\0', sizeof(t_door));
+				game->player.door.is_on_door = false;
 			}
 			else
 				game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] = FLOOR;
+			if (game->map.grid[(int)new_y][(int)new_x] == DOOR_OPEN)
+				game->player.door.is_on_door = true;
 			game->map.grid[(int)new_y][(int)new_x] = PLAYER;
 		}
 		game->player.pos_x = new_x;
