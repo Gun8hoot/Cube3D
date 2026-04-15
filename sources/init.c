@@ -21,8 +21,6 @@ bool	init_game(t_game *game)
     load_textures(game);
     if (!ft_text_load(game, &game->weapon.idle, IDLE))
     	return (false);
-    if (!calculate_minimap(game))
-    	return (ft_fprintf(2, TOO_BIG_ERROR), false);
     return (true);
 }
 void	init_render(t_game *game)
@@ -67,5 +65,7 @@ bool	init(t_game *game, char *filepath)
 	if (!init_map(&game->map, filepath))
 		return (false);
 	init_player(game);
+	if (!calculate_minimap(game))
+    	return (ft_fprintf(2, TOO_BIG_ERROR), false);
 	return (true);
 }
