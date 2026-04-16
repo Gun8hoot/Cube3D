@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 15:59:17 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 18:54:02 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int				handle_close(t_game *game);
 /* --- mouse.c --- */
 int				mouse(t_game *game);
 /* --- movements.c --- */
-void			move_player(t_game *game, double dx, double dy, unsigned short keycode);
+void			move_player(t_game *game, double dx, double dy,
+					unsigned short keycode);
 void			move_camera(t_game *game, double rot_speed);
 void			chose_action(t_game *game);
 /* -------------------- */
@@ -104,8 +105,10 @@ void			celling_floor(t_game *game);
 void			weapon(t_game *game, t_img img);
 void			animating_weapon(t_game *game);
 /* --- shape.c --- */
-void			draw_box(t_game *game, int max_x, int max_y, int color, int pad);
-void			draw_square(t_game *game, int pos_y, int pos_x, int len, int color);
+void			draw_box(t_game *game, int max_x, int max_y,
+					int color, int pad);
+void			draw_square(t_game *game, int pos_y, int pos_x,
+					int len, int color);
 void			draw_line(t_game *game, int x0, int y0, int x1, int y1);
 /* --- load_texture.c --- */
 bool			load_wall(t_game *game);
@@ -141,10 +144,10 @@ int				clear_game(t_game *game);
 /* --- mlx_utils.c --- */
 void			my_mlx_pixel_put(t_game *game, int x, int y, int color);
 /* --- time_based.c --- */
-t_ll				ms_time(t_ll *ll_ptr);
-t_ll				ms_to_s(t_ll timestamp, t_ll *ll_ptr);
-t_ll				timeval_to_ms(struct timeval time, t_ll *ll_ptr);
-t_ll				ms_time_cmp(t_ll timestamp1, t_ll timestamp2, t_ll *ll_ptr);
+t_ll			ms_time(t_ll *ll_ptr);
+t_ll			ms_to_s(t_ll timestamp, t_ll *ll_ptr);
+t_ll			timeval_to_ms(struct timeval time, t_ll *ll_ptr);
+t_ll			ms_time_cmp(t_ll timestamp1, t_ll timestamp2, t_ll *ll_ptr);
 /* -------------------- */
 void			loading_msg(t_game *game, char *texture);
 

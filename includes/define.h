@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 18:42:16 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 18:50:51 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@
 # define KEY_LEFT 0xFF51
 # define KEY_RIGHT 0xFF53
 # define KEY_SHIFT 0xFFE1
-
 
 /* Event MLX */
 # define KEY_PRESS 2

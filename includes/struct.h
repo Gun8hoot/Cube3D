@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 15:49:13 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 19:07:05 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ typedef struct s_fps
 {
 	struct timeval	frame_start;
 	struct timeval	frame_end;
-	double			delta_fps; 					// a simple variable that calculate the time to process
+	struct timeval	last_frame_time;			// Timestamp of the last frame
+	double			delta_fps;					// time to process
 	double			fps_timer;
-	int				fps_counter;                // The fps counter;
-	struct 			timeval last_frame_time;	// The timestamp of the last frame
+	int				fps_counter;				// The fps counter;
 	char			string[16];
 }					t_fps;
 
@@ -111,24 +111,24 @@ typedef struct s_ray
 	int				wall_pos[2];
 	int				map_x;
 	int				map_y;
-	int				hit;  	// wall hit?
-	int				side; 	// NS or a EW wall hit?
+	int				hit;				// Wall hit?
+	int				side;				// NS or a EW wall hit?
 }					t_ray;
 
 typedef struct s_minimap
 {
-	double			ratio;				// The ratio used to zoom or unzoom the minimap in case of too big minimap
-	size_t			pixel_per_elem;		// Number of pixel to display one element of a grid ex: 8 == 8 width * 8 height
-	size_t			width_max;          // Width maximum we can get
-	size_t			height_max;         // Height maximum we can get
-	size_t			padding_top_bottom;	// The number of pixel for the map top/bottom padding
-	size_t			padding_right_left;	// The number of pixel for the map right/left padding
+	double			ratio;				// Ratio zoom or unzoom minimap
+	size_t			pixel_per_elem;		// Num of pixel to display one element
+	size_t			width_max;			// Width maximum we can get
+	size_t			height_max;			// Height maximum we can get
+	size_t			padding_top_bottom;	// Num of pixel top/bottom padding
+	size_t			padding_right_left;	// Num of pixel right/left padding
 	bool			was_on_door;
 }					t_minimap;
 
 typedef struct s_map
 {
-	int16_t			fd;             	// Map file fd
+	int16_t			fd;					// Map file fd
 	char			**grid;				// BASE MAP
 	char			**flood_filled;		// BASE MAP
 	char			*filepath;			// Map filepath
@@ -137,35 +137,35 @@ typedef struct s_map
 	char			*so_texture;		// Path of texture SOUTH
 	char			*we_texture;		// Path of texture WEST
 	char			*d_texture;			// Path of door texture
-	size_t			number_char_max;	// Number of char max in the biggest line
+	size_t			number_char_max;	// Num of char max in the biggest line
 	size_t			line_number;		// Map y size
 	size_t			pos_start_map;		// Position of the map in the file
 	int				f_color;			// COLOR OF THE FLOOR
 	int				c_color;			// COLOR OF THE CELLING
 	int				door_num;
-	double			start_pos[2];		// Position on the grid of the PLAYER start
+	double			start_pos[2];		// Pos on the grid of the PLAYER start
 	double			looking_at[2];		// Direction of the PLAYER start
 }					t_map;				// MAIN MAP STRUCTURE
 
 typedef struct s_game
 {
-	bool			loop_started;
-	long long		old_time;				// Timestamp to calculate time to render
 	t_map			map;					// Overall map structure
 	t_img			r_img;					// raycasting
 	t_img			*w_img;					// weapon
-	t_img			textures[5];			// Wall textures [NO, SO, EA, WE, door]
+	t_img			textures[5];			// Wall textures
 	t_minimap		minimap;				// Minimap data structure
-	t_weapon 		weapon;					// Weapon related data
+	t_weapon		weapon;					// Weapon related data
 	t_player		player;					// Player data structure
 	t_render		render;					// Render data structure
 	t_ray			ray;					// Raycasting data structure
+	t_fps			fps;					// Fps related data
 	void			*mlx;					// Pointer to MLX data
 	void			*win;					// Pointer to window
+	long long		old_time;				// Timestamp time to render
+	bool			loop_started;
 	int				keys_pressed[65535];	// Keys input arrays
 	int				old_mouse_pos;
-	t_fps			fps;					// Structure that contained fps related data
 	int				exit_code;				// Exit code for clear_game
-} 					t_game;					// All game data
+}					t_game;
 
 #endif
