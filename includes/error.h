@@ -23,6 +23,7 @@
 # define CPY_ERROR "\x1b[0;31mError:\nFailed to copy\x1b[0m\n"
 # define DUPLICAT_ERROR "\x1b[0;31mError:\nTexture in duplicated\x1b[0m\n"
 # define MAP_ERROR "\x1b[0;31mError:\nInvalid map\x1b[0m\n"
+# define CLOSED_ERROR "\x1b[0;31mError:\nMap not closed\x1b[0m\n"
 # define MLX_ERROR "\x1b[0;31mError:\nFailed to initialized MLX\x1b[0m\n"
 # define TEXT_ERROR "\x1b[0;31mError:\nFailed to load %s\x1b[0m\n"
 # define MISS_MAP_ERROR "\x1b[0;31mError:\nMissing map in '%s'\x1b[0m\n"

@@ -112,35 +112,34 @@ bool	check_floodfill(char **grid)
 	return (true);
 }
 
-void	floodfill(size_t x, size_t y, t_map *map, char c)
+bool	floodfill(size_t x, size_t y, t_map *map, char c)
 {
 	if (x < 0 || x >= ft_strlen(map->flood_filled[y]) || y < 0
-		|| y >= map->line_number || map->flood_filled[y][x] == '1'
-		|| map->flood_filled[y][x] == 'F')
-	{
-		return ;
-	}
+			|| y >= map->line_number || map->flood_filled[y][x] == '1'
+			|| map->flood_filled[y][x] == 'F')
+		return (true);
+	if ((map->flood_filled[y][x + 1] && (map->flood_filled[y][x + 1] == ' ' || !map->flood_filled[y][x + 1]))
+			|| (map->flood_filled[y][x + 1] && (map->flood_filled[y][x + 1] == ' ' || !map->flood_filled[y][x + 1]))
+			|| (x >= ft_strlen(map->flood_filled[y + 1]) && map->flood_filled[y + 1][x] && (map->flood_filled[y + 1][x] == ' ' || !map->flood_filled[y + 1][x]))
+			|| (x >= ft_strlen(map->flood_filled[y - 1]) && map->flood_filled[y - 1][x] && (map->flood_filled[y - 1][x] == ' ' || !map->flood_filled[y - 1][x])))
+		return (false);
 	map->flood_filled[y][x] = c;
-	floodfill(x, y - 1, map, c);
-	floodfill(x, y + 1, map, c);
-	floodfill(x - 1, y, map, c);
-	floodfill(x + 1, y, map, c);
+	if (!floodfill(x, y - 1, map, c))
+		return (false);
+	if (!floodfill(x, y + 1, map, c))
+		return (false);
+	if (!floodfill(x - 1, y, map, c))
+		return (false);
+	if (!floodfill(x + 1, y, map, c))
+		return (false);
+	return (true);
 }
 
-void	check_side_border(char **floodfilled)
-{
-	size_t	i;
 
-	i = 0;
-	while (floodfilled[i])
-	{
-
-	}
-}
 
 bool	check_parsing(t_map *map)
 {
-	if (map->door_num > 0 && !map->d_texture)
+	if (map->door_num > 0 && (!map->d_texture || !map->d_texture[0]))
 		return (fprintf(stderr, MISS_TEXT_ERROR, "DO"), false);
 	if (!map->ea_texture)
 		return (fprintf(stderr, MISS_TEXT_ERROR, "EA"), false);

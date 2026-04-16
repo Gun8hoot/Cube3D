@@ -50,7 +50,7 @@ bool			extract_texture(void);
 /* --- check.c --- */
 
 /* DFS Flood fill */
-void			floodfill(size_t x, size_t y, t_map *map, char c);
+bool			floodfill(size_t x, size_t y, t_map *map, char c);
 /* Function that check if floodfilled map is ok */
 bool			check_floodfill(char **grid);
 /* Get the player position on the grid */

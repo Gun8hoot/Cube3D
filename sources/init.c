@@ -53,13 +53,14 @@ t_map	*init_map(t_map *map, char *filepath)
 		return (NULL);
 	if (!get_player_pos(map))
 		return (NULL);
-	if (!check_parsing(map))
-		return (NULL);
 	map->flood_filled = cpy_map(map, map->flood_filled, map->grid);
 	if (!map->flood_filled)
 		return (NULL);
-	floodfill(map->start_pos[1], map->start_pos[0], map, 'F');
+	if (!floodfill(map->start_pos[1], map->start_pos[0], map, 'F'))
+		return (fprintf(stderr, CLOSED_ERROR), NULL);
 	init_door(map);
+	if (!check_parsing(map))
+		return (NULL);
 	if (map->number_char_max > 320 || map->line_number > 180)
 		return (NULL);
 	return (map);
