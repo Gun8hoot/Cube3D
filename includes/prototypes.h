@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 15:50:19 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 15:59:17 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,13 +132,12 @@ void			shooting_anim(t_game *game);
 /* -------------------- */
 /* ======= UTILS ======= */
 /* --- clean.c --- */
-
 /* Free the vars and put it to NULL */
 void			safe_free(char **to_free);
 /* Free and put an char ** to NULL */
 void			free_tab(char ***tab, ssize_t size);
 /* Free everything allocated and put everything to NULL */
-int			clear_game(t_game *game);
+int				clear_game(t_game *game);
 /* --- mlx_utils.c --- */
 void			my_mlx_pixel_put(t_game *game, int x, int y, int color);
 /* --- time_based.c --- */

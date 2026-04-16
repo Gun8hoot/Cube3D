@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:59:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/13 15:50:30 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 15:58:39 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	free_tab(char ***tab, ssize_t size)
 	}
 }
 
-void	clear_t_map(t_map *map)
+static void	clear_t_map(t_map *map)
 {
 	if (map->no_texture)
 		safe_free(&map->no_texture);
@@ -68,7 +68,7 @@ void	clear_t_map(t_map *map)
 		free_tab(&map->flood_filled, 0);
 }
 
-void	safety_kill_render(void *mlx_ptr, void *win_ptr, bool loop)
+static void	safety_kill_render(void *mlx_ptr, void *win_ptr, bool loop)
 {
 	if (win_ptr)
 		mlx_destroy_window(mlx_ptr, win_ptr);
@@ -80,7 +80,7 @@ void	safety_kill_render(void *mlx_ptr, void *win_ptr, bool loop)
 	}
 }
 
-void	destroy_graphics(t_game *game)
+static void	destroy_graphics(t_game *game)
 {
 	size_t	x;
 
