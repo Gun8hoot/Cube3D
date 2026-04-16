@@ -49,9 +49,11 @@
 # define KEY_E 0x65
 # define KEY_SPC 0x20
 # define KEY_ESC 0xFF1B
+# define KEY_ENT 0xFF0D
 # define KEY_LEFT 0xFF51
 # define KEY_RIGHT 0xFF53
 # define KEY_SHIFT 0xFFE1
+
 
 /* Event MLX */
 # define KEY_PRESS 2

@@ -25,6 +25,7 @@
 # define MAP_ERROR "\x1b[0;31mError:\nInvalid map\x1b[0m\n"
 # define MLX_ERROR "\x1b[0;31mError:\nFailed to initialized MLX\x1b[0m\n"
 # define TEXT_ERROR "\x1b[0;31mError:\nFailed to load %s\x1b[0m\n"
+# define MISS_MAP_ERROR "\x1b[0;31mError:\nMissing map in '%s'\x1b[0m\n"
 # define MISS_TEXT_ERROR "\x1b[0;31mError:\nMissing %s texture\x1b[0m\n"
 # define MULT_PLAYER_ERROR "\x1b[0;31mError:\nMultiple user defined\x1b[0m\n"
 # define PLAYER_ERR "\x1b[0;31mError:\nNeed a ONE player\x1b[0m\n"

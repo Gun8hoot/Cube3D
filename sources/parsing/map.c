@@ -107,6 +107,8 @@ char	**extract_map(t_map *map)
 	while (++i < map->pos_start_map - 1)
 	{
 		raw_line = get_next_line(map->fd);
+		if (!raw_line)
+			return (fprintf(stderr, MISS_MAP_ERROR, map->filepath), safe_free(&raw_line), NULL);
 		safe_free(&raw_line);
 	}
 	i = 0;

@@ -108,7 +108,7 @@ void			draw_box(t_game *game, int max_x, int max_y, int color, int pad);
 void			draw_square(t_game *game, int pos_y, int pos_x, int len, int color);
 void			draw_line(t_game *game, int x0, int y0, int x1, int y1);
 /* --- load_texture.c --- */
-bool			load_textures(t_game *game);
+bool			load_wall(t_game *game);
 t_img			*ft_text_load(t_game *game, t_img *img, char *texture);
 
 /* -------------------- */
@@ -146,5 +146,6 @@ t_ll				ms_to_s(t_ll timestamp, t_ll *ll_ptr);
 t_ll				timeval_to_ms(struct timeval time, t_ll *ll_ptr);
 t_ll				ms_time_cmp(t_ll timestamp1, t_ll timestamp2, t_ll *ll_ptr);
 /* -------------------- */
+void			loading_msg(t_game *game, char *texture);
 
 #endif

@@ -14,6 +14,7 @@
 
 int	handle_key_press(int keycode, t_game *game)
 {
+
 	if (keycode == KEY_ESC)
 		clear_game(game);
 	game->keys_pressed[keycode] = 1;

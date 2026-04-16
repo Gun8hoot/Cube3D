@@ -26,7 +26,7 @@ bool	init_game(t_game *game)
 	game->r_img.addr = mlx_get_data_addr(game->r_img.img, &game->r_img.bits_per_pixel, &game->r_img.line_length, &game->r_img.endian);
 	if (!game->r_img.addr)
 		return (fprintf(stderr, MLX_ERROR), false);
-	if (!load_textures(game))
+	if (!load_wall(game))
 		return (false);
 	game->player.pos_x = game->map.start_pos[1] + 0.50;
 	game->player.pos_y = game->map.start_pos[0] + 0.50;

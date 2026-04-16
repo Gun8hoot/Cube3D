@@ -60,6 +60,8 @@ static void	clear_t_map(t_map *map)
 		safe_free(&map->so_texture);
 	if (map->we_texture)
 		safe_free(&map->we_texture);
+	if (map->d_texture)
+		safe_free(&map->d_texture);
 	if (map->fd > 2)
 		(get_next_line(-1), close(map->fd), map->fd = 0);
 	if (map->grid)
@@ -89,9 +91,10 @@ static void	destroy_graphics(t_game *game)
 		mlx_destroy_image(game->mlx, game->r_img.img);
 	if (game->weapon.idle.img)
 		mlx_destroy_image(game->mlx, game->weapon.idle.img);
-	while (x < 4)
+	while (x < 5)
 	{
-		mlx_destroy_image(game->mlx, game->textures[x].img);
+		if (game->textures[x].img)
+			mlx_destroy_image(game->mlx, game->textures[x].img);
 		x++;
 	}
 	x = 0;
@@ -118,7 +121,8 @@ int	clear_game(t_game *game)
 	if (state == true)
 		return (0);
 	state = true;
-	printf("Closing game...\n");
+	if (game->loop_started)
+		printf("Closing game...\n");
 	clear_t_map(&game->map);
 	destroy_graphics(game);
 	exit (game->exit_code);
