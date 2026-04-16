@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:19:45 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/16 18:41:29 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 19:16:07 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,19 @@ void	move_player(t_game *game, double dx, double dy, unsigned short keycode)
 	gettimeofday(&last_move[keycode], 0);
 	if (can_move(game, new_x, new_y))
 	{
-		if (game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] != WALL
-			&& game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] != DOOR_CLOSE)
+		if (game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x]
+			!= WALL && game->map.grid[(int)game->player.pos_y]
+			[(int)game->player.pos_x] != DOOR_CLOSE)
 		{
 			if (game->player.door.is_on_door)
 			{
-				game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] = DOOR_OPEN;
+				game->map.grid[(int)game->player.pos_y]
+				[(int)game->player.pos_x] = DOOR_OPEN;
 				game->player.door.is_on_door = false;
 			}
 			else
-				game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x] = FLOOR;
+				game->map.grid[(int)game->player.pos_y]
+				[(int)game->player.pos_x] = FLOOR;
 			if (game->map.grid[(int)new_y][(int)new_x] == DOOR_OPEN)
 				game->player.door.is_on_door = true;
 			game->map.grid[(int)new_y][(int)new_x] = PLAYER;
