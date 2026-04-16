@@ -55,6 +55,8 @@ void			floodfill(size_t x, size_t y, t_map *map, char c);
 bool			check_floodfill(char **grid);
 /* Get the player position on the grid */
 bool			get_player_pos(t_map *map);
+/* Check if ive got every info needed */
+bool			check_parsing(t_map *map);
 /* --- map.c --- */
 /* Check if the map end with a .cub extension */
 bool			check_extension(char *filepath);

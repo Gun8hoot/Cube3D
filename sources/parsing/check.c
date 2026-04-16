@@ -137,3 +137,18 @@ void	check_side_border(char **floodfilled)
 
 	}
 }
+
+bool	check_parsing(t_map *map)
+{
+	if (map->door_num > 0 && !map->d_texture)
+		return (fprintf(stderr, MISS_TEXT_ERROR, "DO"), false);
+	if (!map->ea_texture)
+		return (fprintf(stderr, MISS_TEXT_ERROR, "EA"), false);
+	if (!map->no_texture)
+		return (fprintf(stderr, MISS_TEXT_ERROR, "NO"), false);
+	if (!map->so_texture)
+		return (fprintf(stderr, MISS_TEXT_ERROR, "SO"), false);
+	if (!map->we_texture)
+		return (fprintf(stderr, MISS_TEXT_ERROR, "WE"), false);
+	return (true);
+}

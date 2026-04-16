@@ -87,7 +87,7 @@ void	get_texture(t_ray *ray, t_game *game)
 		else
 			current_texture = &game->textures[0];
 	}
-	if (wall_type == 'D')
+	if (wall_type == DOOR_CLOSE)
 		current_texture = &game->textures[4];
 	ray->current_texture = current_texture;
 }

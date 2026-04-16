@@ -119,7 +119,6 @@ int	clear_game(t_game *game)
 		return (0);
 	state = true;
 	printf("Closing game...\n");
-	mlx_loop_end(game->mlx);
 	clear_t_map(&game->map);
 	destroy_graphics(game);
 	exit (game->exit_code);

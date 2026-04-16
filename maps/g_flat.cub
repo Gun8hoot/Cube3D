@@ -2,6 +2,7 @@ NO ./textures/test.xpm
 EA ./textures/test.xpm
 SO ./textures/test.xpm
 WE ./textures/test.xpm
+DO ./textures/door.xpm
 
 F 60,60,60
 C 0,60,200

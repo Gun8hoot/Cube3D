@@ -26,6 +26,7 @@ void	init_door(t_map *map)
 			if (map->grid[i][j] == 'D')
 			{
 				map->grid[i][j] = DOOR_CLOSE;
+				map->door_num++;
 			}
 			j++;
 		}

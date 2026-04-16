@@ -181,6 +181,7 @@ typedef struct s_map
 	size_t pos_start_map;   // Position of the map in the file
 	int f_color;            // COLOR OF THE FLOOR
 	int c_color;            // COLOR OF THE CELLING
+	int	door_num;
 	double start_pos[2];    // Position on the grid of the PLAYER start
 	double looking_at[2];   // Direction of the PLAYER start
 } t_map;                    // MAIN MAP STRUCTURE

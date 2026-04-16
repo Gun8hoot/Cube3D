@@ -21,8 +21,11 @@ bool	load_textures(t_game *game)
 	char	*paths[5] = {game->map.no_texture, game->map.so_texture,
 			game->map.ea_texture, game->map.we_texture, game->map.d_texture};
 	i = 0;
+	printf("%s\n", game->map.d_texture);
 	while (i < 5)
 	{
+		if (!paths[i] && i == 4)
+			break;
 		if (!paths[i])
 		{
             ft_fprintf(2, "Error: Texture path %d is NULL\x1b[0m\n", i);
