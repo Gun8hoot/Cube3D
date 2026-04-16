@@ -70,7 +70,7 @@
 # define RAY_PRECISION 0.1
 
 /* ANIM FILENAME */
-# define IDLE "./textures/Weapon/idle.xpm"
+# define IDLE "textures/Weapon/idle.xpm"
 
 /* ======== Fire ======== */
 # define FIRE_A1 "textures/Weapon/fire/1.xpm"

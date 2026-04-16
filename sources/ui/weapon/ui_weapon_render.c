@@ -27,16 +27,16 @@ bool	init_anim_weapon(t_game *game)
 	return (true);
 }
 
-void	weapon(t_game *game)
+void	weapon(t_game *game, t_img img)
 {
 	int	x;
 	int	y;
 	int	offset;
 
-	if (!game->weapon.idle.img)
+	if (!img.img)
 		return ;
-	game->weapon.start_x = WIDTH - game->weapon.idle.width;
-	game->weapon.start_y = HEIGHT - game->weapon.idle.height;
+	game->weapon.start_x = WIDTH - img.width;
+	game->weapon.start_y = HEIGHT - img.height;
 	if (game->weapon.is_animating)
 	{
 		offset = (ANIM_FRAME / 2) - abs(game->weapon.frame - (ANIM_FRAME / 2));
@@ -44,13 +44,13 @@ void	weapon(t_game *game)
 		game->weapon.start_x -= offset;
 	}
 	y = 0;
-	while (y < game->weapon.idle.height)
+	while (y < img.height)
 	{
 		x = 0;
-		while (x < game->weapon.idle.width)
+		while (x < img.width)
 		{
-			game->weapon.dst = game->weapon.idle.addr + (y * game->weapon.idle.line_length)
-				+ (x * (game->weapon.idle.bits_per_pixel / 8));
+			game->weapon.dst = img.addr + (y * img.line_length)
+				+ (x * (img.bits_per_pixel / 8));
 			game->weapon.color = *(int *)game->weapon.dst;
 			if (game->weapon.color != B_BLACK)
 				my_mlx_pixel_put(game, game->weapon.start_x + x,

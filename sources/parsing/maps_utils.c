@@ -30,3 +30,29 @@ bool	is_map(char *line)
 	else
 		return (true);
 }
+
+char **cpy_map(t_map *map, char **dest, char **src)
+{
+	size_t	i;
+
+	i = 0;
+	if (!src || dest)
+	{
+		fprintf(stderr, CPY_ERROR);
+		return (NULL);
+	}
+	dest = ft_calloc(map->line_number + 1, sizeof(char *));
+	if (!dest)
+		return (fprintf(stderr, ALLOC_ERROR), NULL);
+	while (src[i])
+	{
+		dest[i] = ft_strdup(src[i]);
+		if (!dest[i])
+		{
+			free_tab(&dest, 0);
+			return (fprintf(stderr, ALLOC_ERROR), NULL);
+		}
+		i++;
+	}
+	return (dest);
+}

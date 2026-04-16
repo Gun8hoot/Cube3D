@@ -26,7 +26,7 @@ void	free_tab(char ***tab, ssize_t size)
 	ssize_t	i;
 
 	i = 0;
-	if (size < 0)
+	if (size <= 0)
 	{
 		while ((*tab)[i])
 		{
@@ -63,9 +63,9 @@ void	clear_t_map(t_map *map)
 	if (map->fd > 2)
 		(get_next_line(-1), close(map->fd), map->fd = 0);
 	if (map->grid)
-		free_tab(&map->grid, map->line_number);
+		free_tab(&map->grid, 0);
 	if (map->flood_filled)
-		free_tab(&map->flood_filled, map->line_number);
+		free_tab(&map->flood_filled, 0);
 }
 
 void	safety_kill_render(void *mlx_ptr, void *win_ptr, bool loop)
@@ -87,8 +87,6 @@ void	destroy_graphics(t_game *game)
 	x = 0;
 	if (game->r_img.img)
 		mlx_destroy_image(game->mlx, game->r_img.img);
-	if (game->w_img.img)
-		mlx_destroy_image(game->mlx, game->w_img.img);
 	if (game->weapon.idle.img)
 		mlx_destroy_image(game->mlx, game->weapon.idle.img);
 	while (x < 4)
@@ -120,9 +118,9 @@ int	clear_game(t_game *game)
 	if (state == true)
 		return (0);
 	state = true;
-	printf("Closing the game...\n");
+	printf("Closing game...\n");
 	mlx_loop_end(game->mlx);
 	clear_t_map(&game->map);
 	destroy_graphics(game);
-	exit (0);
+	exit (game->exit_code);
 }

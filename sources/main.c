@@ -14,8 +14,14 @@
 
 static void	ui(t_game *game)
 {
-	weapon(game);
+	if (game->weapon.is_reloading)
+		reloading_anim(game);
+	else if (game->weapon.is_shooting)
+		shooting_anim(game);
+	else
+		game->w_img = &game->weapon.idle;
 	show_minimap(game);
+	weapon(game, *game->w_img);
 	crosshair(game);
 	show_fps(game);
 	bullet_nb(game);
@@ -54,7 +60,10 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_fprintf(STDERR_FILENO, ARG_ERROR), 1);
 	if (!init(&game, argv[1]))
-		return (1);
+	{
+		game.exit_code = 1;
+		clear_game(&game);
+	}
 	ft_hooks(&game);
 	return (0);
 }

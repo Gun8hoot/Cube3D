@@ -85,6 +85,8 @@ void	chose_action(t_game *game)
 	}
 	if (game->keys_pressed[KEY_R] == 1 && game->weapon.is_reloading == false)
 		weapon_reload(game);
+	if (game->keys_pressed[112] == 1 && game->weapon.is_reloading == false)
+		weapon_gunfire(1, 0, 0, game);
 	if (game->keys_pressed[KEY_W] == 1 && game->keys_pressed[KEY_S] == 0)
 		move_player(game, game->player.dir_x, game->player.dir_y, KEY_W);
 	if (game->keys_pressed[KEY_S] == 1 && game->keys_pressed[KEY_W] == 0)

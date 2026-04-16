@@ -112,7 +112,7 @@ bool	check_floodfill(char **grid)
 	return (true);
 }
 
-void	floodfill(size_t x, size_t y, t_map *map)
+void	floodfill(size_t x, size_t y, t_map *map, char c)
 {
 	if (x < 0 || x >= ft_strlen(map->flood_filled[y]) || y < 0
 		|| y >= map->line_number || map->flood_filled[y][x] == '1'
@@ -120,24 +120,20 @@ void	floodfill(size_t x, size_t y, t_map *map)
 	{
 		return ;
 	}
-	map->flood_filled[y][x] = 'F';
-	floodfill(x, y - 1, map);
-	floodfill(x, y + 1, map);
-	floodfill(x - 1, y, map);
-	floodfill(x + 1, y, map);
+	map->flood_filled[y][x] = c;
+	floodfill(x, y - 1, map, c);
+	floodfill(x, y + 1, map, c);
+	floodfill(x - 1, y, map, c);
+	floodfill(x + 1, y, map, c);
 }
 
-// void	check_side_border(t_game *game, t_vec vec, bool *reach_end, int ope)
-// {
-// 	if (vec.x == game->map.number_char_max)
-// 		return ;
-// 	if (vec.y == game->map.line_number)
-// 	{
-// 		*reach_end = true;
-// 		return ;
-// 	}
-// 	if (game->map.grid[(int)vec.y + ope][(int)vec.x])
-// 	{
+void	check_side_border(char **floodfilled)
+{
+	size_t	i;
 
-// 	}
-// }
+	i = 0;
+	while (floodfilled[i])
+	{
+
+	}
+}

@@ -20,9 +20,13 @@ static void	reloading_msg(t_game *game)
 
 void	weapon_reload(t_game *game)
 {
-	// game->weapon.is_reloading = true;	// Need to handle it on the weapon animation function
-	game->weapon.cannot_shoot = false;
-	game->weapon.remaining_bullet = MAX_AMMO_NUM;
+	if (!game->weapon.is_shooting && !game->weapon.is_reloading
+		&& game->weapon.remaining_bullet != MAX_AMMO_NUM)
+	{
+		game->weapon.is_reloading = true;	// Need to handle it on the weapon animation function
+		game->weapon.cannot_shoot = false;
+		game->weapon.remaining_bullet = MAX_AMMO_NUM;
+	}
 }
 
 void	bullet_nb(t_game *game)
@@ -71,10 +75,11 @@ int	weapon_gunfire(int keycode, int x, int y, t_game *game)
 {
 	(void)x;
 	(void)y;
-	if (keycode == 1)
+	if (keycode == 1 && !game->weapon.is_shooting && !game->weapon.is_reloading)
 	{
 		if (game->weapon.remaining_bullet > 0)
 		{
+			game->weapon.is_shooting = true;
 			game->weapon.remaining_bullet--;
 			hitmarker(game);
 			shoot(game);

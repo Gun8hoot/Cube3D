@@ -33,6 +33,8 @@ ll	timeval_to_ms(struct timeval time, ll *ll_ptr)
 {
 	ll	time_in_ms;
 
+	if (time.tv_usec == 0)
+		return (0);
 	time_in_ms = (ll)(time.tv_sec * 1000 + time.tv_usec / 1000);
 	if (ll_ptr)
 		*ll_ptr = time_in_ms;

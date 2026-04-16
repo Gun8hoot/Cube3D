@@ -190,7 +190,7 @@ typedef struct s_game
 	long long old_time; // Timestamp to calculate time to render
 	t_map map;               // Overall map structure
 	t_img r_img;             // raycasting
-	t_img w_img;             // weapon
+	t_img *w_img;             // weapon
 	t_img textures[5];       // Wall textures [NO, SO, EA, WE, door]
 	t_minimap minimap;       // Minimap data structure
 	t_weapon weapon;         // Weapon related data
@@ -202,6 +202,7 @@ typedef struct s_game
 	int keys_pressed[65535]; // Keys input arrays
 	int				old_mouse_pos;
 	t_fps fps;               // Structure that contained fps related data
+	int		exit_code;		// Exit code for clear_game
 } t_game;                    // All game data
 
 #endif

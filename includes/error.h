@@ -14,19 +14,23 @@
 # define ERROR_H
 
 /* --- ERROR MESSAGES --- */
-# define ARG_ERROR "Error:\nNot enough arguments\n"
-# define OPEN_ERROR "Error:\nFailed to open\n"
-# define ALLOC_ERROR "Error:\nFailed to allocated\n"
-# define EXT_ERROR "Error:\nWrong extension type\n"
-# define ID_ERROR "Error:\nWrong identifier type\n"
-# define OOB_ERROR "Error:\nOut-Of-Bound error\n"
-# define CPY_ERROR "Error:\nFailed to copy\n"
-# define DUPLICAT_ERROR "Error:\nTexture in duplicated\n"
-# define MAP_ERROR "Error:\nInvalid map\n"
-# define TEXT_ERROR "Error:\nFailed to load %s\n"
-# define MULT_PLAYER_ERROR "Error:\nMultiple user defined\n"
-# define PLAYER_ERR "Error:\nNeed a ONE player\n"
-# define TOO_BIG_ERROR "Error:\nMap is too big (< 321 width & < 180 height)\n"
+# define ARG_ERROR "\x1b[0;31mError:\nNot enough arguments\n\x1b[0m"
+# define OPEN_ERROR "\x1b[0;31mError:\nFailed to open\x1b[0m\n"
+# define ALLOC_ERROR "\x1b[0;31mError:\nFailed to allocated\x1b[0m\n"
+# define EXT_ERROR "\x1b[0;31mError:\nWrong extension type\x1b[0m\n"
+# define ID_ERROR "\x1b[0;31mError:\nWrong identifier type\x1b[0m\n"
+# define OOB_ERROR "\x1b[0;31mError:\nOut-Of-Bound error\x1b[0m\n"
+# define CPY_ERROR "\x1b[0;31mError:\nFailed to copy\x1b[0m\n"
+# define DUPLICAT_ERROR "\x1b[0;31mError:\nTexture in duplicated\x1b[0m\n"
+# define MAP_ERROR "\x1b[0;31mError:\nInvalid map\x1b[0m\n"
+# define MLX_ERROR "\x1b[0;31mError:\nFailed to initialized MLX\x1b[0m\n"
+# define TEXT_ERROR "\x1b[0;31mError:\nFailed to load %s\x1b[0m\n"
+# define MULT_PLAYER_ERROR "\x1b[0;31mError:\nMultiple user defined\x1b[0m\n"
+# define PLAYER_ERR "\x1b[0;31mError:\nNeed a ONE player\x1b[0m\n"
+# define TOO_BIG_ERROR "\x1b[0;31mError:\nMap is too big\x1b[0m\n"
+
+/* COMPLETE MESSAGES */
+# define INIT_COMPLET "\x1b[0;32m[+] Initialization complete!\x1b[0m\n"
 
 /* --- ERROR ERRNO --- */
 # define EGNL 0x55

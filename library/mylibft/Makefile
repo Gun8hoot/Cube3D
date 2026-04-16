@@ -69,8 +69,8 @@ $(NAME):  $(OBJETS)
 	@echo "\e[34mmylibft compiling ....\e[0m"
 	@ar rc $@ $^
 
-%.o: %.c 
-	@$(CC) -Wall -Wextra -Werror -g3 -o $@ -c $<
+%.o: %.c
+	@$(CC) -Wall -Wextra -Werror -O3 -o $@ -c $<
 
 clean :
 	@$(RM) $(OBJETS)

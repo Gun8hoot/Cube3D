@@ -18,28 +18,50 @@
 
 /* ======= SOURCES ROOT ======= */
 /* --- ./init.c --- */
-void			init_struct(t_game *game);
+
+/* Initialized raycasting */
 void			init_render(t_game *game);
+/* Initialized t_map structure */
 t_map			*init_map(t_map *map, char *filepath);
+/* Main initialization function */
 bool			init(t_game *game, char *filepath);
+
 /* -------------------- */
+
 /* ======= ENVIRONEMENT ======= */
 /* --- door.c --- */
+
+/* Initialized door on the map */
 void			init_door(t_map *map);
+/* Function how is called when open a door */
 void			open_door(t_game *game);
+
 /* -------------------- */
+
 /* ======= PARSING ======= */
+
+/* Extract data like color and texture filepath from the provide .cub file */
 t_map			*extract_info(t_map *map);
+/* Extract the map from the .cub file */
 char			**extract_map(t_map *map);
+/* Extract the texture string and color from the file */
 bool			extract_texture(void);
-/* --- check.c --- */								// A trier
-void	floodfill(size_t x, size_t y, t_map *map);
-bool	check_floodfill(char **grid);
+
+/* --- check.c --- */
+
+/* DFS Flood fill */
+void			floodfill(size_t x, size_t y, t_map *map, char c);
+/* Function that check if floodfilled map is ok */
+bool			check_floodfill(char **grid);
+/* Get the player position on the grid */
 bool			get_player_pos(t_map *map);
 /* --- map.c --- */
+/* Check if the map end with a .cub extension */
 bool			check_extension(char *filepath);
 void			show_map(t_map *map);
+/* Extract the map from the .cub file */
 char			**export_map(t_map *map, char *filepath);
+/* Initialized map and his data */
 t_map			*init_map(t_map *map, char *filepath);
 /* --- texture.c --- */
 t_id			check_info_type(char *info);
@@ -47,7 +69,10 @@ bool			extract_texture_path(t_map *map, char *raw_line);
 bool			set_info_texture(t_map *map, char *info_string, t_id id);
 /* --- maps_utils.c --- */
 bool			is_map(char *line);
+char			**cpy_map(t_map *map, char **dest, char **src);
+
 /* -------------------- */
+
 /* ======= PLAYER ======= */
 /* --- events.c --- */
 int				handle_key_press(int keycode, t_game *game);
@@ -74,14 +99,14 @@ void			ft_rayshooter(t_ray *ray, t_game *game);
 /* ======= RENDER ======= */
 /* --- render.c --- */
 void			celling_floor(t_game *game);
-void			weapon(t_game *game);
+void			weapon(t_game *game, t_img img);
 void			animating_weapon(t_game *game);
 /* --- shape.c --- */
 void			draw_box(t_game *game, int max_x, int max_y, int color, int pad);
 void			draw_square(t_game *game, int pos_y, int pos_x, int len, int color);
 void			draw_line(t_game *game, int x0, int y0, int x1, int y1);
 /* --- load_texture.c --- */
-void			load_textures(t_game *game);
+bool			load_textures(t_game *game);
 t_img			*ft_text_load(t_game *game, t_img *img, char *texture);
 
 /* -------------------- */
@@ -100,6 +125,8 @@ void			bullet_nb(t_game *game);
 void			weapon_reload(t_game *game);
 int				weapon_gunfire(int keycode, int x, int y, t_game *game);
 bool			init_anim_weapon(t_game *game);
+void			reloading_anim(t_game *game);
+void			shooting_anim(t_game *game);
 
 /* -------------------- */
 /* ======= UTILS ======= */
