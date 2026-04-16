@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:19:45 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/13 16:46:54 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 18:41:29 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ static int	can_move(t_game *game, double new_x, double new_y)
 {
 	if (new_x < 0 || new_y < 0 || new_x >= WIDTH || new_y >= HEIGHT)
 		return (0);
-	if (game->map.grid[(int)new_y][(int)new_x] == WALL
-		|| game->map.grid[(int)new_y][(int)new_x] == DOOR_CLOSE)
+	if (game->map.grid[(int)(new_y + HITBOX)][(int)(new_x + HITBOX)] == WALL
+		|| game->map.grid[(int)(new_y + HITBOX)][(int)(new_x - HITBOX)] == WALL
+		|| game->map.grid[(int)(new_y - HITBOX)][(int)(new_x + HITBOX)] == WALL
+		|| game->map.grid[(int)(new_y - HITBOX)][(int)(new_x - HITBOX)] == WALL)
+		return (0);
+	if (game->map.grid[(int)new_y][(int)new_x] == DOOR_CLOSE)
 		return (0);
 	return (1);
 }

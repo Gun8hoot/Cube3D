@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/13 09:11:30 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/16 18:42:16 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 /* Game */
 # define UNLIMITED 99999 /* FPS no limit define */
 # define DEFAULT_FOV 66 /* Best FOV define */
+# define HITBOX 0.1 /* square 0.1 * 0.1 arround player */
 # define CR_PADD_CENTER 150
 # define ANIM_FRAME 30
 # define RELOADING_TIME 5 /* Reloading animation in second */
