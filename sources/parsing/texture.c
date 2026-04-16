@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:45:55 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/13 16:20:08 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 13:39:13 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_id	check_info_type(char *info)
 		return (C);
 	else if (ft_strncmp(info, "F ", 2) == 0)
 		return (F);
+	else if (ft_strncmp(info, "DO", 2) == 0)
+		return (DO);
 	else if (ft_strncmp(info, "NO", 2) == 0)
 		return (NO);
 	else if (ft_strncmp(info, "EA", 2) == 0)
@@ -98,6 +100,8 @@ bool	set_info_texture(t_map *map, char *info_string, t_id id)
 		return (get_color(&map->c_color, info_string));
 	else if (id == F)
 		return (get_color(&map->f_color, info_string));
+	else if (id == DO)
+		return (set_texture(&map->d_texture, &info_string[i]));
 	return (false);
 }
 

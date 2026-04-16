@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/15 10:51:06 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 13:37:39 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,8 @@ typedef enum e_id
 	NO = 3,
 	EA,
 	SO,
-	WE
+	WE,
+	DO
 }					t_id;
 
 typedef struct s_map

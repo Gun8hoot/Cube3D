@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:33:17 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/16 13:27:59 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 13:40:42 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	get_texture(t_ray *ray, t_game *game)
 {
 	t_img	*current_texture;
 
-	// char	wall_type;
-	// wall_type = game->map.grid[ray->map_y][ray->map_x];
+	char	wall_type;
+	wall_type = game->map.grid[ray->map_y][ray->map_x];
 	if (ray->side == 0)
 	{
 		if (ray->ray_dir.x > 0)
@@ -87,8 +87,8 @@ void	get_texture(t_ray *ray, t_game *game)
 		else
 			current_texture = &game->textures[0];
 	}
-	// if (wall_type == 'D')
-	// 	current_texture = &game->textures[4];
+	if (wall_type == 'D')
+		current_texture = &game->textures[4];
 	ray->current_texture = current_texture;
 }
 
