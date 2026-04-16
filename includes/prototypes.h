@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/13 16:52:42 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 15:50:19 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ int				weapon_gunfire(int keycode, int x, int y, t_game *game);
 bool			init_anim_weapon(t_game *game);
 void			reloading_anim(t_game *game);
 void			shooting_anim(t_game *game);
-
 /* -------------------- */
 /* ======= UTILS ======= */
 /* --- clean.c --- */
@@ -143,10 +142,10 @@ int			clear_game(t_game *game);
 /* --- mlx_utils.c --- */
 void			my_mlx_pixel_put(t_game *game, int x, int y, int color);
 /* --- time_based.c --- */
-ll				ms_time(ll *ll_ptr);
-ll				ms_to_s(ll timestamp, ll *ll_ptr);
-ll				timeval_to_ms(struct timeval time, ll *ll_ptr);
-ll				ms_time_cmp(ll timestamp1, ll timestamp2, ll *ll_ptr);
+t_ll				ms_time(t_ll *ll_ptr);
+t_ll				ms_to_s(t_ll timestamp, t_ll *ll_ptr);
+t_ll				timeval_to_ms(struct timeval time, t_ll *ll_ptr);
+t_ll				ms_time_cmp(t_ll timestamp1, t_ll timestamp2, t_ll *ll_ptr);
 /* -------------------- */
 
 #endif

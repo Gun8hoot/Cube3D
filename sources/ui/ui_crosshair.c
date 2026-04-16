@@ -15,7 +15,7 @@ void	crosshair(t_game *game)
 
 // void	hitmarker(t_game *game)
 // {
-// 	ll						value;
+// 	t_ll						value;
 
 // 	if (!game->weapon.is_shooting)
 // 		return ;

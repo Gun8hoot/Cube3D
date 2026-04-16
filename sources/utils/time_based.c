@@ -1,21 +1,21 @@
 
 #include "includes/cube3d.h"
 
-ll	ms_time(ll *ll_ptr)
+t_ll	ms_time(t_ll *ll_ptr)
 {
 	struct timeval	time;
-	ll				time_in_ms;
+	t_ll				time_in_ms;
 
 	gettimeofday(&time, 0);
-	time_in_ms = (ll)(time.tv_sec * 1000 + time.tv_usec / 1000);
+	time_in_ms = (t_ll)(time.tv_sec * 1000 + time.tv_usec / 1000);
 	if (ll_ptr)
 		*ll_ptr = time_in_ms;
 	return (time_in_ms);
 }
 
-ll	ms_to_s(ll timestamp, ll *ll_ptr)
+t_ll	ms_to_s(t_ll timestamp, t_ll *ll_ptr)
 {
-	ll	time_in_s;
+	t_ll	time_in_s;
 
 	errno = 0;
 	if (timestamp < 0)
@@ -29,21 +29,21 @@ ll	ms_to_s(ll timestamp, ll *ll_ptr)
 	return (time_in_s);
 }
 
-ll	timeval_to_ms(struct timeval time, ll *ll_ptr)
+t_ll	timeval_to_ms(struct timeval time, t_ll *ll_ptr)
 {
-	ll	time_in_ms;
+	t_ll	time_in_ms;
 
 	if (time.tv_usec == 0)
 		return (0);
-	time_in_ms = (ll)(time.tv_sec * 1000 + time.tv_usec / 1000);
+	time_in_ms = (t_ll)(time.tv_sec * 1000 + time.tv_usec / 1000);
 	if (ll_ptr)
 		*ll_ptr = time_in_ms;
 	return (time_in_ms);
 }
 
-ll	ms_time_cmp(ll timestamp1, ll timestamp2, ll *ll_ptr)
+t_ll	ms_time_cmp(t_ll timestamp1, t_ll timestamp2, t_ll *ll_ptr)
 {
-	ll	diff;
+	t_ll	diff;
 
 	errno = 0;
 	if (timestamp1 < 0 || timestamp2 < 0)

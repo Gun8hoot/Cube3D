@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 13:37:39 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 15:49:13 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 # include "includes/includes.h"
 
-typedef long long	ll;
+typedef long long	t_ll;
 
-/* --- RENDER --- */
 typedef struct s_anim
 {
 	struct timeval	start;
@@ -46,11 +45,10 @@ typedef struct s_fps
 {
 	struct timeval	frame_start;
 	struct timeval	frame_end;
-
-	double delta_fps; // a simple variable that calculate the time to process
+	double			delta_fps; 					// a simple variable that calculate the time to process
 	double			fps_timer;
-	int fps_counter;                // The fps counter;
-	struct timeval last_frame_time; // The timestamp of the last frame
+	int				fps_counter;                // The fps counter;
+	struct 			timeval last_frame_time;	// The timestamp of the last frame
 	char			string[16];
 }					t_fps;
 
@@ -119,92 +117,55 @@ typedef struct s_ray
 
 typedef struct s_minimap
 {
-	double ratio;
-		// The ratio used to zoom or unzoom the minimap in case of too big minimap
-	size_t pixel_per_elem;
-		// Number of pixel to display one element of a grid ex: 8 == 8 width * 8 height
-	size_t width_max;          // Width maximum we can get
-	size_t height_max;         // Height maximum we can get
-	size_t padding_top_bottom;
-		// The number of pixel for the map top/bottom padding
-	size_t padding_right_left;
-		// The number of pixel for the map right/left padding
+	double			ratio;				// The ratio used to zoom or unzoom the minimap in case of too big minimap
+	size_t			pixel_per_elem;		// Number of pixel to display one element of a grid ex: 8 == 8 width * 8 height
+	size_t			width_max;          // Width maximum we can get
+	size_t			height_max;         // Height maximum we can get
+	size_t			padding_top_bottom;	// The number of pixel for the map top/bottom padding
+	size_t			padding_right_left;	// The number of pixel for the map right/left padding
 	bool			was_on_door;
 }					t_minimap;
 
-/* --- MAP --- */
-typedef enum e_allow_char
-{
-	INVALID = 'X',    // Never used but here for safety
-	FLOOR = '0',      // Character of the floor
-	WALL = '1',       // Character of the wall
-	DOOR = 'D',       // Character of the initial door
-	DOOR_OPEN = 'O',  // Character of the opened door
-	DOOR_CLOSE = 'C', // Character of the closed door
-	SPACE = ' ',      // Character of a space
-	PLAYER = 'P'      // Character of a player
-}					t_allow_char;
-
-typedef enum e_start_looking
-{
-	NORTH = 0,
-	EAST = 1,
-	SOUTH = 2,
-	WEST = 3,
-}					t_start_looking;
-
-typedef enum e_id
-{
-	NONE = 0,
-	F = 1,
-	C = 2,
-	NO = 3,
-	EA,
-	SO,
-	WE,
-	DO
-}					t_id;
-
 typedef struct s_map
 {
-	int16_t fd;             // Map file fd
-	char **grid;            // BASE MAP
-	char **flood_filled;    // BASE MAP
-	char *filepath;         // Map filepath
-	char *no_texture;       // Path of texture NORTH
-	char *ea_texture;       // Path of texture EAST
-	char *so_texture;       // Path of texture SOUTH
-	char *we_texture;       // Path of texture WEST
-	char *d_texture;       // Path of door texture
-	size_t number_char_max; // Number of char max in the biggest line
-	size_t line_number;     // Map y size
-	size_t pos_start_map;   // Position of the map in the file
-	int f_color;            // COLOR OF THE FLOOR
-	int c_color;            // COLOR OF THE CELLING
-	int	door_num;
-	double start_pos[2];    // Position on the grid of the PLAYER start
-	double looking_at[2];   // Direction of the PLAYER start
-} t_map;                    // MAIN MAP STRUCTURE
+	int16_t			fd;             	// Map file fd
+	char			**grid;				// BASE MAP
+	char			**flood_filled;		// BASE MAP
+	char			*filepath;			// Map filepath
+	char			*no_texture;		// Path of texture NORTH
+	char			*ea_texture;		// Path of texture EAST
+	char			*so_texture;		// Path of texture SOUTH
+	char			*we_texture;		// Path of texture WEST
+	char			*d_texture;			// Path of door texture
+	size_t			number_char_max;	// Number of char max in the biggest line
+	size_t			line_number;		// Map y size
+	size_t			pos_start_map;		// Position of the map in the file
+	int				f_color;			// COLOR OF THE FLOOR
+	int				c_color;			// COLOR OF THE CELLING
+	int				door_num;
+	double			start_pos[2];		// Position on the grid of the PLAYER start
+	double			looking_at[2];		// Direction of the PLAYER start
+}					t_map;				// MAIN MAP STRUCTURE
 
 typedef struct s_game
 {
 	bool			loop_started;
-	long long old_time; // Timestamp to calculate time to render
-	t_map map;               // Overall map structure
-	t_img r_img;             // raycasting
-	t_img *w_img;             // weapon
-	t_img textures[5];       // Wall textures [NO, SO, EA, WE, door]
-	t_minimap minimap;       // Minimap data structure
-	t_weapon weapon;         // Weapon related data
-	t_player player;         // Player data structure
-	t_render render;         // Render data structure
-	t_ray ray;               // Raycasting data structure
-	void *mlx;               // Pointer to MLX data
-	void *win;               // Pointer to window
-	int keys_pressed[65535]; // Keys input arrays
+	long long		old_time;				// Timestamp to calculate time to render
+	t_map			map;					// Overall map structure
+	t_img			r_img;					// raycasting
+	t_img			*w_img;					// weapon
+	t_img			textures[5];			// Wall textures [NO, SO, EA, WE, door]
+	t_minimap		minimap;				// Minimap data structure
+	t_weapon 		weapon;					// Weapon related data
+	t_player		player;					// Player data structure
+	t_render		render;					// Render data structure
+	t_ray			ray;					// Raycasting data structure
+	void			*mlx;					// Pointer to MLX data
+	void			*win;					// Pointer to window
+	int				keys_pressed[65535];	// Keys input arrays
 	int				old_mouse_pos;
-	t_fps fps;               // Structure that contained fps related data
-	int		exit_code;		// Exit code for clear_game
-} t_game;                    // All game data
+	t_fps			fps;					// Structure that contained fps related data
+	int				exit_code;				// Exit code for clear_game
+} 					t_game;					// All game data
 
 #endif

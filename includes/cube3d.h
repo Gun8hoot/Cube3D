@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/02 11:38:39 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 15:51:44 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUBE3D_H
 
 # include "includes/define.h"
+# include "includes/enum.h"
 # include "includes/error.h"
 # include "includes/includes.h"
 # include "includes/prototypes.h"
