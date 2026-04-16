@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 10:23:11 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/13 16:48:21 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 19:11:54 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	ui(t_game *game)
 	show_fps(game);
 	bullet_nb(game);
 	mouse(game);
-	// hitmarker(game);
 }
 
 static int	game_loop(t_game *game)

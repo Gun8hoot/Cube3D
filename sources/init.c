@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 15:42:33 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 16:48:10 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 19:11:32 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ bool	init_game(t_game *game)
 	game->r_img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->r_img.img)
 		return (fprintf(stderr, MLX_ERROR), false);
-	game->r_img.addr = mlx_get_data_addr(game->r_img.img, &game->r_img.bits_per_pixel, &game->r_img.line_length, &game->r_img.endian);
+	game->r_img.addr = mlx_get_data_addr(game->r_img.img,
+			&game->r_img.bits_per_pixel, &game->r_img.line_length,
+			&game->r_img.endian);
 	if (!game->r_img.addr)
 		return (fprintf(stderr, MLX_ERROR), false);
 	if (!load_wall(game))
@@ -37,6 +39,7 @@ bool	init_game(t_game *game)
 		return (false);
 	return (true);
 }
+
 void	init_render(t_game *game)
 {
 	game->render.plane_length = tan((FOV * M_PI / 180.0) / 2.0);
