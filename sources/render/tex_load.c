@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:42:14 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/15 10:53:04 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 13:28:05 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,12 @@ bool	load_textures(t_game *game)
 	char	*paths[5] = {game->map.no_texture, game->map.so_texture,
 			game->map.ea_texture, game->map.we_texture, game->map.d_texture};
 	i = 0;
-	while (i < 5)
+	while (i < 4)
 	{
 		if (!paths[i])
 		{
-			if (i < 4)
-			{
-                ft_fprintf(2, "Error: Texture path %d is NULL\x1b[0m\n", i);
-                return (false);
-			}
-            i++;
-            continue ;
+            ft_fprintf(2, "Error: Texture path %d is NULL\x1b[0m\n", i);
+            return (false);
 		}
 		game->textures[i].img = mlx_xpm_file_to_image(game->mlx, paths[i],
 				&tex_width, &tex_height);

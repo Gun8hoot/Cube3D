@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:33:17 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/15 10:57:15 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/16 13:27:59 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,27 @@ void	draw_textured_line(t_game *game, int x, int img_x)
 
 void	get_texture(t_ray *ray, t_game *game)
 {
-	if (game->map.grid[ray->map_y][ray->map_x] == DOOR_OPEN
-        || game->map.grid[ray->map_y][ray->map_x] == DOOR_CLOSE)
-        ray->current_texture = &game->textures[4];
-    else if (ray->side == 0 && ray->ray_dir.y < 0)
-        ray->current_texture = &game->textures[0];
-    else if (ray->side == 0 && ray->ray_dir.y > 0)
-        ray->current_texture = &game->textures[1];
-    else if (ray->side == 1 && ray->ray_dir.x > 0)
-        ray->current_texture = &game->textures[2];
-    else if (ray->side == 1 && ray->ray_dir.x < 0)
-        ray->current_texture = &game->textures[3];
+	t_img	*current_texture;
+
+	// char	wall_type;
+	// wall_type = game->map.grid[ray->map_y][ray->map_x];
+	if (ray->side == 0)
+	{
+		if (ray->ray_dir.x > 0)
+			current_texture = &game->textures[2];
+		else
+			current_texture = &game->textures[3];
+	}
+	else
+	{
+		if (ray->ray_dir.y > 0)
+			current_texture = &game->textures[1];
+		else
+			current_texture = &game->textures[0];
+	}
+	// if (wall_type == 'D')
+	// 	current_texture = &game->textures[4];
+	ray->current_texture = current_texture;
 }
 
 int	convert_coords_textures(t_ray *ray, t_game *game)
