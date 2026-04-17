@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nclavel <nclavel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:08:25 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/02 12:03:54 by nclavel          ###   ########.fr       */
+/*   Updated: 2026/04/17 12:45:30 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,38 +75,4 @@ char	*ft_strdup_mod(char *s)
 		dup[i++] = '\n';
 	dup[i] = '\0';
 	return (dup);
-}
-
-char	*ft_strjoin_mod(char *s1, char *s2)
-{
-	size_t	i;
-	size_t	j;
-	char	*join;
-
-	if (!s1)
-	{
-		s1 = malloc(1);
-		if (!s1)
-			return (errno = EGNL, NULL);
-		s1[0] = 0;
-	}
-	if (!s2)
-		return (s1);
-	join = malloc(ft_strlen_mod(s1) + ft_strlen_mod(s2) + 1);
-	if (join == NULL)
-		return (errno = EGNL, NULL);
-	j = 0;
-	i = ft_strlen_mod(s1);
-	ft_strcpy_mod(join, s1);
-	while (s2[j])
-	{
-		join[i + j] = s2[j];
-		j++;
-	}
-	if (s1)
-	{
-		free(s1);
-		s1 = NULL;
-	}
-	return (join[i + j] = '\0', join);
 }

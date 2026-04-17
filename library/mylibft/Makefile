@@ -59,7 +59,8 @@ SOURCES =    ft_atoi.c\
             ft_printf_utils.c\
             ft_printf_utils2.c\
             get_next_line.c\
-            get_next_line_utils.c
+            get_next_line_utils.c\
+            gnl_utils.c
 
 OBJETS = $(SOURCES:%.c=%.o)
 
