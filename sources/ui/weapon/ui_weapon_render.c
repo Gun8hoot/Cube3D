@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:38:41 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 12:38:42 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:32:16 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,10 @@ bool	init_anim_weapon(t_game *game)
 	return (true);
 }
 
-void	weapon(t_game *game, t_img img)
+static void	set_weapon_pos(t_game *game, t_img img)
 {
-	int	x;
-	int	y;
 	int	offset;
 
-	if (!img.img)
-		return ;
 	game->weapon.start_x = WIDTH - img.width;
 	game->weapon.start_y = HEIGHT - img.height;
 	if (game->weapon.is_animating)
@@ -55,6 +51,13 @@ void	weapon(t_game *game, t_img img)
 		game->weapon.start_y += offset * 2;
 		game->weapon.start_x -= offset;
 	}
+}
+
+static void	draw_weapon_texture(t_game *game, t_img img)
+{
+	int	x;
+	int	y;
+
 	y = 0;
 	while (y < img.height)
 	{
@@ -71,4 +74,12 @@ void	weapon(t_game *game, t_img img)
 		}
 		y++;
 	}
+}
+
+void	weapon(t_game *game, t_img img)
+{
+	if (!img.img)
+		return ;
+	set_weapon_pos(game, img);
+	draw_weapon_texture(game, img);
 }
