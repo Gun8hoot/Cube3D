@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:50:21 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/13 14:54:44 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 13:15:48 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ void	ft_dda(t_ray *ray, t_game *game)
 	}
 }
 
-void	check_hit(t_ray *ray, t_game *game)
+static void	dda_steps(t_ray *ray, t_game *game)
 {
-	ray->hit = 0;
 	while (ray->hit == 0)
 	{
 		if (ray->side_dist.x < ray->side_dist.y)
@@ -64,6 +63,12 @@ void	check_hit(t_ray *ray, t_game *game)
 			|| game->map.grid[ray->map_y][ray->map_x] == DOOR_CLOSE)
 			ray->hit = 1;
 	}
+}
+
+void	check_hit(t_ray *ray, t_game *game)
+{
+	ray->hit = 0;
+	dda_steps(ray, game);
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->side_dist.x - ray->delta_dist.x);
 	else

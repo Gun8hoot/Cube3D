@@ -6,7 +6,7 @@
 #    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/13 16:55:50 by thlibers         ###   ########.fr        #
+#    Updated: 2026/04/17 13:19:54 by thlibers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = cube3D
 CC = cc
 OFLAG = -O3
 GFLAG = -g3 -ggdb
-CFLAGS = -Wall -Wextra -Werror $(GFLAG) -I.
+CFLAGS = -Wall -Wextra -Werror $(OFLAG) -I.
 INCLUDES = -I./includes
 
 # Flags Mlx
