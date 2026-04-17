@@ -56,8 +56,10 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2)
-		return (ft_fprintf(STDERR_FILENO, ARG_ERROR), 1);
+	if (argc < 2)
+		return (fprintf(stderr, NOE_ARG_ERROR), 1);
+	else if (argc > 2)
+		return (fprintf(stderr, TOO_ARG_ERROR), 1);
 	if (!init(&game, argv[1]))
 	{
 		game.exit_code = 1;

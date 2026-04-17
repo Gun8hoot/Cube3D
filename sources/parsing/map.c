@@ -18,9 +18,9 @@ bool	check_extension(char *filepath)
 
 	len = ft_strlen(filepath) - 1;
 	if (!filepath || filepath[0] == '\0')
-		return (false);
+		return (fprintf(stderr, STR_PATH_ERROR), false);
 	if (ft_strncmp(&filepath[len - 3], ".cub", 4) != 0)
-		return (false);
+		return (fprintf(stderr, FILENAME_CUB_ERROR, filepath), false);
 	return (true);
 }
 
@@ -68,7 +68,7 @@ t_map	*extract_info(t_map *map)
 	i = 0;
 	map->fd = open(map->filepath, O_RDONLY);
 	if (map->fd < 3)
-		return (NULL);
+		return (fprintf(stderr, OPEN_ERROR, map->filepath), NULL);
 	while (i == 0 || raw_line)
 	{
 		raw_line = get_next_line(map->fd);
@@ -100,7 +100,7 @@ char	**extract_map(t_map *map)
 	raw_line = NULL;
 	map->fd = open(map->filepath, O_RDONLY);
 	if (map->fd < 3)
-		return (NULL);
+		return (fprintf(stderr, OPEN_ERROR, map->filepath), NULL);
 	map->grid = ft_calloc(map->line_number + 1, sizeof(char *));
 	if (!map->grid)
 		return (NULL);
@@ -117,7 +117,7 @@ char	**extract_map(t_map *map)
 		raw_line = get_next_line(map->fd);
 		if (errno == EGNL)
 			return (NULL);
-		if (raw_line && raw_line[0] != '\0')
+		if (raw_line && raw_line[0] != '\0' && raw_line[0] != '\n')
 		{
 			map->grid[i] = ft_strtrim(raw_line, "\n");
 			if (!map->grid[i])
@@ -127,7 +127,10 @@ char	**extract_map(t_map *map)
 			i++;
 		}
 		else
+		{
+			map->grid[i] = NULL;
 			break ;
+		}
 	}
 	return (map->grid);
 }

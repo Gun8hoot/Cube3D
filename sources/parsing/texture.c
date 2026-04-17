@@ -32,7 +32,7 @@ t_id	check_info_type(char *info)
 		return (NONE);
 }
 
-bool	get_color(int *color, char *line)
+bool	get_color(int **color, char *line)
 {
 	int		shift;
 	size_t	i;
@@ -42,7 +42,9 @@ bool	get_color(int *color, char *line)
 
 	i = 0;
 	shift = 16;
-	ft_bzero(&number, sizeof(int));
+	*color = ft_calloc(1, sizeof(int));
+	if (!*color)
+		return (fprintf(stderr, ALLOC_ERROR), false);
 	while (line[i] && !ft_isdigit(line[i]))
 		i++;
 	while (line[i])
@@ -54,12 +56,11 @@ bool	get_color(int *color, char *line)
 			j++;
 		if (line[i + j] != ',' && line[i + j] != '\0')
 			return (false);
-		if (!ft_strlcpy(number, &line[i], j + 1))
-			return (ft_fprintf(STDERR_FILENO, CPY_ERROR), false);
+		ft_strlcpy(number, &line[i], j + 1);
 		tmp = ft_atoi(number);
-		if (tmp < 0 || tmp > 255)
+		if (ft_strlen(number) > 3 || tmp < 0 || tmp > 255)
 			return (ft_fprintf(STDERR_FILENO, OOB_ERROR), false);
-		*color += tmp << shift;
+		**color += tmp << shift;
 		shift -= 8;
 		if (line[i + j] == '\0')
 			i += j;

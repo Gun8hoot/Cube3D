@@ -146,8 +146,8 @@ typedef struct s_map
 	size_t			number_char_max;	// Num of char max in the biggest line
 	size_t			line_number;		// Map y size
 	size_t			pos_start_map;		// Position of the map in the file
-	int				f_color;			// COLOR OF THE FLOOR
-	int				c_color;			// COLOR OF THE CELLING
+	int				*f_color;			// COLOR OF THE FLOOR
+	int				*c_color;			// COLOR OF THE CELLING
 	int				door_num;
 	double			start_pos[2];		// Pos on the grid of the PLAYER start
 	double			looking_at[2];		// Direction of the PLAYER start

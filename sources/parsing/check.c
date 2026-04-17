@@ -65,7 +65,7 @@ bool	get_player_pos(t_map *map)
 		i++;
 	}
 	if (map->looking_at[0] == 0.0 && map->looking_at[1] == 0.0)
-		return (ft_fprintf(STDERR_FILENO, "ABC\n"), false);
+		return (ft_fprintf(STDERR_FILENO, PLAYER_ERR), false);
 	return (true);
 }
 
@@ -114,16 +114,19 @@ bool	check_floodfill(char **grid)
 
 bool	floodfill(size_t x, size_t y, t_map *map, char c)
 {
-	if (x < 0 || x >= ft_strlen(map->flood_filled[y]) || y < 0
-			|| y >= map->line_number || map->flood_filled[y][x] == '1'
-			|| map->flood_filled[y][x] == 'F')
-		return (true);
-	if ((map->flood_filled[y][x + 1] && (map->flood_filled[y][x + 1] == ' ' || !map->flood_filled[y][x + 1]))
-			|| (map->flood_filled[y][x + 1] && (map->flood_filled[y][x + 1] == ' ' || !map->flood_filled[y][x + 1]))
-			|| (x >= ft_strlen(map->flood_filled[y + 1]) && map->flood_filled[y + 1][x] && (map->flood_filled[y + 1][x] == ' ' || !map->flood_filled[y + 1][x]))
-			|| (x >= ft_strlen(map->flood_filled[y - 1]) && map->flood_filled[y - 1][x] && (map->flood_filled[y - 1][x] == ' ' || !map->flood_filled[y - 1][x])))
+	if (x < 0 || x > map->number_char_max || y < 0 || y > map->line_number)
 		return (false);
+	if (map->flood_filled[y][x] != '1' && (
+		!map->flood_filled[y][x + 1] || (map->flood_filled[y][x + 1] == ' ')) )
+		return (false);
+	if (map->flood_filled[y][x] != '1' && (
+		!map->flood_filled[y][x - 1] || (map->flood_filled[y][x - 1] == ' ')) )
+		return (false);
+
+	if (map->flood_filled[y][x] == '1' || map->flood_filled[y][x] == 'F')
+		return (true);
 	map->flood_filled[y][x] = c;
+
 	if (!floodfill(x, y - 1, map, c))
 		return (false);
 	if (!floodfill(x, y + 1, map, c))
@@ -134,8 +137,6 @@ bool	floodfill(size_t x, size_t y, t_map *map, char c)
 		return (false);
 	return (true);
 }
-
-
 
 bool	check_parsing(t_map *map)
 {
@@ -149,5 +150,9 @@ bool	check_parsing(t_map *map)
 		return (fprintf(stderr, MISS_TEXT_ERROR, "SO"), false);
 	if (!map->we_texture)
 		return (fprintf(stderr, MISS_TEXT_ERROR, "WE"), false);
+	if (!map->c_color)
+		return (fprintf(stderr, MISS_TEXT_ERROR, "C"), false);
+	if (!map->f_color)
+		return (fprintf(stderr, MISS_TEXT_ERROR, "F"), false);
 	return (true);
 }

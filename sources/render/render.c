@@ -23,7 +23,7 @@ void	celling_floor(t_game *game)
 		x = 0;
 		while (x <= WIDTH)
 		{
-			my_mlx_pixel_put(game, x, y, game->map.c_color);
+			my_mlx_pixel_put(game, x, y, *game->map.c_color);
 			x++;
 		}
 		y++;
@@ -33,7 +33,7 @@ void	celling_floor(t_game *game)
 		x = 0;
 		while (x <= WIDTH)
 		{
-			my_mlx_pixel_put(game, x, y, game->map.f_color);
+			my_mlx_pixel_put(game, x, y, *game->map.f_color);
 			x++;
 		}
 		y++;

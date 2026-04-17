@@ -23,12 +23,12 @@ bool	load_wall(t_game *game)
 	while (i < 5)
 	{
 		if (!paths[i] && i == 4)
-			break ;
-		printf("\x1b[0;33m[+] Loading '%s'\n\x1b[0m", paths[i]);
+			break;
 		game->textures[i].img = mlx_xpm_file_to_image(game->mlx, paths[i],
 				&game->textures[i].width, &game->textures[i].height);
 		if (!game->textures[i].img)
 			return (ft_fprintf(2, TEXT_ERROR, paths[i]), false);
+		printf("\x1b[0;33m[+] Loading '%s'\n\x1b[0m", paths[i]);
 		game->textures[i].addr = mlx_get_data_addr(game->textures[i].img,
 				&game->textures[i].bits_per_pixel,
 				&game->textures[i].line_length, &game->textures[i].endian);

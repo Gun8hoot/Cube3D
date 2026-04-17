@@ -72,6 +72,8 @@ t_map	*init_map(t_map *map, char *filepath)
 bool	init(t_game *game, char *filepath)
 {
 	ft_memset(game, '\0', sizeof(t_game));
+	if (!check_extension(filepath))
+		return (false);
 	if (!init_map(&game->map, filepath))
 		return (false);
 	if (!calculate_minimap(game))
