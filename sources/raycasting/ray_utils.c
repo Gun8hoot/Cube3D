@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:33:17 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/16 13:40:42 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 12:26:09 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ static int	get_texture_color(t_img *r_img, int x, int y)
 
 void	draw_textured_line(t_game *game, int x, int img_x)
 {
-	int		y;
 	double	step;
 	double	tex_pos;
+	int		y;
 	int		img_y;
-	int		color;
 	t_img	*tex;
 
 	tex = game->ray.current_texture;
@@ -61,8 +60,7 @@ void	draw_textured_line(t_game *game, int x, int img_x)
 		if (img_y >= tex->height)
 			img_y = tex->height - 1;
 		tex_pos += step;
-		color = get_texture_color(tex, img_x, img_y);
-		my_mlx_pixel_put(game, x, y, color);
+		my_mlx_pixel_put(game, x, y, get_texture_color(tex, img_x, img_y));
 		y++;
 	}
 }
@@ -70,8 +68,8 @@ void	draw_textured_line(t_game *game, int x, int img_x)
 void	get_texture(t_ray *ray, t_game *game)
 {
 	t_img	*current_texture;
-
 	char	wall_type;
+
 	wall_type = game->map.grid[ray->map_y][ray->map_x];
 	if (ray->side == 0)
 	{
