@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/17 17:44:21 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:55:52 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_line
 	t_vec			d;
 	t_vec			s;
 	int				err;
+	int				e2;
 }					t_line;
 
 typedef struct s_render
