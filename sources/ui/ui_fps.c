@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:34:33 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 12:35:44 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:41:24 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	fps_limiter(t_game *game)
 	elapsed = (game->fps.frame_end.tv_sec - game->fps.frame_start.tv_sec)
 		* 1000000 + (game->fps.frame_end.tv_usec
 			- game->fps.frame_start.tv_usec);
-	sleep_time.tv_nsec = (FPS_TIME - elapsed) * 1000;
+	sleep_time.tv_nsec = (1000000.0 / FPS - elapsed) * 1000;
 	sleep_time.tv_sec = 0;
 	if (sleep_time.tv_nsec > 0)
 		nanosleep(&sleep_time, 0);

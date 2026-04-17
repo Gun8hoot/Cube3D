@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 18:50:51 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:43:07 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define ANIM_FRAME 30
 # define RELOADING_TIME 5 /* Reloading animation in second */
 # define SHOOTING_TIME 2 /* Shooting animation in second */
-# define FPS_TIME (1000000.0 / FPS) /* Convert nanosec per frame */
+// # define FPS_TIME (1000000.0 / FPS) /* Convert nanosec per frame */
 # define ROT_SPEED 0.025
 # define PLA_SPEED 0.05
 # define M_PI 3.141592653589793
@@ -62,12 +62,12 @@
 
 /* MINIMAP */
 # define PIXEL_PER_TILES 8
-# define MINIMAP_WIDTH WIDTH / 4
-# define MINIMAP_HEIGHT HEIGHT / 4
+// # define MINIMAP_WIDTH WIDTH / 4
+// # define MINIMAP_HEIGHT HEIGHT / 4
 # define BACKBOX_PADD 4
 # define FRONTBOX_PADD 6
 # define INBOX_PADD 10
-# define TOT_PADD BACKBOX_PADD + FRONTBOX_PADD
+// # define TOT_PADD BACKBOX_PADD + FRONTBOX_PADD
 # define DEFAULT_ELEM_SIZE 16
 # define RAY_PRECISION 0.1
 

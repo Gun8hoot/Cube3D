@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:36:27 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 18:25:51 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:40:41 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static bool	minimap_padding(t_game *game, size_t data, size_t inferior_to)
 	}
 	if (has_modify == true)
 		return (false);
-	if (inferior_to == MINIMAP_WIDTH)
-		game->minimap.padding_right_left = (MINIMAP_WIDTH - px_per_line) / 2;
+	if (inferior_to == WIDTH / 4)
+		game->minimap.padding_right_left = (WIDTH / 4 - px_per_line) / 2;
 	else
-		game->minimap.padding_top_bottom = (MINIMAP_HEIGHT - px_per_line) / 2;
+		game->minimap.padding_top_bottom = (HEIGHT / 4 - px_per_line) / 2;
 	return (true);
 }
 
@@ -43,9 +43,9 @@ bool	calculate_minimap(t_game *game)
 	game->minimap.pixel_per_elem = DEFAULT_ELEM_SIZE;
 	while (game->minimap.pixel_per_elem > 0)
 	{
-		if (!minimap_padding(game, game->map.line_number, MINIMAP_HEIGHT))
+		if (!minimap_padding(game, game->map.line_number, HEIGHT / 4))
 			continue ;
-		if (!minimap_padding(game, game->map.number_char_max, MINIMAP_WIDTH))
+		if (!minimap_padding(game, game->map.number_char_max, WIDTH / 4))
 			continue ;
 		break ;
 	}
@@ -93,8 +93,8 @@ void	show_minimap(t_game *game)
 	double	py;
 	double	px;
 
-	draw_box(game, (t_vec){MINIMAP_WIDTH + 4, MINIMAP_HEIGHT + 4}, 0xFFFFFF, 4);
-	draw_box(game, (t_vec){MINIMAP_WIDTH, MINIMAP_HEIGHT}, 0x202020, 8);
+	draw_box(game, (t_vec){WIDTH / 4 + 4, HEIGHT / 4 + 4}, 0xFFFFFF, 4);
+	draw_box(game, (t_vec){WIDTH / 4, HEIGHT / 4}, 0x202020, 8);
 	py = game->minimap.padding_top_bottom + 4;
 	for (double y = 0; game->map.grid[(size_t)y]; y++)
 	{

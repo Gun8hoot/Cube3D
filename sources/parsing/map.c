@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:41:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/13 14:52:21 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:36:02 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	check_extension(char *filepath)
 	if (!filepath || filepath[0] == '\0')
 		return (fprintf(stderr, STR_PATH_ERROR), false);
 	if (ft_strncmp(&filepath[len - 3], ".cub", 4) != 0)
-		return (fprintf(stderr, FILENAME_CUB_ERROR, filepath), false);
+		return (fprintf(stderr, FNAME_ERROR, filepath), false);
 	return (true);
 }
 

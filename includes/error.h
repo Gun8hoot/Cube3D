@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/13 13:46:41 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:35:41 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define MISS_MAP_ERROR "\x1b[0;31mError:\nMissing map in '%s'\x1b[0m\n"
 # define MISS_TEXT_ERROR "\x1b[0;31mError:\nMissing %s identifier\x1b[0m\n"
 # define STR_PATH_ERROR "\x1b[0;31mError:\nMissing filename\x1b[0m\n"
-# define FILENAME_CUB_ERROR "\x1b[0;31mError:\nMissing '.cub' at end of '%s'\x1b[0m\n"
+# define FNAME_ERROR "\x1b[0;31mError:\nMissing '.cub' at end of '%s'\x1b[0m\n"
 # define MULT_PLAYER_ERROR "\x1b[0;31mError:\nMultiple user defined\x1b[0m\n"
 # define PLAYER_ERR "\x1b[0;31mError:\nMissing player on map\x1b[0m\n"
 # define TOO_BIG_ERROR "\x1b[0;31mError:\nMap is too big\x1b[0m\n"
