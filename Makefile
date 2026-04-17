@@ -6,7 +6,7 @@
 #    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/17 18:23:17 by thlibers         ###   ########.fr        #
+#    Updated: 2026/04/17 19:32:17 by thlibers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,12 +50,13 @@ SRCS =	$(SRC_DIR)/environement/door.c\
 		$(SRC_DIR)/render/render.c\
 		$(SRC_DIR)/render/shape.c\
 		$(SRC_DIR)/render/tex_load.c\
-		$(SRC_DIR)/ui/ui_crosshair.c\
-		$(SRC_DIR)/ui/ui_fps.c\
-		$(SRC_DIR)/ui/ui_minimap.c\
+		$(SRC_DIR)/ui/minimap/ui_minimap.c\
+		$(SRC_DIR)/ui/minimap/ui_vision.c\
 		$(SRC_DIR)/ui/weapon/ui_weapon.c\
 		$(SRC_DIR)/ui/weapon/ui_weapon_animation.c\
 		$(SRC_DIR)/ui/weapon/ui_weapon_render.c\
+		$(SRC_DIR)/ui/ui_crosshair.c\
+		$(SRC_DIR)/ui/ui_fps.c\
 		$(SRC_DIR)/utils/clean.c\
 		$(SRC_DIR)/utils/free.c\
 		$(SRC_DIR)/utils/mlx_utils.c\

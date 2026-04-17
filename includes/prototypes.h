@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/17 18:24:38 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:30:54 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void			fps_limiter(t_game *game);
 /* --- ui_minimap.c --- */
 bool			calculate_minimap(t_game *game);
 void			show_minimap(t_game *game);
+void			show_vision(t_game *game);
 /* --- ui_weapon.c --- */
 void			bullet_nb(t_game *game);
 void			weapon_reload(t_game *game);
