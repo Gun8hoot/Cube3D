@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:42:14 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 12:31:54 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 12:42:18 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 bool	load_wall(t_game *game)
 {
 	int		i;
-	char	*paths[5];
-
-	path[5] = {game->map.no_texture, game->map.so_texture,
+	char	*paths[5] = {game->map.no_texture, game->map.so_texture,
 		game->map.ea_texture, game->map.we_texture, game->map.d_texture};
+
 	i = 0;
 	while (i < 5)
 	{
