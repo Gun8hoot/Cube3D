@@ -122,6 +122,12 @@ bool	floodfill(size_t x, size_t y, t_map *map, char c)
 	if (map->flood_filled[y][x] != '1' && (
 		!map->flood_filled[y][x - 1] || (map->flood_filled[y][x - 1] == ' ')) )
 		return (false);
+	if (map->flood_filled[y][x] != '1' && (
+		!map->flood_filled[y - 1][x] || (map->flood_filled[y - 1][x] == ' ')) )
+		return (false);
+	if (map->flood_filled[y][x] != '1' && (
+		!map->flood_filled[y + 1][x] || (map->flood_filled[y + 1][x] == ' ')) )
+		return (false);
 
 	if (map->flood_filled[y][x] == '1' || map->flood_filled[y][x] == 'F')
 		return (true);
