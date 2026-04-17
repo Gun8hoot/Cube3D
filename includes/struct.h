@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 19:07:05 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 16:29:20 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,22 @@ typedef struct s_img
 	int				endian;
 }					t_img;
 
-typedef struct s_vec
+typedef struct s_fvec
 {
 	double			x;
 	double			y;
 	double			z;
+}					t_fvec;
+
+typedef struct s_vec
+{
+	int				x;
+	int				y;
 }					t_vec;
 
 typedef struct s_render
 {
-	t_vec			plane;
+	t_fvec			plane;
 	double			plane_length;
 	double			oldtime;
 	double			time;
@@ -102,11 +108,11 @@ typedef struct s_weapon
 typedef struct s_ray
 {
 	t_img			*current_texture;
-	t_vec			step;
-	t_vec			cam;
-	t_vec			ray_dir;
-	t_vec			side_dist;
-	t_vec			delta_dist;
+	t_fvec			step;
+	t_fvec			cam;
+	t_fvec			ray_dir;
+	t_fvec			side_dist;
+	t_fvec			delta_dist;
 	double			perp_wall_dist;
 	int				wall_pos[2];
 	int				map_x;

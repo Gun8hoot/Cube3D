@@ -6,13 +6,14 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:50:21 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 13:15:48 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 15:31:14 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-void	ft_dda(t_ray *ray, t_game *game)
+// Digital Differential Analyzer
+void	setup_dda(t_ray *ray, t_game *game)
 {
 	if (ray->ray_dir.x < 0)
 	{
@@ -91,7 +92,7 @@ void	ft_rayshooter(t_ray *ray, t_game *game)
 		ray->map_y = (int)game->player.pos_y;
 		ray->delta_dist.x = fabs(1.0 / ray->ray_dir.x);
 		ray->delta_dist.y = fabs(1.0 / ray->ray_dir.y);
-		ft_dda(ray, game);
+		setup_dda(ray, game);
 		check_hit(ray, game);
 		line_height(&game->render, *ray);
 		get_texture(ray, game);

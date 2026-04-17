@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 18:54:02 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 16:37:01 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void			draw_textured_line(t_game *game, int x, int img_x);
 void			get_texture(t_ray *ray, t_game *game);
 int				convert_coords_textures(t_ray *ray, t_game *game);
 /* --- raycasting.c --- */
-void			ft_dda(t_ray *ray, t_game *game);
+void			setup_dda(t_ray *ray, t_game *game);
 void			check_hit(t_ray *ray, t_game *game);
 void			ft_rayshooter(t_ray *ray, t_game *game);
 /* -------------------- */
@@ -105,11 +105,9 @@ void			celling_floor(t_game *game);
 void			weapon(t_game *game, t_img img);
 void			animating_weapon(t_game *game);
 /* --- shape.c --- */
-void			draw_box(t_game *game, int max_x, int max_y,
-					int color, int pad);
-void			draw_square(t_game *game, int pos_y, int pos_x,
-					int len, int color);
-void			draw_line(t_game *game, int x0, int y0, int x1, int y1);
+void			draw_box(t_game *game, t_vec max, int color, int pad);
+void			draw_square(t_game *game, t_vec pos, int len, int color);
+void			draw_line(t_game *game, t_vec *v0, t_vec *v1);
 /* --- load_texture.c --- */
 bool			load_wall(t_game *game);
 t_img			*ft_text_load(t_game *game, t_img *img, char *texture);

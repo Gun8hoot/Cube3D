@@ -6,22 +6,22 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:42:31 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/09 14:42:32 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 16:35:29 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-void	draw_box(t_game *game, int max_x, int max_y, int color, int pad)
+void	draw_box(t_game *game, t_vec max, int color, int pad)
 {
 	int	x;
 	int	y;
 
 	y = pad;
-	while (y < max_y)
+	while (y < max.y)
 	{
 		x = pad;
-		while (x < max_x)
+		while (x < max.x)
 		{
 			my_mlx_pixel_put(game, x, y, color);
 			x++;
@@ -30,16 +30,16 @@ void	draw_box(t_game *game, int max_x, int max_y, int color, int pad)
 	}
 }
 
-void	draw_square(t_game *game, int pos_y, int pos_x, int len, int color)
+void	draw_square(t_game *game, t_vec pos, int len, int color)
 {
 	int	x;
 	int	y;
 
-	y = pos_y;
-	while (y < pos_y + len)
+	y = pos.y;
+	while (y < pos.y + len)
 	{
-		x = pos_x;
-		while (x < pos_x + len)
+		x = pos.x;
+		while (x < pos.x + len)
 		{
 			my_mlx_pixel_put(game, x, y, color);
 			x++;
@@ -49,35 +49,39 @@ void	draw_square(t_game *game, int pos_y, int pos_x, int len, int color)
 	(void)game;
 }
 
-void	draw_line(t_game *game, int x0, int y0, int x1, int y1)
+void	draw_line(t_game *game, t_vec *v0, t_vec *v1)
 {
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
+	t_vec d;
+	t_vec s;
 	int	err;
 	int	e2;
 
-	dx = abs(x1 - x0);
-	dy = abs(y1 - y0);
-	sx = (x0 < x1) ? 1 : -1;
-	sy = (y0 < y1) ? 1 : -1;
-	err = dx - dy;
+	d.x = abs(v1->x - v0->x);
+	d.y = abs(v1->y - v0->y);
+	if (v0->x < v1->x)
+		s.x = 1;
+	else
+		s.x = -1;
+	if (v0->y < v1->y)
+		s.y = 1;
+	else
+		s.y = -1;
+	err = (int)d.x - (int)d.y;
 	while (1)
 	{
-		mlx_pixel_put(game->mlx, game->win, x0, y0, 0xFFFFFF);
-		if (x0 == x1 && y0 == y1)
+		mlx_pixel_put(game->mlx, game->win, v0->x, v0->y, 0xFFFFFF);
+		if (v0->x == v1->x && v0->y == v1->y)
 			break ;
 		e2 = 2 * err;
-		if (e2 > -dy)
+		if (e2 > -(int)d.y)
 		{
-			err -= dy;
-			x0 += sx;
+			err -= (int)d.y;
+			v0->x += s.x;
 		}
-		if (e2 < dx)
+		if (e2 < (int)d.x)
 		{
-			err += dx;
-			y0 += sy;
+			err += (int)d.x;
+			v0->y += s.y;
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 13:37:48 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 12:38:10 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 15:31:42 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	shoot(t_game *game)
 	ray.map_y = (int)game->player.pos_y;
 	ray.delta_dist.x = fabs(1.0 / ray.ray_dir.x);
 	ray.delta_dist.y = fabs(1.0 / ray.ray_dir.y);
-	ft_dda(&ray, game);
+	setup_dda(&ray, game);
 	check_hit(&ray, game);
 	if (ray.hit == 1)
 	{
