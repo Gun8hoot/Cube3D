@@ -6,24 +6,32 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:42:14 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 12:42:18 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:14:56 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-// taille des textures 64x64, 128x128 ou 256x256 pixels.
+static void	asign_texture_path(t_game *game, char **path)
+{
+	path[0] = game->map.no_texture;
+	path[1] = game->map.so_texture;
+	path[2] = game->map.ea_texture;
+	path[3] = game->map.we_texture;
+	path[4] = game->map.d_texture;
+}
+
 bool	load_wall(t_game *game)
 {
 	int		i;
-	char	*paths[5] = {game->map.no_texture, game->map.so_texture,
-		game->map.ea_texture, game->map.we_texture, game->map.d_texture};
+	char	*paths[5];
 
 	i = 0;
+	asign_texture_path(game, paths);
 	while (i < 5)
 	{
 		if (!paths[i] && i == 4)
-			break;
+			break ;
 		game->textures[i].img = mlx_xpm_file_to_image(game->mlx, paths[i],
 				&game->textures[i].width, &game->textures[i].height);
 		if (!game->textures[i].img)
