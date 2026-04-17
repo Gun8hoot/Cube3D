@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:59:56 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/16 15:58:39 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:23:00 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,6 @@ void	safe_free(char **to_free)
 	{
 		free(*(char **)to_free);
 		*(char **)to_free = NULL;
-	}
-}
-
-void	free_tab(char ***tab, ssize_t size)
-{
-	ssize_t	i;
-
-	i = 0;
-	if (size <= 0)
-	{
-		while ((*tab)[i])
-		{
-			if ((*tab)[i])
-				(free((*tab)[i]), (*tab)[i] = NULL);
-			i++;
-		}
-		if (*tab)
-			(free(*tab), *tab = NULL);
-	}
-	else
-	{
-		while (i < size)
-		{
-			if ((*tab)[i])
-				(free((*tab)[i]), (*tab)[i] = NULL);
-			i++;
-		}
-		if (*tab)
-			(free(*tab), *tab = NULL);
 	}
 }
 

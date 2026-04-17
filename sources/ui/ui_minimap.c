@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:36:27 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 17:49:33 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:25:51 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,15 @@ static void	show_vision(t_game *game)
 		hit_x = game->player.pos_x + ray.perp_wall_dist * ray.ray_dir.x;
 		hit_y = game->player.pos_y + ray.perp_wall_dist * ray.ray_dir.y;
 		t_vec v0 = {(int)(game->minimap.padding_right_left + 4
-			+ game->minimap.pixel_per_elem / 2 + (int)game->player.pos_x
-			* game->minimap.pixel_per_elem), (int)(game->minimap.padding_top_bottom + 4
-			+ game->minimap.pixel_per_elem / 2 + (int)game->player.pos_y
-			* game->minimap.pixel_per_elem)};
-		t_vec v1 = {(int)(game->minimap.padding_right_left + 4
-			+ hit_x * game->minimap.pixel_per_elem),
+				+ game->minimap.pixel_per_elem / 2 + (int)game->player.pos_x
+				* game->minimap.pixel_per_elem),
+			(int)(game->minimap.padding_top_bottom + 4
+				+ game->minimap.pixel_per_elem / 2 + (int)game->player.pos_y
+				* game->minimap.pixel_per_elem)};
+		t_vec v1 = {(int)(game->minimap.padding_right_left + 4 + hit_x
+				* game->minimap.pixel_per_elem),
 			(int)(game->minimap.padding_top_bottom + 4 + hit_y
-			* game->minimap.pixel_per_elem)};
+				* game->minimap.pixel_per_elem)};
 		draw_line(game, v0, v1);
 	}
 }
@@ -101,17 +102,17 @@ void	show_minimap(t_game *game)
 		for (double x = 0; game->map.grid[(size_t)y][(size_t)x]; x++)
 		{
 			if (game->map.grid[(size_t)y][(size_t)x] == WALL)
-				draw_square(game, (t_vec){px, py},
-					game->minimap.pixel_per_elem, B_GREEN);
+				draw_square(game, (t_vec){px, py}, game->minimap.pixel_per_elem,
+					B_GREEN);
 			else if (game->map.grid[(size_t)y][(size_t)x] == PLAYER)
-				draw_square(game, (t_vec){px, py},
-					game->minimap.pixel_per_elem, B_RED);
+				draw_square(game, (t_vec){px, py}, game->minimap.pixel_per_elem,
+					B_RED);
 			else if (game->map.grid[(size_t)y][(size_t)x] == DOOR_CLOSE)
-				draw_square(game, (t_vec){px, py},
-					game->minimap.pixel_per_elem, B_YELLOW);
+				draw_square(game, (t_vec){px, py}, game->minimap.pixel_per_elem,
+					B_YELLOW);
 			else if (game->map.grid[(size_t)y][(size_t)x] == DOOR_OPEN)
-				draw_square(game, (t_vec){px, py},
-					game->minimap.pixel_per_elem, B_BLUE);
+				draw_square(game, (t_vec){px, py}, game->minimap.pixel_per_elem,
+					B_BLUE);
 			px += game->minimap.pixel_per_elem;
 		}
 		py += game->minimap.pixel_per_elem;
