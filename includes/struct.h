@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 17:45:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/17 16:29:20 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:44:21 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ typedef struct s_vec
 	int				x;
 	int				y;
 }					t_vec;
+
+typedef struct s_line
+{
+	t_vec			d;
+	t_vec			s;
+	int				err;
+}					t_line;
 
 typedef struct s_render
 {
@@ -163,6 +170,7 @@ typedef struct s_game
 	t_weapon		weapon;					// Weapon related data
 	t_player		player;					// Player data structure
 	t_render		render;					// Render data structure
+	t_line			line;					// Draw_line struct
 	t_ray			ray;					// Raycasting data structure
 	t_fps			fps;					// Fps related data
 	void			*mlx;					// Pointer to MLX data

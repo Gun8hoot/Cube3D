@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:36:27 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 16:36:31 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:49:33 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	show_vision(t_game *game)
 			+ hit_x * game->minimap.pixel_per_elem),
 			(int)(game->minimap.padding_top_bottom + 4 + hit_y
 			* game->minimap.pixel_per_elem)};
-		draw_line(game, &v0, &v1);
+		draw_line(game, v0, v1);
 	}
 }
 

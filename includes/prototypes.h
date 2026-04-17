@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:34:48 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/17 16:37:01 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:49:00 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void			animating_weapon(t_game *game);
 /* --- shape.c --- */
 void			draw_box(t_game *game, t_vec max, int color, int pad);
 void			draw_square(t_game *game, t_vec pos, int len, int color);
-void			draw_line(t_game *game, t_vec *v0, t_vec *v1);
+void			draw_line(t_game *game, t_vec v0, t_vec v1);
 /* --- load_texture.c --- */
 bool			load_wall(t_game *game);
 t_img			*ft_text_load(t_game *game, t_img *img, char *texture);
