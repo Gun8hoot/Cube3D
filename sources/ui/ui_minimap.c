@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ui_minimap.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/17 12:36:27 by thlibers          #+#    #+#             */
+/*   Updated: 2026/04/17 12:36:30 by thlibers         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
@@ -97,8 +107,7 @@ void	show_minimap(t_game *game)
 				draw_square(game, py, px, game->minimap.pixel_per_elem,
 					B_YELLOW);
 			else if (game->map.grid[(size_t)y][(size_t)x] == DOOR_OPEN)
-				draw_square(game, py, px, game->minimap.pixel_per_elem,
-					B_BLUE);
+				draw_square(game, py, px, game->minimap.pixel_per_elem, B_BLUE);
 			px += game->minimap.pixel_per_elem;
 		}
 		py += game->minimap.pixel_per_elem;

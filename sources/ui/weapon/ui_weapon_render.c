@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ui_weapon_render.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/17 12:38:41 by thlibers          #+#    #+#             */
+/*   Updated: 2026/04/17 12:38:42 by thlibers         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/cube3d.h"
 
 bool	init_anim_weapon(t_game *game)
@@ -49,8 +61,8 @@ void	weapon(t_game *game, t_img img)
 		x = 0;
 		while (x < img.width)
 		{
-			game->weapon.dst = img.addr + (y * img.line_length)
-				+ (x * (img.bits_per_pixel / 8));
+			game->weapon.dst = img.addr + (y * img.line_length) + (x
+					* (img.bits_per_pixel / 8));
 			game->weapon.color = *(int *)game->weapon.dst;
 			if (game->weapon.color != B_BLACK)
 				my_mlx_pixel_put(game, game->weapon.start_x + x,

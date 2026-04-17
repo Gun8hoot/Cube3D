@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ui_crosshair.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/17 12:33:54 by thlibers          #+#    #+#             */
+/*   Updated: 2026/04/17 12:34:14 by thlibers         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
@@ -12,7 +23,6 @@ void	crosshair(t_game *game)
 	draw_line(game, WIDTH / 2, HEIGHT / 2 - CR_PADD_CENTER, WIDTH / 2, HEIGHT
 		/ 2 - CR_SIZE);
 }
-
 
 void	draw_hitmarker(t_game *game)
 {

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ui_fps.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/17 12:34:33 by thlibers          #+#    #+#             */
+/*   Updated: 2026/04/17 12:35:44 by thlibers         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
+// convert to sec
 void	show_fps(t_game *game)
 {
 	struct timeval	curr_frame_time;
@@ -8,7 +20,7 @@ void	show_fps(t_game *game)
 	gettimeofday(&curr_frame_time, 0);
 	game->fps.delta_fps = (curr_frame_time.tv_sec
 			- game->fps.last_frame_time.tv_sec) + (curr_frame_time.tv_usec
-			- game->fps.last_frame_time.tv_usec) / 1000000.0; // CONVERT TO SEC
+			- game->fps.last_frame_time.tv_usec) / 1000000.0;
 	game->fps.last_frame_time = curr_frame_time;
 	game->fps.fps_counter++;
 	game->fps.fps_timer += game->fps.delta_fps;

@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 13:37:48 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/16 13:38:06 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 12:38:10 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	reloading_msg(t_game *game)
 	{
 		if (ms_time(NULL) - timeval_to_ms(time, 0) < 500)
 		{
-			mlx_string_put(game->mlx, game->win, (WIDTH / 2) - 50, (HEIGHT / 2) + 200,
-				B_RED, "Press R to reload");
+			mlx_string_put(game->mlx, game->win, (WIDTH / 2) - 50, (HEIGHT / 2)
+				+ 200, B_RED, "Press R to reload");
 		}
 		else if (ms_time(NULL) - timeval_to_ms(time, 0) > 1000)
 			gettimeofday(&time, 0);
@@ -34,7 +34,7 @@ void	weapon_reload(t_game *game)
 	if (!game->weapon.is_shooting && !game->weapon.is_reloading
 		&& game->weapon.remaining_bullet != MAX_AMMO_NUM)
 	{
-		game->weapon.is_reloading = true;	// Need to handle it on the weapon animation function
+		game->weapon.is_reloading = true;
 		game->weapon.cannot_shoot = false;
 		game->weapon.remaining_bullet = MAX_AMMO_NUM;
 	}
