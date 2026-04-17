@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:19:45 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/16 19:16:07 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/17 13:12:02 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,29 @@ static int	can_move(t_game *game, double new_x, double new_y)
 	return (1);
 }
 
+static void	update_player_pos(t_game *game, double new_x, double new_y)
+{
+	if (game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x]
+		!= WALL && game->map.grid[(int)game->player.pos_y]
+		[(int)game->player.pos_x] != DOOR_CLOSE)
+	{
+		if (game->player.door.is_on_door)
+		{
+			game->map.grid[(int)game->player.pos_y]
+			[(int)game->player.pos_x] = DOOR_OPEN;
+			game->player.door.is_on_door = false;
+		}
+		else
+			game->map.grid[(int)game->player.pos_y]
+			[(int)game->player.pos_x] = FLOOR;
+		if (game->map.grid[(int)new_y][(int)new_x] == DOOR_OPEN)
+			game->player.door.is_on_door = true;
+		game->map.grid[(int)new_y][(int)new_x] = PLAYER;
+	}
+	game->player.pos_x = new_x;
+	game->player.pos_y = new_y;
+}
+
 void	move_player(t_game *game, double dx, double dy, unsigned short keycode)
 {
 	static struct timeval	last_move[65535] = {0};
@@ -38,27 +61,7 @@ void	move_player(t_game *game, double dx, double dy, unsigned short keycode)
 		return ;
 	gettimeofday(&last_move[keycode], 0);
 	if (can_move(game, new_x, new_y))
-	{
-		if (game->map.grid[(int)game->player.pos_y][(int)game->player.pos_x]
-			!= WALL && game->map.grid[(int)game->player.pos_y]
-			[(int)game->player.pos_x] != DOOR_CLOSE)
-		{
-			if (game->player.door.is_on_door)
-			{
-				game->map.grid[(int)game->player.pos_y]
-				[(int)game->player.pos_x] = DOOR_OPEN;
-				game->player.door.is_on_door = false;
-			}
-			else
-				game->map.grid[(int)game->player.pos_y]
-				[(int)game->player.pos_x] = FLOOR;
-			if (game->map.grid[(int)new_y][(int)new_x] == DOOR_OPEN)
-				game->player.door.is_on_door = true;
-			game->map.grid[(int)new_y][(int)new_x] = PLAYER;
-		}
-		game->player.pos_x = new_x;
-		game->player.pos_y = new_y;
-	}
+		update_player_pos(game, new_x, new_y);
 }
 
 void	move_camera(t_game *game, double rot_speed)
