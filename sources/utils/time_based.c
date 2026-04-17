@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   time_based.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/17 12:40:22 by thlibers          #+#    #+#             */
+/*   Updated: 2026/04/17 12:40:25 by thlibers         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
 t_ll	ms_time(t_ll *ll_ptr)
 {
 	struct timeval	time;
-	t_ll				time_in_ms;
+	t_ll			time_in_ms;
 
 	gettimeofday(&time, 0);
 	time_in_ms = (t_ll)(time.tv_sec * 1000 + time.tv_usec / 1000);
