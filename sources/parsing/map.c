@@ -12,18 +12,6 @@
 
 #include "includes/cube3d.h"
 
-bool	check_extension(char *filepath)
-{
-	size_t	len;
-
-	len = ft_strlen(filepath) - 1;
-	if (!filepath || filepath[0] == '\0')
-		return (fprintf(stderr, STR_PATH_ERROR), false);
-	if (ft_strncmp(&filepath[len - 3], ".cub", 4) != 0)
-		return (fprintf(stderr, FNAME_ERROR, filepath), false);
-	return (true);
-}
-
 char	*save_line(char **raw_line)
 {
 	char	*line;
@@ -39,98 +27,4 @@ char	*save_line(char **raw_line)
 	if (!ret_line)
 		return (NULL);
 	return (ret_line);
-}
-
-ssize_t	countline(t_map *map)
-{
-	char	*line;
-
-	line = get_next_line(map->fd);
-	if (!line)
-		return (0);
-	while (line && line[0] != '\n')
-	{
-		if (line)
-			free(line);
-		map->line_number++;
-		line = get_next_line(map->fd);
-		if (errno == EGNL)
-			return (-1);
-	}
-	return (map->line_number);
-}
-
-t_map	*extract_info(t_map *map)
-{
-	size_t	i;
-	char	*raw_line;
-
-	i = 0;
-	map->fd = open(map->filepath, O_RDONLY);
-	if (map->fd < 3)
-		return (fprintf(stderr, OPEN_ERROR, map->filepath), NULL);
-	while (i == 0 || raw_line)
-	{
-		raw_line = get_next_line(map->fd);
-		if (errno == EGNL)
-			return (NULL);
-		if (is_map(raw_line))
-		{
-			map->line_number++;
-			map->pos_start_map += i + 1;
-			countline(map);
-			break ;
-		}
-		else if (!extract_texture_path(map, raw_line))
-			return (NULL);
-		i++;
-	}
-	safe_free(&raw_line);
-	if (map->fd > 2)
-		(close(map->fd), map->fd = 0);
-	return (map);
-}
-
-char	**extract_map(t_map *map)
-{
-	size_t	i;
-	char	*raw_line;
-
-	i = -1;
-	raw_line = NULL;
-	map->fd = open(map->filepath, O_RDONLY);
-	if (map->fd < 3)
-		return (fprintf(stderr, OPEN_ERROR, map->filepath), NULL);
-	map->grid = ft_calloc(map->line_number + 1, sizeof(char *));
-	if (!map->grid)
-		return (NULL);
-	while (++i < map->pos_start_map - 1)
-	{
-		raw_line = get_next_line(map->fd);
-		if (!raw_line)
-			return (fprintf(stderr, MISS_MAP_ERROR, map->filepath), safe_free(&raw_line), NULL);
-		safe_free(&raw_line);
-	}
-	i = 0;
-	while (i <= map->line_number)
-	{
-		raw_line = get_next_line(map->fd);
-		if (errno == EGNL)
-			return (NULL);
-		if (raw_line && raw_line[0] != '\0' && raw_line[0] != '\n')
-		{
-			map->grid[i] = ft_strtrim(raw_line, "\n");
-			if (!map->grid[i])
-				return (NULL);
-			if (map->number_char_max < ft_strlen(map->grid[i]))
-				map->number_char_max = ft_strlen(map->grid[i]);
-			i++;
-		}
-		else
-		{
-			map->grid[i] = NULL;
-			break ;
-		}
-	}
-	return (map->grid);
 }

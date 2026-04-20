@@ -12,6 +12,18 @@
 
 #include "includes/cube3d.h"
 
+bool	check_extension(char *filepath)
+{
+	size_t	len;
+
+	len = ft_strlen(filepath) - 1;
+	if (!filepath || filepath[0] == '\0')
+		return (fprintf(stderr, STR_PATH_ERROR), false);
+	if (ft_strncmp(&filepath[len - 3], ".cub", 4) != 0)
+		return (fprintf(stderr, FNAME_ERROR, filepath), false);
+	return (true);
+}
+
 static bool	define_pos(t_map *map, char direction)
 {
 	if (map->looking_at[0] != 0.0 || map->looking_at[1] != 0.0)
@@ -54,8 +66,7 @@ bool	get_player_pos(t_map *map)
 				|| map->grid[i][j] == 'S' || map->grid[i][j] == 'W')
 			{
 				if (!define_pos(map, map->grid[i][j]))
-					return (ft_fprintf(STDERR_FILENO, MULT_PLAYER_ERROR),
-						false);
+					return (ft_fprintf(STDERR_FILENO, MULT_ERROR), false);
 				map->start_pos[0] = i;
 				map->start_pos[1] = j;
 				map->grid[i][j] = PLAYER;
@@ -114,32 +125,27 @@ bool	check_floodfill(char **grid)
 
 bool	floodfill(size_t x, size_t y, t_map *map, char c)
 {
-	if (x < 0 || x > map->number_char_max || y < 0 || y > map->line_number)
-		return (false);
-	if (map->flood_filled[y][x] != '1' && (
-		!map->flood_filled[y][x + 1] || (map->flood_filled[y][x + 1] == ' ')))
-		return (false);
-	if (map->flood_filled[y][x] != '1' && (
-		!map->flood_filled[y][x - 1] || (map->flood_filled[y][x - 1] == ' ')))
-		return (false);
-	if (map->flood_filled[y][x] != '1' && (
-		!map->flood_filled[y - 1][x] || (map->flood_filled[y - 1][x] == ' ')))
-		return (false);
-	if (map->flood_filled[y][x] != '1' && (
-		!map->flood_filled[y + 1][x] || (map->flood_filled[y + 1][x] == ' ')))
-		return (false);
-
 	if (map->flood_filled[y][x] == '1' || map->flood_filled[y][x] == 'F')
 		return (true);
+	if (x <= 0 || x >= map->number_char_max - 1 || y <= 0
+		|| y >= map->line_number - 1)
+		return (false);
+	if (map->flood_filled[y][x] != '1' && (!map->flood_filled[y][x + 1]
+			|| (map->flood_filled[y][x + 1] == ' ')))
+		return (false);
+	if (map->flood_filled[y][x] != '1' && (!map->flood_filled[y][x - 1]
+			|| (map->flood_filled[y][x - 1] == ' ')))
+		return (false);
+	if (map->flood_filled[y][x] != '1' && (!map->flood_filled[y - 1][x]
+			|| (map->flood_filled[y - 1][x] == ' ')))
+		return (false);
+	if (map->flood_filled[y][x] != '1' && (!map->flood_filled[y + 1][x]
+			|| (map->flood_filled[y + 1][x] == ' ')))
+		return (false);
 	map->flood_filled[y][x] = c;
-
-	if (!floodfill(x, y - 1, map, c))
+	if (!floodfill(x, y - 1, map, c) || !floodfill(x, y + 1, map, c))
 		return (false);
-	if (!floodfill(x, y + 1, map, c))
-		return (false);
-	if (!floodfill(x - 1, y, map, c))
-		return (false);
-	if (!floodfill(x + 1, y, map, c))
+	if (!floodfill(x - 1, y, map, c) || !floodfill(x + 1, y, map, c))
 		return (false);
 	return (true);
 }

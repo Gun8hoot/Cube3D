@@ -32,44 +32,6 @@ t_id	check_info_type(char *info)
 		return (NONE);
 }
 
-bool	get_color(int **color, char *line)
-{
-	int		shift;
-	size_t	i;
-	size_t	j;
-	char	number[4];
-	int		tmp;
-
-	i = 0;
-	shift = 16;
-	*color = ft_calloc(1, sizeof(int));
-	if (!*color)
-		return (fprintf(stderr, ALLOC_ERROR), false);
-	while (line[i] && !ft_isdigit(line[i]))
-		i++;
-	while (line[i])
-	{
-		tmp = 0;
-		ft_memset(&number, '\0', sizeof(char) * 4);
-		j = 0;
-		while (line[i + j] && ft_isdigit(line[i + j]))
-			j++;
-		if (line[i + j] != ',' && line[i + j] != '\0')
-			return (false);
-		ft_strlcpy(number, &line[i], j + 1);
-		tmp = ft_atoi(number);
-		if (ft_strlen(number) > 3 || tmp < 0 || tmp > 255)
-			return (ft_fprintf(STDERR_FILENO, OOB_ERROR), false);
-		**color += tmp << shift;
-		shift -= 8;
-		if (line[i + j] == '\0')
-			i += j;
-		else
-			i += j + 1;
-	}
-	return (true);
-}
-
 bool	set_texture(char **dest, char *src)
 {
 	if (*dest)

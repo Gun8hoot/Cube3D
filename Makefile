@@ -6,7 +6,7 @@
 #    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/20 13:45:08 by thlibers         ###   ########.fr        #
+#    Updated: 2026/04/20 16:03:07 by nclavel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = cube3D
 CC = cc
 OFLAG = -O3
 GFLAG = -g3 -ggdb
-CFLAGS = -Wall -Wextra -Werror $(OFLAG) -I.
+CFLAGS = -Wall -Wextra -Werror $(GFLAG) -I.
 INCLUDES = -I./includes
 
 # Flags Mlx
@@ -40,6 +40,10 @@ MLX	= $(LIB_DIR)/minilibx-linux
 SRCS =	$(SRC_DIR)/environement/door.c\
 		$(SRC_DIR)/parsing/check.c\
 		$(SRC_DIR)/parsing/map.c\
+		$(SRC_DIR)/parsing/get_map.c\
+		$(SRC_DIR)/parsing/get_info.c\
+		$(SRC_DIR)/parsing/get_color.c\
+		$(SRC_DIR)/parsing/floodfill.c\
 		$(SRC_DIR)/parsing/maps_utils.c\
 		$(SRC_DIR)/parsing/texture.c\
 		$(SRC_DIR)/player/events.c\

@@ -31,7 +31,7 @@ bool	is_map(char *line)
 		return (true);
 }
 
-char **cpy_map(t_map *map, char **dest, char **src)
+char	**cpy_map(t_map *map, char **dest, char **src)
 {
 	size_t	i;
 
@@ -55,4 +55,29 @@ char **cpy_map(t_map *map, char **dest, char **src)
 		i++;
 	}
 	return (dest);
+}
+
+bool	allow_char(char **arr)
+{
+	size_t	x;
+	size_t	y;
+
+	y = 0;
+	while (arr[y])
+	{
+		x = 0;
+		while (arr[y][x])
+		{
+			if (arr[y][x] != '0' && arr[y][x] != '1' && arr[y][x] != ' '
+				&& arr[y][x] != 'D' && arr[y][x] != 'N' && arr[y][x] != 'E'
+				&& arr[y][x] != 'S' && arr[y][x] != 'W')
+			{
+				fprintf(stderr, UNK_CHAR_ERROR, arr[y][x], arr[y]);
+				return (false);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (true);
 }

@@ -54,6 +54,8 @@ t_map	*init_map(t_map *map, char *filepath)
 		return (NULL);
 	if (!extract_map(map))
 		return (NULL);
+	if (!allow_char(map->grid))
+		return (NULL);
 	if (!get_player_pos(map))
 		return (NULL);
 	map->flood_filled = cpy_map(map, map->flood_filled, map->grid);
