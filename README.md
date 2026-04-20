@@ -200,7 +200,7 @@ C 225,30,0
 - [LODEV wiki](https://lodev.org/cgtutor/raycasting.html)
 
 ## Showcase
-[![Cube3D](.images/thumbnail.png)](.images/showcase.mp4)
+![Cube3D](.images/showcase.gif)
 
 <br>
 
