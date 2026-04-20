@@ -6,7 +6,7 @@
 #    By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/12 11:04:15 by nclavel           #+#    #+#              #
-#    Updated: 2026/04/20 08:14:39 by nclavel          ###   ########.fr        #
+#    Updated: 2026/04/20 13:45:08 by thlibers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,7 @@ fclean: clean
 	@echo "$(RED)Cleaning executables...$(RESET)"
 	@rm -f $(NAME)
 	@rm -rf $(MLX)
+	@rm -rf minilibx-linux.tgz
 	@make -C $(LIBFT_DIR) fclean
 	@echo "$(GREEN)✓ Full clean completed!$(RESET)"
 
