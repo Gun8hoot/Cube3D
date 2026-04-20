@@ -34,6 +34,44 @@ make fclean
 make re
 ```
 
+## Raycasting
+
+Raycasting is a rendering technique used to create a 3D perspective from a 2D map. This project uses this method, inspired by the approach explained in [Lode's Computer Graphics Tutorial](https://lodev.org/cgtutor/raycasting.html).
+
+The core principle is to cast a ray from the player's position for each vertical column of pixels on the screen. The direction of each ray is determined by the player's viewing angle and the specific column on the screen.
+
+Here's a more detailed summary of the process as implemented in this project:
+
+1.  **Initialization**: For each vertical stripe (pixel column `x`) of the screen, we initialize the ray.
+    *   We calculate `camera_x`, which represents the x-coordinate on the camera plane. This transforms the screen pixel coordinate into a normalized coordinate from -1 to 1.
+    *   The ray's direction vector (`ray_dir`) is then determined by combining the player's direction vector (`dir`) with the camera plane vector (`plane`) scaled by `camera_x`. This ensures each ray corresponds to a unique column on the screen.
+    *   The ray's starting grid position (`map_x`, `map_y`) is set to the player's current integer grid coordinates.
+    *   `delta_dist` is calculated, representing the distance the ray must travel to cross one unit in the x or y direction. It's the inverse of the ray's direction vector components.
+
+2.  **DDA Setup**: We prepare for the Digital Differential Analysis (DDA) algorithm.
+    *   We determine the `step` direction (either +1 or -1 for both x and y) based on the sign of the `ray_dir` components.
+    *   `side_dist` is calculated. This is the initial distance from the ray's starting point to the first grid line it will cross, for both x and y axes.
+
+3.  **DDA Execution**: The DDA algorithm iteratively extends the ray until it hits a wall.
+    *   In a loop, we compare `side_dist.x` and `side_dist.y` to see which grid line (vertical or horizontal) is closer.
+    *   If the x-side is closer, we advance the ray to that grid line by adding `delta_dist.x` to `side_dist.x` and incrementing `map_x` by `step.x`. We note that an x-side was hit (`side = 0`).
+    *   Otherwise, we do the same for the y-direction.
+    *   The loop continues until the ray's current position (`map_x`, `map_y`) corresponds to a wall block (`'1'`) or a closed door (`'D'`) in the map grid.
+
+4.  **Distance Calculation**: Once a wall is hit, we calculate the perpendicular distance (`perp_wall_dist`) from the player's camera plane to the wall. This is crucial to prevent a "fisheye" distortion effect that would occur if we used the direct Euclidean distance.
+
+5.  **Wall Height Calculation**: The height of the vertical wall slice to be drawn on screen (`line_height`) is calculated as the inverse of `perp_wall_dist`. This makes distant walls appear smaller and close walls larger. We then determine the `draw_start` and `draw_end` pixel positions for this vertical line on the screen.
+
+6.  **Texturing**:
+    *   We identify which texture to use based on the wall face that was hit (North, South, East, or West) and whether it's a wall or a door.
+    *   We calculate the exact x-coordinate (`wall_x`) where the ray hit the wall. This is a floating-point value.
+    *   This `wall_x` is then converted into an integer texture coordinate (`img_x`) to select the correct vertical stripe from the texture image.
+    *   Finally, we draw the textured vertical line pixel by pixel, calculating the corresponding texture y-coordinate for each screen pixel.
+
+In our project, the implementation of raycasting is primarily handled in the following files:
+*   `sources/raycasting/raycasting.c`: Contains the main raycasting loop (`ft_rayshooter`), DDA implementation (`dda_steps`), and distance calculation.
+*   `sources/raycasting/ray_utils.c`: Includes utility functions for calculating line heights (`line_height`), handling textures (`get_texture`, `convert_coords_textures`), and drawing the final textured line (`draw_textured_line`).
+
 ## Available features:
 - [x] A working game
 - [x] Minimap

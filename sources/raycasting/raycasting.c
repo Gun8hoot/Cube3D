@@ -6,13 +6,12 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:50:21 by thlibers          #+#    #+#             */
-/*   Updated: 2026/04/17 15:31:14 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/20 11:53:03 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/cube3d.h"
 
-// Digital Differential Analyzer
 void	setup_dda(t_ray *ray, t_game *game)
 {
 	if (ray->ray_dir.x < 0)
