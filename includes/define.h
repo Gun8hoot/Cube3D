@@ -6,7 +6,7 @@
 /*   By: thlibers <thlibers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 21:45:44 by nclavel           #+#    #+#             */
-/*   Updated: 2026/04/17 18:43:07 by thlibers         ###   ########.fr       */
+/*   Updated: 2026/04/20 14:18:16 by thlibers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,20 @@
 # define RAY_PRECISION 0.1
 
 /* ANIM FILENAME */
-# define IDLE "textures/Weapon/idle.xpm"
+# define IDLE "textures/720p/weapon/idle.xpm"
 
 /* ======== Fire ======== */
-# define FIRE_A1 "textures/Weapon/fire/1.xpm"
-# define FIRE_A2 "textures/Weapon/fire/2.xpm"
-# define FIRE_A3 "textures/Weapon/fire/3.xpm"
-# define FIRE_A4 "textures/Weapon/fire/4.xpm"
-# define FIRE_A5 "textures/Weapon/fire/5.xpm"
+# define FIRE_A1 "textures/720p/weapon/fire/1.xpm"
+# define FIRE_A2 "textures/720p/weapon/fire/2.xpm"
+# define FIRE_A3 "textures/720p/weapon/fire/3.xpm"
+# define FIRE_A4 "textures/720p/weapon/fire/4.xpm"
+# define FIRE_A5 "textures/720p/weapon/fire/5.xpm"
 
 /* ======== Reload ======== */
-# define RELOAD_A1 "textures/Weapon/reload/1.xpm"
-# define RELOAD_A2 "textures/Weapon/reload/2.xpm"
-# define RELOAD_A3 "textures/Weapon/reload/3.xpm"
-# define RELOAD_A4 "textures/Weapon/reload/4.xpm"
-# define RELOAD_A5 "textures/Weapon/reload/5.xpm"
+# define RELOAD_A1 "textures/720p/weapon/reload/1.xpm"
+# define RELOAD_A2 "textures/720p/weapon/reload/2.xpm"
+# define RELOAD_A3 "textures/720p/weapon/reload/3.xpm"
+# define RELOAD_A4 "textures/720p/weapon/reload/4.xpm"
+# define RELOAD_A5 "textures/720p/weapon/reload/5.xpm"
 
 #endif
