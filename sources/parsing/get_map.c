@@ -55,13 +55,14 @@ char	**extract_map(t_map *map)
 		{
 			map->grid[i] = ft_strtrim(raw_line, "\n");
 			if (!map->grid[i])
-				return (NULL);
+				return (safe_free(&raw_line), NULL);
 			if (map->number_char_max < ft_strlen(map->grid[i]))
 				map->number_char_max = ft_strlen(map->grid[i]);
 			i++;
 		}
 		else
 		{
+			safe_free(&raw_line);
 			map->grid[i] = NULL;
 			break ;
 		}
