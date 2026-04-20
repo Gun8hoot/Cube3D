@@ -12,14 +12,18 @@ ssize_t	check_number(char *number)
 	{
 		while (number[i] == ' ')
 			i++;
-		if (ft_isdigit(number[i]))
+		if (!ft_isdigit(number[i]))
+			return (fprintf(stderr, COLOR_ERROR, number), -1);
+		while (ft_isdigit(number[i]))
 			i++;
-		else if (number[i] == ',')
+		while (number[i] == ' ')
+			i++;
+		if (number[i] == ',')
 		{
 			comma++;
 			i++;
 		}
-		else
+		else if (number[i])
 			return (fprintf(stderr, COLOR_ERROR, number), -1);
 		if (comma > 2)
 			return (fprintf(stderr, COLOR_ERROR, number), -1);
@@ -49,8 +53,12 @@ bool	get_color(int **color, char *line)
 		tmp = 0;
 		ft_memset(&number, '\0', sizeof(char) * 4);
 		j = 0;
+		while (ft_isspace(line[i]))
+			i++;
 		while (line[i + j] && ft_isdigit(line[i + j]))
 			j++;
+		while (ft_isspace(line[i + j]))
+			i++;
 		if (line[i + j] != ',' && line[i + j] != '\0')
 			return (false);
 		ft_strlcpy(number, &line[i], j + 1);
