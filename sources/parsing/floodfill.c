@@ -51,13 +51,16 @@ bool	floodfill(size_t x, size_t y, t_map *map, char c)
 		return (false);
 	if (map->flood_filled[y][x] == '1' || map->flood_filled[y][x] == 'F')
 		return (true);
-	if (!map->flood_filled[y][x + 1] || (map->flood_filled[y][x + 1] == ' '))
+	if (x + 1 >= ft_strlen(map->flood_filled[y])
+		|| map->flood_filled[y][x + 1] == ' ')
 		return (false);
-	if (!map->flood_filled[y][x - 1] || (map->flood_filled[y][x - 1] == ' '))
+	if (x == 0 || map->flood_filled[y][x - 1] == ' ')
 		return (false);
-	if (!map->flood_filled[y - 1][x] || (map->flood_filled[y - 1][x] == ' '))
+	if (x >= ft_strlen(map->flood_filled[y - 1])
+		|| map->flood_filled[y - 1][x] == ' ')
 		return (false);
-	if (!map->flood_filled[y + 1][x] || (map->flood_filled[y + 1][x] == ' '))
+	if (x >= ft_strlen(map->flood_filled[y + 1])
+		|| map->flood_filled[y + 1][x] == ' ')
 		return (false);
 	map->flood_filled[y][x] = c;
 	if (!floodfill(x, y - 1, map, c))

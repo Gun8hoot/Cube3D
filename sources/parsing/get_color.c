@@ -56,7 +56,7 @@ bool	init_color(int **color, char *line, size_t *i)
 static bool	rgbtoi(int **color, char *line, size_t *i, size_t *j)
 {
 	static int	shift = 16;
-	char	number[4];
+	char		number[4];
 
 	if (shift == 0)
 		shift = 16;
