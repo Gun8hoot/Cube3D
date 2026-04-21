@@ -60,7 +60,6 @@ bool	floodfill(size_t x, size_t y, t_map *map, char c)
 	if (!map->flood_filled[y + 1][x] || (map->flood_filled[y + 1][x] == ' '))
 		return (false);
 	map->flood_filled[y][x] = c;
-
 	if (!floodfill(x, y - 1, map, c))
 		return (false);
 	if (!floodfill(x, y + 1, map, c))

@@ -12,7 +12,7 @@
 
 #include "includes/cube3d.h"
 
-char	**init_extract_map(t_map *map)
+static char	**init_extract_map(t_map *map)
 {
 	char	*raw_line;
 	size_t	i;
@@ -38,6 +38,17 @@ char	**init_extract_map(t_map *map)
 	return (map->grid);
 }
 
+static bool	append_line(t_map *map, char **raw_line, size_t *i)
+{
+	map->grid[*i] = ft_strtrim(*raw_line, "\n");
+	if (!map->grid[*i])
+		return (safe_free(raw_line), false);
+	if (map->number_char_max < ft_strlen(map->grid[*i]))
+		map->number_char_max = ft_strlen(map->grid[*i]);
+	(*i)++;
+	return (true);
+}
+
 char	**extract_map(t_map *map)
 {
 	size_t	i;
@@ -53,12 +64,8 @@ char	**extract_map(t_map *map)
 			return (NULL);
 		if (raw_line && raw_line[0] != '\0' && raw_line[0] != '\n')
 		{
-			map->grid[i] = ft_strtrim(raw_line, "\n");
-			if (!map->grid[i])
-				return (safe_free(&raw_line), NULL);
-			if (map->number_char_max < ft_strlen(map->grid[i]))
-				map->number_char_max = ft_strlen(map->grid[i]);
-			i++;
+			if (!append_line(map, &raw_line, &i))
+				return (NULL);
 		}
 		else
 		{

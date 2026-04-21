@@ -28,6 +28,7 @@ char	*ft_strtrim(char *s1, char const *set)
 		end--;
 	trim = ft_substr(s1, start, end - start);
 	free(s1);
+	s1 = NULL;
 	return (trim);
 }
 

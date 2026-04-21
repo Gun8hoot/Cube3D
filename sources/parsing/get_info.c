@@ -31,6 +31,18 @@ ssize_t	countline(t_map *map)
 	return (map->line_number);
 }
 
+bool	confirm_is_map(t_map *map, char *raw_line, size_t nb_line)
+{
+	if (is_map(raw_line))
+	{
+		map->line_number++;
+		map->pos_start_map += nb_line + 1;
+		countline(map);
+		return (true);
+	}
+	return (false);
+}
+
 t_map	*extract_info(t_map *map)
 {
 	size_t	i;
@@ -46,13 +58,8 @@ t_map	*extract_info(t_map *map)
 		raw_line = get_next_line(map->fd);
 		if (errno == EGNL)
 			return (NULL);
-		if (is_map(raw_line))
-		{
-			map->line_number++;
-			map->pos_start_map += i + 1;
-			countline(map);
+		if (confirm_is_map(map, raw_line, i))
 			break ;
-		}
 		else if (!extract_texture_path(map, raw_line))
 			return (NULL);
 		i++;
