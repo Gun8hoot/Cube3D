@@ -58,7 +58,7 @@ static bool	rgbtoi(int **color, char *line, size_t *i, size_t *j)
 	static int	shift = 16;
 	char		number[4];
 
-	if (shift == 0)
+	if (shift == -8)
 		shift = 16;
 	ft_strlcpy(number, &line[*i], *j + 1);
 	if (ft_strlen(number) > 3 || ft_atoi(number) < 0 || ft_atoi(number) > 255)

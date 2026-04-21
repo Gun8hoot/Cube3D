@@ -18,7 +18,6 @@
 
 /* ======= SOURCES ROOT ======= */
 /* --- ./init.c --- */
-
 /* Initialized raycasting */
 void			init_render(t_game *game);
 /* Initialized t_map structure */
@@ -55,38 +54,58 @@ bool			floodfill(size_t x, size_t y, t_map *map, char c);
 bool			get_player_pos(t_map *map);
 /* Check if ive got every info needed */
 bool			check_parsing(t_map *map);
+
 /* --- map.c --- */
+
 /* Check if the map end with a .cub extension */
 bool			check_extension(char *filepath);
+/* DEBUG : Display map on terminal */
 void			show_map(t_map *map);
 /* Extract the map from the .cub file */
 char			**export_map(t_map *map, char *filepath);
 /* Initialized map and his data */
 t_map			*init_map(t_map *map, char *filepath);
+
 /* --- texture.c --- */
-t_id			check_info_type(char *info);
+
+/* Get the path of the current parsed texture */
 bool			extract_texture_path(t_map *map, char *raw_line);
-bool			set_info_texture(t_map *map, char *info_string, t_id id);
+
 /* --- maps_utils.c --- */
+
+/* Check if our current line is a map */
 bool			is_map(char *line);
+/* Copy the map into an another char ** array */
 char			**cpy_map(t_map *map, char **dest, char **src);
+/* Check if our current line contain not allow character */
 bool			allow_char(char **arr);
-/* get_color.c */
+
+/* --- get_color.c --- */
+
+/* Parse the RGB code from the line */
 bool			get_color(int **color, char *line);
 
 /* -------------------- */
 
 /* ======= PLAYER ======= */
 /* --- events.c --- */
+
+/* Function who is called when pressing a key */
 int				handle_key_press(int keycode, t_game *game);
+/* Function who is called when releasing a key */
 int				handle_key_release(int keycode, t_game *game);
-int				handle_close(t_game *game);
 /* --- mouse.c --- */
+
+/* Function who is called when clicking on mouse button */
 int				mouse(t_game *game);
 /* --- movements.c --- */
+
+/* Function called when moving keys are pressed */
 void			move_player(t_game *game, double dx, double dy,
 					unsigned short keycode);
+/* Moving the camera */
 void			move_camera(t_game *game, double rot_speed);
+/* Translate key press to an action */
 void			chose_action(t_game *game);
 /* -------------------- */
 /* ======= RAYCASTING ======= */

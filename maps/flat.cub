@@ -1,11 +1,11 @@
-NO ./textures/zombie.xpm
-EA ./textures/wall1.xpm
-SO ./textures/wall2.xpm
+SO ./textures/jhauvill.xpm
+EA ./textures/jhauvill.xpm
+NO ./textures/jhauvill.xpm
 WE ./textures/jhauvill.xpm
 DO ./textures/door.xpm
 
 C 255,84,0
-F 98,83,64
+F 0,255,0
 
 11111111111111111111111111111111111111
 10000000000000000000000000000000000001
