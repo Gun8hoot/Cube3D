@@ -40,57 +40,60 @@ ssize_t	check_number(char *number)
 	return (comma);
 }
 
-bool	init_color(int **color, char *line, t_vec *vec)
+bool	init_color(int **color, char *line, size_t *i)
 {
-	ft_memset(vec, '\0', sizeof(t_vec));
+	*i = 0;
 	*color = ft_calloc(1, sizeof(int));
 	if (!*color)
 		return (fprintf(stderr, ALLOC_ERROR), false);
-	while (ft_isalpha(line[vec->x]) || line[vec->x] == ' ')
-		vec->x++;
-	if (check_number(&line[vec->x]) < 0)
+	while (ft_isalpha(line[*i]) || line[*i] == ' ')
+		(*i)++;
+	if (check_number(&line[*i]) < 0)
 		return (free(*color), *color = NULL, false);
 	return (true);
 }
 
-bool	rgbtoi(int **color, char *line, t_vec *vec, int *shift)
+static bool	rgbtoi(int **color, char *line, size_t *i, size_t *j)
 {
+	static int	shift = 16;
 	char	number[4];
 
-	ft_memset(&number, '\0', sizeof(char) * 4);
-	ft_strlcpy(number, &line[vec->x], vec->y + 1);
+	if (shift == 0)
+		shift = 16;
+	ft_strlcpy(number, &line[*i], *j + 1);
 	if (ft_strlen(number) > 3 || ft_atoi(number) < 0 || ft_atoi(number) > 255)
 		return (ft_fprintf(STDERR_FILENO, OOB_ERROR), false);
-	**color += ft_atoi(number) << *shift;
+	**color += ft_atoi(number) << shift;
 	shift -= 8;
+	if (line[*i + *j] == '\0')
+		*i += *j;
+	else
+		*i += *j + 1;
 	return (true);
 }
 
 bool	get_color(int **color, char *line)
 {
-	int		shift;
-	t_vec	vec;
+	size_t	i;
+	size_t	j;
+	char	number[4];
 
-	shift = 16;
-	if (!init_color(color, line, &vec))
+	if (!init_color(color, line, &i))
 		return (false);
-	while (line[vec.x])
+	while (line[i])
 	{
-		vec.y = 0;
-		while (ft_isspace(line[vec.x]))
-			vec.x++;
-		while (line[vec.x + vec.y] && ft_isdigit(line[vec.x + vec.y]))
-			vec.y++;
-		while (ft_isspace(line[vec.x + vec.y]))
-			vec.x++;
-		if (line[vec.x + vec.y] != ',' && line[vec.x + vec.y] != '\0')
+		ft_memset(&number, '\0', sizeof(char) * 4);
+		j = 0;
+		while (ft_isspace(line[i]))
+			i++;
+		while (line[i + j] && ft_isdigit(line[i + j]))
+			j++;
+		while (ft_isspace(line[i + j]))
+			i++;
+		if (line[i + j] != ',' && line[i + j] != '\0')
 			return (false);
-		if (!rgbtoi(color, line, &vec, &shift))
+		if (!rgbtoi(color, line, &i, &j))
 			return (false);
-		if (line[vec.x + vec.y] == '\0')
-			vec.x += vec.y;
-		else
-			vec.x += vec.y + 1;
 	}
 	return (true);
 }
