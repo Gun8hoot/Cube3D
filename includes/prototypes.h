@@ -70,10 +70,9 @@ bool			set_info_texture(t_map *map, char *info_string, t_id id);
 /* --- maps_utils.c --- */
 bool			is_map(char *line);
 char			**cpy_map(t_map *map, char **dest, char **src);
-bool	allow_char(char **arr);
+bool			allow_char(char **arr);
 /* get_color.c */
-bool	get_color(int **color, char *line);
-
+bool			get_color(int **color, char *line);
 
 /* -------------------- */
 

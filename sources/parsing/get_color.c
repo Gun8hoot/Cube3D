@@ -23,8 +23,6 @@ ssize_t	check_number(char *number)
 	{
 		while (number[i] == ' ')
 			i++;
-		if (!ft_isdigit(number[i]))
-			return (fprintf(stderr, COLOR_ERROR, number), -1);
 		while (ft_isdigit(number[i]))
 			i++;
 		while (number[i] == ' ')
@@ -42,46 +40,57 @@ ssize_t	check_number(char *number)
 	return (comma);
 }
 
-bool	get_color(int **color, char *line)
+bool	init_color(int **color, char *line, t_vec *vec)
 {
-	int		shift;
-	size_t	i;
-	size_t	j;
-	char	number[4];
-	int		tmp;
-
-	i = 0;
-	shift = 16;
+	ft_memset(vec, '\0', sizeof(t_vec));
 	*color = ft_calloc(1, sizeof(int));
 	if (!*color)
 		return (fprintf(stderr, ALLOC_ERROR), false);
-	while (ft_isalpha(line[i]) || line[i] == ' ')
-		i++;
-	if (check_number(&line[i]) < 0)
+	while (ft_isalpha(line[vec->x]) || line[vec->x] == ' ')
+		vec->x++;
+	if (check_number(&line[vec->x]) < 0)
 		return (free(*color), *color = NULL, false);
-	while (line[i])
+	return (true);
+}
+
+bool	rgbtoi(int **color, char *line, t_vec *vec, int *shift)
+{
+	char	number[4];
+
+	ft_memset(&number, '\0', sizeof(char) * 4);
+	ft_strlcpy(number, &line[vec->x], vec->y + 1);
+	if (ft_strlen(number) > 3 || ft_atoi(number) < 0 || ft_atoi(number) > 255)
+		return (ft_fprintf(STDERR_FILENO, OOB_ERROR), false);
+	**color += ft_atoi(number) << *shift;
+	shift -= 8;
+	return (true);
+}
+
+bool	get_color(int **color, char *line)
+{
+	int		shift;
+	t_vec	vec;
+
+	shift = 16;
+	if (!init_color(color, line, &vec))
+		return (false);
+	while (line[vec.x])
 	{
-		tmp = 0;
-		ft_memset(&number, '\0', sizeof(char) * 4);
-		j = 0;
-		while (ft_isspace(line[i]))
-			i++;
-		while (line[i + j] && ft_isdigit(line[i + j]))
-			j++;
-		while (ft_isspace(line[i + j]))
-			i++;
-		if (line[i + j] != ',' && line[i + j] != '\0')
+		vec.y = 0;
+		while (ft_isspace(line[vec.x]))
+			vec.x++;
+		while (line[vec.x + vec.y] && ft_isdigit(line[vec.x + vec.y]))
+			vec.y++;
+		while (ft_isspace(line[vec.x + vec.y]))
+			vec.x++;
+		if (line[vec.x + vec.y] != ',' && line[vec.x + vec.y] != '\0')
 			return (false);
-		ft_strlcpy(number, &line[i], j + 1);
-		tmp = ft_atoi(number);
-		if (ft_strlen(number) > 3 || tmp < 0 || tmp > 255)
-			return (ft_fprintf(STDERR_FILENO, OOB_ERROR), false);
-		**color += tmp << shift;
-		shift -= 8;
-		if (line[i + j] == '\0')
-			i += j;
+		if (!rgbtoi(color, line, &vec, &shift))
+			return (false);
+		if (line[vec.x + vec.y] == '\0')
+			vec.x += vec.y;
 		else
-			i += j + 1;
+			vec.x += vec.y + 1;
 	}
 	return (true);
 }
