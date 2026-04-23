@@ -22,12 +22,14 @@ ssize_t	countline(t_map *map)
 	while (line && line[0] != '\n')
 	{
 		if (line)
-			free(line);
+			safe_free(&line);
 		map->line_number++;
 		line = get_next_line(map->fd);
 		if (errno == EGNL)
 			return (-1);
 	}
+	if (line)
+		safe_free(&line);
 	return (map->line_number);
 }
 

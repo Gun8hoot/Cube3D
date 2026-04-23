@@ -103,7 +103,7 @@ To launch the game you should put in 2nd argument a map file on the right format
 - Map should be at the bottom of the file
 - Map should be less that 180 character in width and 160 character in height
 
-## Sample map
+## Sample map:
 ### Valid map
 - Simple map
 ```cub
@@ -234,10 +234,10 @@ C 225,30,0
 - Left mouse click - Shoot with the gun
 - 'SPACE' xor 'E' - Open the door
 
-## Part of ressources used:
+## Ressources:
 - [LODEV wiki](https://lodev.org/cgtutor/raycasting.html)
 
-## Showcase
+## Showcase:
 <div align=center>
 	<img src=".images/showcase.gif">
 </div>
